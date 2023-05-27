@@ -39,8 +39,8 @@ class _OfficeHomeState extends State<OfficeHome> {
                 ),
               ],
             ),
-            child: Row(
-              children: const <Widget>[
+            child: const Row(
+              children:  <Widget>[
                 Padding(
                   padding: EdgeInsets.only(
                     left: 30,
