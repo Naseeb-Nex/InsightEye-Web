@@ -263,6 +263,7 @@ class _CustomersrcState extends State<Customersrc> {
                                     padding: const EdgeInsets.symmetric(
                                         vertical: 3, horizontal: 3),
                                     child: CustomerListCard(
+                                      orgId: widget.orgId,
                                       name: resultc[i]['name'],
                                       address: resultc[i]['address'],
                                       loc: resultc[i]['loc'],
