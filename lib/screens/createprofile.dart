@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:insighteye_web/constants/constants.dart';
-import 'package:insighteye_web/screens/homesrc.dart';
+import 'package:insighteye_web/screens/officehomesrc.dart';
 
 import '../componets/simplealertbox.dart';
 
@@ -271,7 +271,7 @@ class _CreateProfileSrcState extends State<CreateProfileSrc> {
         "imgUrl": imageUrl,
       }).then((value) {
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => OfficeHome()));
+            context, MaterialPageRoute(builder: (context) => OfficeHome(orgId: widget.orgId,)));
       }, onError: (error) {
         showDialog(
             context: context,
