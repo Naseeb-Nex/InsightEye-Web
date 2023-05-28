@@ -611,7 +611,6 @@ class _AssignpgmwidgetState extends State<Assignpgmwidget> {
                               custdocname: pendingpgm[i]["custdocname"],
                               techuid: widget.uid,
                               techname: widget.techname,
-                              username: widget.username,
                               orgId: widget.orgId,
                             )
                           ]

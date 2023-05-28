@@ -18,7 +18,6 @@ class Assignpgmcard extends StatefulWidget {
   String? upTime;
   String? techuid;
   String? docname;
-  String? username;
   String? chrg;
   String? priority;
   String? techname;
@@ -40,7 +39,6 @@ class Assignpgmcard extends StatefulWidget {
     this.upTime,
     this.docname,
     this.techuid,
-    this.username,
     this.chrg,
     this.techname,
     this.prospec,
@@ -358,6 +356,7 @@ class _AssignpgmcardState extends State<Assignpgmcard> {
       assigneddate: assigneddate,
       assignedtime: assignedtime,
       custdocname: widget.custdocname,
+      techuid: widget.techuid,
     );
 
 
