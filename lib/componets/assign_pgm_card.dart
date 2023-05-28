@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:insighteye_web/componets/simplealertbox.dart';
 import 'package:insighteye_web/constants/constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:insighteye_web/Models/assignedpgmdata.dart';
 import 'package:intl/intl.dart';
 
+// ignore: must_be_immutable
 class Assignpgmcard extends StatefulWidget {
   String? uid;
   String? name;
@@ -48,6 +50,7 @@ class Assignpgmcard extends StatefulWidget {
   }) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _AssignpgmcardState createState() => _AssignpgmcardState();
 }
 
@@ -374,8 +377,14 @@ class _AssignpgmcardState extends State<Assignpgmcard> {
           _up = true;
           loading = false;
         });
-      }).catchError((error) =>
-              print("Failed to update program in program field : $error"));
+      }).catchError((error) {
+              showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return const SimpleCustomAlert("Something went Wrong, Try again!",
+                  Colors.redAccent, "Error");
+            }); 
+            });
 
     }
   }
