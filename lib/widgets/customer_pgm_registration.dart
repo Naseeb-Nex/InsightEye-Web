@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:insighteye_web/constants/constants.dart';
 import 'package:flutter/material.dart';
 
@@ -542,6 +543,7 @@ class _CustomerpgmRegState extends State<CustomerpgmReg> {
 
   void uploadData() async {
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+    final user = FirebaseAuth.instance.currentUser;
     DateTime now = DateTime.now();
     String formattedDate = DateFormat('MM d y kk:mm:ss').format(now);
     String upDate = DateFormat('d MMM y').format(now);
@@ -553,6 +555,7 @@ class _CustomerpgmRegState extends State<CustomerpgmReg> {
       });
 
       Pgmdata pgmr = Pgmdata(
+        uid: user?.uid,
         name: widget.cust.name,
         address: widget.cust.address,
         loc: widget.cust.loc,
