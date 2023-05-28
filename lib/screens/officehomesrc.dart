@@ -7,16 +7,17 @@ import 'package:insighteye_web/widgets/export_widget.dart';
 import 'package:insighteye_web/widgets/vehicleportal_widget.dart';
 
 class OfficeHome extends StatefulWidget {
- final String? orgId;
-   const OfficeHome({Key? key, this.orgId}) : super(key: key);
+  final String? orgId;
+  const OfficeHome({Key? key, this.orgId}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _OfficeHomeState createState() => _OfficeHomeState();
 }
 
 class _OfficeHomeState extends State<OfficeHome> {
   User? user = FirebaseAuth.instance.currentUser;
-  
+
   String? currentscr = "Home";
 
   @override
@@ -40,7 +41,7 @@ class _OfficeHomeState extends State<OfficeHome> {
               ],
             ),
             child: const Row(
-              children:  <Widget>[
+              children: <Widget>[
                 Padding(
                   padding: EdgeInsets.only(
                     left: 30,
@@ -291,17 +292,16 @@ class Widgetwrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (src == 'customer') {
-      return  Customersrc( orgId : orgId );
+      return Customersrc(orgId: orgId);
     } else if (src == 'customerreg') {
-      return  Customerreg( orgId : orgId );
+      return Customerreg(orgId: orgId);
     } else if (src == 'View') {
-      return  Pgmviewer( orgId : orgId );
+      return Pgmviewer(orgId: orgId);
     } else if (src == 'vehicleportal') {
-      return  VehiclePortalWidget( orgId : orgId );
+      return VehiclePortalWidget(orgId: orgId);
     } else if (src == 'report') {
-      return  Reportsrcwidget( orgId : orgId );
+      return Reportsrcwidget(orgId: orgId);
     }
-    return Homewidget( orgId : orgId 
-    );
+    return Homewidget(orgId: orgId);
   }
 }
