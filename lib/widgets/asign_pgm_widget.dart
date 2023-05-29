@@ -164,8 +164,7 @@ class _AssignpgmwidgetState extends State<Assignpgmwidget> {
                                           future: fb
                                               .collection("organizations")
                                               .doc("${widget.orgId}")
-                                              .collection("Technician")
-                                              // TODO : we will be back soon
+                                              .collection("technician")
                                               .doc(widget.uid)
                                               .collection("Vehicle")
                                               .doc(techvdoc)
@@ -556,7 +555,15 @@ class _AssignpgmwidgetState extends State<Assignpgmwidget> {
                     builder: (BuildContext context,
                         AsyncSnapshot<QuerySnapshot> snapshot) {
                       if (snapshot.hasError) {
-                        print('Something went Wrong');
+                        return const Center(
+                        child: Text(
+                          "Something Went Wrong :(",
+                          style: TextStyle(
+                              fontFamily: "Montserrat",
+                              fontSize: 17,
+                              color: cheryred),
+                        ),
+                      );
                       }
                       if (snapshot.connectionState == ConnectionState.waiting) {
                         return Container(
@@ -744,7 +751,7 @@ class _AddvehicleDialogState extends State<AddvehicleDialog> {
                   future: fb
                       .collection("organizations")
                       .doc("${widget.orgId}")
-                      .collection("Technician")
+                      .collection("technician")
                       .doc(widget.uid)
                       .collection("Vehicle")
                       .doc(techvdoc)
@@ -1011,7 +1018,7 @@ class _RemoveVehicleDialogState extends State<RemoveVehicleDialog> {
         future: fb
             .collection("organizations")
             .doc("${widget.orgId}")
-            .collection("Technician")
+            .collection("technician")
             .doc(widget.username)
             .collection("Vehicle")
             .doc(techvdoc)
@@ -1255,12 +1262,11 @@ class _RemoveVehicleDialogState extends State<RemoveVehicleDialog> {
     await fb
         .collection("organizations")
         .doc("${widget.orgId}")
-        .collection("Technician")
+        .collection("technician")
         .doc(widget.username)
         .collection("Vehicle")
         .doc(techvdoc)
-        .delete()
-        .then((value) => (print("data deleted suscessfully")));
+        .delete();
 
     // status change
     await fb
@@ -1277,8 +1283,7 @@ class _RemoveVehicleDialogState extends State<RemoveVehicleDialog> {
         .doc("${widget.orgId}")
         .collection("GarageUsage")
         .doc(usagedocname)
-        .set(vusage.toMap())
-        .then((v) => print("Vehicle assigned history added"));
+        .set(vusage.toMap());
 
     // ignore: use_build_context_synchronously
     Navigator.of(context).pop();
