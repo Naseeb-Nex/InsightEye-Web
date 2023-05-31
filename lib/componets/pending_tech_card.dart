@@ -4,7 +4,6 @@ import 'package:insighteye_web/constants/constants.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:insighteye_web/Models/customer_history.dart';
-import 'package:insighteye_web/Models/history.dart';
 
 // import 'package:insighteye_web/services/history.dart';
 import 'package:insighteye_web/Models/pgm.dart';
@@ -482,24 +481,6 @@ class ConfirmBox extends StatelessWidget {
         docname: hisdocname,
         custdocname: custdocname);
 
-    Pgmhistory history = Pgmhistory(
-      name: name,
-      address: address,
-      loc: loc,
-      phn: phn,
-      pgm: pgm,
-      chrg: chrg,
-      type: type,
-      upDate: date,
-      upTime: time,
-      docname: hisdocname,
-      prospec: prospec,
-      instadate: instadate,
-      techname: techname,
-      status: "pending",
-      ch: "Technician's Pending list to Main list",
-    );
-
     await fb
     .collection("organizations")
           .doc("$orgId")
@@ -510,8 +491,6 @@ class ConfirmBox extends StatelessWidget {
         .delete()
         .catchError(
             (error) => print("Failed to Delete Pending pgm list : $error"));
-
-    fb.collection("history").doc(hisdocname).set(history.toMap());
 
     // customer program history updated
         fb
