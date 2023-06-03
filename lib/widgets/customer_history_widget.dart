@@ -161,6 +161,7 @@ class _CustomerHistoryState extends State<CustomerHistory> {
                             custdocname: _allcustomer[i]["custdocname"],
                             camount: _allcustomer[i]["camount"],
                             newpgm: _allcustomer[i]["newpgm"],
+                            orgId: widget.orgId,
                           )
                         ]
                       ],

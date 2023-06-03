@@ -10,11 +10,11 @@ import '../../componets/simplealertbox.dart';
 // ignore: must_be_immutable
 class Techasign extends StatefulWidget {
   String? uid;
-  String? username;
+  String? techuid;
   String? techname;
   String? orgId;
 
-  Techasign({Key? key, this.uid, this.username, this.techname, this.orgId})
+  Techasign({Key? key, this.uid, this.techuid, this.techname, this.orgId})
       : super(key: key);
 
   @override
@@ -37,7 +37,7 @@ class _TechasignState extends State<Techasign> {
                 .collection("organizations")
                 .doc("${widget.orgId}")
                 .collection('technician')
-                .doc(widget.username)
+                .doc(widget.techuid)
                 .collection("Assignedpgm")
                 .snapshots(),
             builder:

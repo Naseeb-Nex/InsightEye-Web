@@ -215,14 +215,12 @@ class TechHorizontalList extends StatelessWidget {
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
             return const Center(
-                        child: Text(
-                          "Something Went Wrong :(",
-                          style: TextStyle(
-                              fontFamily: "Montserrat",
-                              fontSize: 17,
-                              color: cheryred),
-                        ),
-                      );
+              child: Text(
+                "Something Went Wrong :(",
+                style: TextStyle(
+                    fontFamily: "Montserrat", fontSize: 17, color: cheryred),
+              ),
+            );
           }
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(
@@ -377,7 +375,7 @@ class _TechcardState extends State<Techcard> {
                 height: 10,
               ),
               Text(
-                "${widget.name}",
+                widget.name == null ? "No Profile" : "${widget.name}",
                 style: const TextStyle(
                   fontFamily: "Nunito",
                   fontSize: 18,
@@ -525,7 +523,7 @@ class _TechcardState extends State<Techcard> {
                     builder: (context) => Assigntechpgm(
                           uid: widget.uid,
                           name: widget.name,
-                          username: widget.uid,
+                          techuid: widget.uid,
                           orgId: widget.orgId,
                         ))),
                 child: Container(
@@ -555,12 +553,12 @@ class _TechcardState extends State<Techcard> {
 
 // ignore: must_be_immutable
 class Assigntechpgm extends StatefulWidget {
-  Assigntechpgm({Key? key, this.name, this.uid, this.username, this.orgId})
+  Assigntechpgm({Key? key, this.name, this.uid, this.techuid, this.orgId})
       : super(key: key);
 
   String? name;
   String? uid;
-  String? username;
+  String? techuid;
   String? orgId;
 
   @override
@@ -593,7 +591,7 @@ class _AssigntechpgmState extends State<Assigntechpgm> {
           .collection("organizations")
           .doc("${widget.orgId}")
           .collection('Technician')
-          .doc(widget.username)
+          .doc(widget.techuid)
           .collection("Assignedpgm")
           .get()
           .then((snap) => {
@@ -606,7 +604,7 @@ class _AssigntechpgmState extends State<Assigntechpgm> {
           .collection("organizations")
           .doc("${widget.orgId}")
           .collection('Technician')
-          .doc(widget.username)
+          .doc(widget.techuid)
           .collection("Completedpgm")
           .doc("Day")
           .collection(cday)
@@ -620,7 +618,7 @@ class _AssigntechpgmState extends State<Assigntechpgm> {
           .collection("organizations")
           .doc("${widget.orgId}")
           .collection('Technician')
-          .doc(widget.username)
+          .doc(widget.techuid)
           .collection("Pendingpgm")
           .get()
           .then((snap) => {
@@ -632,7 +630,7 @@ class _AssigntechpgmState extends State<Assigntechpgm> {
           .collection("organizations")
           .doc("${widget.orgId}")
           .collection('Technician')
-          .doc(widget.username)
+          .doc(widget.techuid)
           .collection("Processingpgm")
           .get()
           .then((snap) => {
@@ -673,7 +671,7 @@ class _AssigntechpgmState extends State<Assigntechpgm> {
                     onTap: () => Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const OfficeHome(),
+                          builder: (context) => OfficeHome(),
                         )),
                     child: Container(
                       height: 40,
@@ -694,7 +692,7 @@ class _AssigntechpgmState extends State<Assigntechpgm> {
                       onTap: () => Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const OfficeHome(),
+                            builder: (context) => OfficeHome(),
                           )),
                       child: const Image(
                         image: AssetImage("assets/icons/appicon.png"),
@@ -1010,7 +1008,7 @@ class _AssigntechpgmState extends State<Assigntechpgm> {
                     child: Techsrcwrapper(
                       src: _currentsrc,
                       uid: widget.uid,
-                      username: widget.username,
+                      techuid: widget.uid,
                       name: widget.name,
                       orgId: widget.orgId,
                     ),
@@ -1030,21 +1028,23 @@ class Techsrcwrapper extends StatelessWidget {
   String? name;
   String? src;
   String? uid;
-  String? username;
+  String? techuid;
   String? orgId;
 
   Techsrcwrapper(
-      {Key? key, this.src, this.uid, this.username, this.name, this.orgId})
+      {Key? key, this.src, this.uid, this.techuid, this.name, this.orgId})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     if (src == 'Status') {
-      return Statussrc(uid: uid, username: username, techname: name, orgId: orgId);
-    // } else if (src == 'Schedule') {
-    //   return SchedulePgmSrc(uid: uid, username: username, techname: name);
+      return Statussrc(
+          uid: uid, techuid: techuid, techname: name, orgId: orgId);
+      // } else if (src == 'Schedule') {
+      //   return SchedulePgmSrc(uid: uid, techuid: techuid, techname: name);
     }
-    return Assignpgmwidget(uid: uid, username: username, techname: name, orgId: orgId);
+    return Assignpgmwidget(
+        uid: uid, techuid: techuid, techname: name, orgId: orgId);
   }
 }
 

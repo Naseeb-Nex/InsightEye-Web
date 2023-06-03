@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:insighteye_web/screens/createprofile.dart';
-import 'package:insighteye_web/screens/homesrc.dart';
+import 'package:insighteye_web/screens/officehomesrc.dart';
 import 'package:insighteye_web/screens/restrictedsrc.dart';
 
 class HomeWrapper extends StatefulWidget {

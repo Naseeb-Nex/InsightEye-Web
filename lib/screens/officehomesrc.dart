@@ -6,9 +6,10 @@ import 'package:insighteye_web/widgets/Reportsrcwidget.dart';
 import 'package:insighteye_web/widgets/export_widget.dart';
 import 'package:insighteye_web/widgets/vehicleportal_widget.dart';
 
+// ignore: must_be_immutable
 class OfficeHome extends StatefulWidget {
-  final String? orgId;
-  const OfficeHome({Key? key, this.orgId}) : super(key: key);
+   String? orgId;
+   OfficeHome({Key? key, this.orgId}) : super(key: key);
 
   @override
   // ignore: library_private_types_in_public_api
@@ -17,6 +18,16 @@ class OfficeHome extends StatefulWidget {
 
 class _OfficeHomeState extends State<OfficeHome> {
   User? user = FirebaseAuth.instance.currentUser;
+  @override
+  void initState() {
+    super.initState();
+    String displayName = user?.displayName ?? '';
+    if (user != null && displayName != "") {
+      setState(() {
+        widget.orgId = displayName.substring(1);
+      });
+    }
+  }
 
   String? currentscr = "Home";
 

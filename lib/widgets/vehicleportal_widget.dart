@@ -13,11 +13,11 @@ import 'package:loading_indicator/loading_indicator.dart';
 
 // ignore: must_be_immutable
 class VehiclePortalWidget extends StatefulWidget {
-  String? username;
+  String? techuid;
   String? techname;
   String? orgId;
 
-  VehiclePortalWidget({Key? key, this.username, this.techname, this.orgId})
+  VehiclePortalWidget({Key? key, this.techuid, this.techname, this.orgId})
       : super(key: key);
 
   @override
@@ -176,8 +176,8 @@ class _VehiclePortalWidgetState extends State<VehiclePortalWidget> {
                                                         ['status'],
                                                     techname: vehicle[i]
                                                         ['techname'],
-                                                    username: vehicle[i]
-                                                        ['username'],
+                                                    techuid: vehicle[i]
+                                                        ['techuid'],
                                                     vdocname: vehicle[i]
                                                         ['docname'],
                                                     statusdesc: vehicle[i]
@@ -186,6 +186,7 @@ class _VehiclePortalWidgetState extends State<VehiclePortalWidget> {
                                                         ['update'],
                                                     uptime: vehicle[i]
                                                         ['uptime'],
+                                                    orgId: widget.orgId,
                                                   ),
                                                 )
                                               ]
@@ -288,9 +289,9 @@ class _VehiclePortalWidgetState extends State<VehiclePortalWidget> {
                                                     i < vehicle.length;
                                                     i++) ...[
                                                   Padding(
-                                                    padding:
-                                                        const EdgeInsets.symmetric(
-                                                            vertical: 5.0),
+                                                    padding: const EdgeInsets
+                                                            .symmetric(
+                                                        vertical: 5.0),
                                                     child: Vusagehistorycard(
                                                       name: vehicle[i]['name'],
                                                       desc: vehicle[i]
@@ -300,8 +301,8 @@ class _VehiclePortalWidgetState extends State<VehiclePortalWidget> {
                                                           ['status'],
                                                       techname: vehicle[i]
                                                           ['techname'],
-                                                      username: vehicle[i]
-                                                          ['username'],
+                                                      techuid: vehicle[i]
+                                                          ['techuid'],
                                                       docname: vehicle[i]
                                                           ['docname'],
                                                       upDate: vehicle[i]

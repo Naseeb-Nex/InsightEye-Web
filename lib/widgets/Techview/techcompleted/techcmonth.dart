@@ -68,37 +68,34 @@ class _TechcmonthState extends State<Techcmonth> {
               snapshot.data!.docs.map((DocumentSnapshot document) {
                 Map a = document.data() as Map<String, dynamic>;
                 _allpgm.add(a);
-                print(a);
                 a['uid'] = document.id;
               }).toList();
 
-              return Container(
-                child: Column(
-                  children: [
-                    SizedBox(
-                      width: 30,
-                    ),
-                    for (var i = 0; i < _allpgm.length; i++) ...[
-                      Completedpgmcard(
-                        name: _allpgm[i]["name"],
-                        address: _allpgm[i]["address"],
-                        loc: _allpgm[i]["loc"],
-                        pgm: _allpgm[i]["pgm"],
-                        phn: _allpgm[i]["phn"],
-                        type: _allpgm[i]["type"],
-                        upDate: _allpgm[i]["upDate"],
-                        upTime: _allpgm[i]["upTime"],
-                        docname: _allpgm[i]["docname"],
-                        remarks: _allpgm[i]["remarks"],
-                        cdate: _allpgm[i]["cdate"],
-                        ctime: _allpgm[i]["ctime"],
-                        tname: _allpgm[i]["techname"],
-                        chrg: _allpgm[i]["chrg"],
-                        camount: _allpgm[i]["camount"],
-                      )
-                    ]
-                  ],
-                ),
+              return Column(
+                children: [
+                  const SizedBox(
+                    width: 30,
+                  ),
+                  for (var i = 0; i < _allpgm.length; i++) ...[
+                    Completedpgmcard(
+                      name: _allpgm[i]["name"],
+                      address: _allpgm[i]["address"],
+                      loc: _allpgm[i]["loc"],
+                      pgm: _allpgm[i]["pgm"],
+                      phn: _allpgm[i]["phn"],
+                      type: _allpgm[i]["type"],
+                      upDate: _allpgm[i]["upDate"],
+                      upTime: _allpgm[i]["upTime"],
+                      docname: _allpgm[i]["docname"],
+                      remarks: _allpgm[i]["remarks"],
+                      cdate: _allpgm[i]["cdate"],
+                      ctime: _allpgm[i]["ctime"],
+                      tname: _allpgm[i]["techname"],
+                      chrg: _allpgm[i]["chrg"],
+                      camount: _allpgm[i]["camount"],
+                    )
+                  ]
+                ],
               );
             }),
       ),
@@ -106,6 +103,7 @@ class _TechcmonthState extends State<Techcmonth> {
   }
 }
 
+// ignore: camel_case_types
 class htechassignswipe extends MaterialScrollBehavior {
   // Override behavior methods and getters like dragDevices
   @override

@@ -231,7 +231,7 @@ class SimpleCustomAlert extends StatelessWidget {
               height: 20,
             ),
             const Text(
-              "Incorrect username or password",
+              "Incorrect techuid or password",
               style: TextStyle(
                 fontFamily: "Nunito",
                 fontSize: 15,

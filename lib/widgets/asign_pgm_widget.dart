@@ -16,12 +16,12 @@ import 'package:insighteye_web/Models/vehicleusagehistory.dart';
 // ignore: must_be_immutable
 class Assignpgmwidget extends StatefulWidget {
   String? uid;
-  String? username;
+  String? techuid;
   String? techname;
   String? orgId;
 
   Assignpgmwidget(
-      {Key? key, this.uid, this.username, this.techname, this.orgId})
+      {Key? key, this.uid, this.techuid, this.techname, this.orgId})
       : super(key: key);
 
   @override
@@ -125,7 +125,7 @@ class _AssignpgmwidgetState extends State<Assignpgmwidget> {
                                   context: context,
                                   builder: (context) => RemoveVehicleDialog(
                                         techname: widget.techname,
-                                        username: widget.username,
+                                        techuid: widget.techuid,
                                         name: widget.techname,
                                         orgId: widget.orgId,
                                       )),
@@ -863,6 +863,8 @@ class _AddvehicleDialogState extends State<AddvehicleDialog> {
                                           padding: const EdgeInsets.symmetric(
                                               vertical: 5.0),
                                           child: Assignvehiclecard(
+                                            orgId: widget.orgId,
+                                            techuid: widget.uid,
                                             name: avaliableVehicles[i]['name'],
                                             desc: avaliableVehicles[i]
                                                 ['description'],
@@ -872,7 +874,8 @@ class _AddvehicleDialogState extends State<AddvehicleDialog> {
                                             docname: avaliableVehicles[i]
                                                 ['docname'],
                                             techname: widget.techname,
-                                            username: widget.uid,
+                                            // TODO : Change to Widget ui from the first
+                                            // techuid: widget.uid,
                                             statusdesc: avaliableVehicles[i]
                                                 ['statusdesc'],
                                             update: avaliableVehicles[i]
@@ -993,12 +996,12 @@ class _AddvehicleDialogState extends State<AddvehicleDialog> {
 // ignore: must_be_immutable
 class RemoveVehicleDialog extends StatefulWidget {
   String? techname;
-  String? username;
+  String? techuid;
   String? name;
   String? orgId;
 
   RemoveVehicleDialog(
-      {Key? key, this.techname, this.username, this.name, this.orgId})
+      {Key? key, this.techname, this.techuid, this.name, this.orgId})
       : super(key: key);
 
   @override
@@ -1019,7 +1022,7 @@ class _RemoveVehicleDialogState extends State<RemoveVehicleDialog> {
             .collection("organizations")
             .doc("${widget.orgId}")
             .collection("technician")
-            .doc(widget.username)
+            .doc(widget.techuid)
             .collection("Vehicle")
             .doc(techvdoc)
             .get(),
@@ -1252,7 +1255,7 @@ class _RemoveVehicleDialogState extends State<RemoveVehicleDialog> {
         name: name,
         upDate: update,
         upTime: uptime,
-        username: widget.username,
+        // techuid: widget.techuid,
         docname: usagedocname,
         techname: widget.techname,
         type: type,
@@ -1263,7 +1266,7 @@ class _RemoveVehicleDialogState extends State<RemoveVehicleDialog> {
         .collection("organizations")
         .doc("${widget.orgId}")
         .collection("technician")
-        .doc(widget.username)
+        .doc(widget.techuid)
         .collection("Vehicle")
         .doc(techvdoc)
         .delete();
@@ -1274,7 +1277,7 @@ class _RemoveVehicleDialogState extends State<RemoveVehicleDialog> {
         .doc("${widget.orgId}")
         .collection("Garage")
         .doc(docname)
-        .set({"status": "Available", "techname": "none", "username": "none"},
+        .set({"status": "Available", "techname": "none", "techuid": "none"},
             SetOptions(merge: true));
 
     // history added
