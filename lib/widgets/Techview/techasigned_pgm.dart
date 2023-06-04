@@ -25,6 +25,7 @@ class Techasign extends StatefulWidget {
 class _TechasignState extends State<Techasign> {
   final List _allpgm = [];
   bool downloading = false;
+  FirebaseFirestore fb = FirebaseFirestore.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -44,14 +45,14 @@ class _TechasignState extends State<Techasign> {
                 (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
               if (snapshot.hasError) {
                 return const Center(
-                        child: Text(
-                          "Something Went Wrong :(",
-                          style: TextStyle(
-                              fontFamily: "Montserrat",
-                              fontSize: 17,
-                              color: cheryred),
-                        ),
-                      );
+                  child: Text(
+                    "Something Went Wrong :(",
+                    style: TextStyle(
+                        fontFamily: "Montserrat",
+                        fontSize: 17,
+                        color: cheryred),
+                  ),
+                );
               }
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return Container(
@@ -96,49 +97,125 @@ class _TechasignState extends State<Techasign> {
                       ]
                     ],
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      InkWell(
-                        onTap: () async {
-                          // TODO : Change the Orignization Details
-                          showDialog(
-                              context: context,
-                              builder: (BuildContext context) {
-                                return Datepicker(
-                                  programs: _allpgm,
-                                  techname: widget.techname,
-                                );
-                              });
-                        },
-                        child: Container(
-                          width: 40,
-                          height: 40,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            color: bluebg,
-                          ),
-                          child: Stack(
-                            children: [
-                              const Center(
-                                  child: Icon(Icons.download, color: white)),
-                              Positioned(
-                                  right: 0,
-                                  top: 0,
-                                  child: SizedBox(
-                                    height: 10,
-                                    width: 10,
-                                    child: downloading
-                                        ? const CircularProgressIndicator(
-                                            color: Color(0XFF219ebc),
-                                          )
-                                        : null,
-                                  ))
-                            ],
-                          ),
-                        ),
-                      )
-                    ],
+                  FutureBuilder<DocumentSnapshot>(
+                    future:
+                        fb.collection("organizations").doc(widget.orgId).get(),
+                    builder: (BuildContext context,
+                        AsyncSnapshot<DocumentSnapshot> snapshot) {
+                      if (snapshot.hasError) {
+                        return Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Container(
+                              width: 40,
+                              height: 40,
+                              decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: bluebg,
+                              ),
+                              child: const Center(
+                                  child: Icon(Icons.warning_amber_rounded,
+                                      color: white)),
+                            )
+                          ],
+                        );
+                      }
+
+                      if (snapshot.hasData && !snapshot.data!.exists) {
+                        return Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Container(
+                              width: 40,
+                              height: 40,
+                              decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: bluebg,
+                              ),
+                              child: const Center(
+                                  child: Icon(Icons.warning_amber_rounded,
+                                      color: white)),
+                            )
+                          ],
+                        );
+                      }
+
+                      if (snapshot.connectionState == ConnectionState.done) {
+                        Map<String, dynamic> data =
+                            snapshot.data!.data() as Map<String, dynamic>;
+                        // return Text("Full Name: ${data['full_name']} ${data['last_name']}");
+                      return  Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            InkWell(
+                              onTap: () async {
+                                // TODO : Change the Orignization Details
+                                showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return Datepicker(
+                                        programs: _allpgm,
+                                        techname: widget.techname,
+                                        orgName: data['orgname'],
+                                        orgType: data['orgtype'],
+                                        orgAdress: data['address'],
+                                      );
+                                    });
+                              },
+                              child: Container(
+                                width: 40,
+                                height: 40,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  color: bluebg,
+                                ),
+                                child: Stack(
+                                  children: [
+                                    const Center(
+                                        child:
+                                            Icon(Icons.download, color: white)),
+                                    Positioned(
+                                        right: 0,
+                                        top: 0,
+                                        child: SizedBox(
+                                          height: 10,
+                                          width: 10,
+                                          child: downloading
+                                              ? const CircularProgressIndicator(
+                                                  color: Color(0XFF219ebc),
+                                                )
+                                              : null,
+                                        ))
+                                  ],
+                                ),
+                              ),
+                            )
+                          ],
+                        );
+                      }
+
+                      return Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Container(
+                            width: 40,
+                            height: 40,
+                            decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: bluebg,
+                            ),
+                            child: const Center(
+                                child: SizedBox(
+                                    width: 24,
+                                    height: 24,
+                                    child: CircularProgressIndicator(
+                                      color: white,
+                                      strokeWidth: 5,
+                                    ))),
+                          )
+                        ],
+                      );
+                    },
                   ),
                 ],
               );
@@ -162,12 +239,19 @@ class Htechassignswipe extends MaterialScrollBehavior {
 class Datepicker extends StatelessWidget {
   List programs;
   String? techname;
+  String? orgName;
+  String? orgType;
+  String? orgAdress;
+
   final PdfInvoiceService invoice = PdfInvoiceService();
 
   Datepicker({
     Key? key,
     required this.programs,
     required this.techname,
+    required this.orgName,
+    required this.orgType,
+    required this.orgAdress,
   }) : super(key: key);
 
   final TextEditingController dateConroller = TextEditingController();
@@ -348,8 +432,8 @@ class Datepicker extends StatelessWidget {
                 Color(0XFFbbd0ff),
                 "Progressing");
           });
-      final data = await invoice.createInvoice(
-          programs, "$techname", dateConroller.text);
+      final data = await invoice.createInvoice(programs, "$techname",
+          dateConroller.text, "$orgName", "$orgType", "$orgAdress");
       invoice.savePdfFile("$techname ${dateConroller.text}", data);
     }
   }

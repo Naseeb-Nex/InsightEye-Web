@@ -17,7 +17,7 @@ class CreateProfileSrc extends StatefulWidget {
 class _CreateProfileSrcState extends State<CreateProfileSrc> {
   FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
   //image upload
-  late String imageUrl = "https://i.ibb.co/m5jpbF4/727091-Account-manager.png";
+  late String imageUrl = "https://i.ibb.co/PDGbkwX/avatarnew-1.png";
 
   // form
   final _formKey = GlobalKey<FormState>();
@@ -27,233 +27,332 @@ class _CreateProfileSrcState extends State<CreateProfileSrc> {
   final TextEditingController designationController = TextEditingController();
   final TextEditingController phnController = TextEditingController();
 
+  // loading
+  bool load = false;
+
   @override
   Widget build(BuildContext context) {
-    //name field
-    final namefield = TextFormField(
-      autofocus: false,
-      controller: nameController,
-      keyboardType: TextInputType.name,
-      onSaved: (value) {
-        nameController.text = value!;
-      },
-      textInputAction: TextInputAction.next,
-      validator: (value) {
-        if (value!.isEmpty) {
-          return ("Feild Cannot be empty");
-        }
-        return null;
-      },
-      decoration: InputDecoration(
-        contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
-        labelText: "Full Name",
-        labelStyle: const TextStyle(fontFamily: "Nunito", fontSize: 14),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
-      ),
-    );
+    // Responsive Size
+    Size s = MediaQuery.of(context).size;
 
-    //designation field
-    final designationfield = TextFormField(
-      autofocus: false,
-      controller: designationController,
-      keyboardType: TextInputType.text,
-      onSaved: (value) {
-        designationController.text = value!;
-      },
-      textInputAction: TextInputAction.next,
-      validator: (value) {
-        if (value!.isEmpty) {
-          return ("Please enter your designation");
-        }
-        return null;
-      },
-      decoration: InputDecoration(
-        contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
-        labelText: "Designation",
-        labelStyle: const TextStyle(fontFamily: "Nunito", fontSize: 14),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
-      ),
-    );
-
-    //phn1 field
-    final phnfield = TextFormField(
-      autofocus: false,
-      controller: phnController,
-      keyboardType: TextInputType.phone,
-      onSaved: (value) {
-        phnController.text = value!;
-      },
-      textInputAction: TextInputAction.next,
-      validator: (value) {
-        if (value!.isEmpty) {
-          return ("Please enter your Phone Number");
-        } else if (value.length != 10) {
-          return ("invalid Phone Number");
-        }
-        return null;
-      },
-      decoration: InputDecoration(
-        contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
-        labelText: "Phone Number 1",
-        labelStyle: const TextStyle(fontFamily: "Nunito", fontSize: 14),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
-      ),
-    );
-
-    return Scaffold(
-      body: Container(
-        padding: const EdgeInsets.only(left: 16, top: 25, right: 16),
-        child: GestureDetector(
-          onTap: () {
-            FocusScope.of(context).unfocus();
-          },
-          child: ListView(
-            children: [
-              const SizedBox(
-                height: 50,
-                child: Center(
-                  child: Text(
-                    "Create Profile",
-                    style: TextStyle(
-                        fontFamily: "Nunito",
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold),
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: 18,
-              ),
-              Center(
-                child: Container(
-                    padding: const EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(100),
-                      border: Border.all(width: 5, color: Colors.white),
-                      color: Colors.white,
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Colors.black12,
-                          blurRadius: 20,
-                          offset: Offset(5, 5),
-                        ),
-                      ],
+    return Container(
+      width: s.width,
+      height: s.height,
+      decoration: const BoxDecoration(
+          gradient: RadialGradient(radius: 0.7, colors: [
+        Color(0XFF5F87D3),
+        Color(0XFF7A43AB),
+      ])),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        body: SafeArea(
+            child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Center(
+              child: Container(
+                width: 600,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(50),
+                  color: white,
+                  boxShadow: const [
+                    BoxShadow(
+                      color: Color(0xFF623689),
+                      offset: Offset(23, 23),
+                      blurRadius: 59,
                     ),
-                    child: CircleAvatar(
-                      radius: 64,
-                      backgroundColor: white,
-                      backgroundImage: NetworkImage(imageUrl),
-                    )),
-              ),
-              const SizedBox(
-                height: 35,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: Form(
-                  key: _formKey,
-                  child: Column(
-                    children: [
-                      namefield,
-                      const SizedBox(
-                        height: 35,
-                      ),
-                      designationfield,
-                      const SizedBox(
-                        height: 35,
-                      ),
-                      phnfield,
-                      const SizedBox(
-                        height: 35,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  OutlinedButton(
-                    // padding: const EdgeInsets.symmetric(horizontal: 50),
-                    // shape: RoundedRectangleBorder(
-                    //     borderRadius: BorderRadius.circular(20)),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: const Text("CANCEL",
-                        style: TextStyle(
-                            fontFamily: "Nunito",
-                            fontSize: 14,
-                            letterSpacing: 2.2,
-                            color: Colors.black)),
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      uploadData();
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.green,
-                      padding: const EdgeInsets.symmetric(horizontal: 50),
-                      elevation: 2,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20)),
+                    BoxShadow(
+                      color: Color(0xFF9250CD),
+                      offset: Offset(-23, -23),
+                      blurRadius: 59,
                     ),
-                    child: const Text(
-                      "SAVE",
+                  ],
+                ),
+                padding: EdgeInsets.symmetric(vertical: s.height * 0.06542),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const Text(
+                      'CREATE PROFILE',
                       style: TextStyle(
-                          fontFamily: "Nunito",
-                          fontSize: 14,
-                          letterSpacing: 2.2,
-                          color: Colors.white),
+                          fontSize: 32,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: "Montserrat"),
                     ),
-                  )
-                ],
+                    SizedBox(
+                      height: s.height * 0.0214,
+                    ),
+                    Image.network(
+                      imageUrl,
+                      width: s.width * 0.12,
+                      height: s.height * 0.17,
+                    ),
+                    SizedBox(
+                      height: s.height * 0.0449,
+                    ),
+                    Form(
+                        key: _formKey,
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              width: s.width * 0.2263,
+                              child: TextFormField(
+                                autofocus: false,
+                                controller: nameController,
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return ("This Field is empty");
+                                  }
+                                  return null;
+                                },
+                                onSaved: (value) {
+                                  nameController.text = value!;
+                                },
+                                style: const TextStyle(
+                                  fontFamily: "Montserrat",
+                                  fontSize: 15,
+                                ),
+                                decoration: InputDecoration(
+                                  labelText: "Name",
+                                  fillColor: Colors.white,
+                                  filled: true,
+                                  labelStyle: const TextStyle(
+                                    fontFamily: "Montserrat",
+                                    color: black,
+                                  ),
+                                  errorStyle: const TextStyle(
+                                      fontFamily: "Montserrat", color: redbg),
+                                  contentPadding:
+                                      const EdgeInsets.fromLTRB(20, 10, 20, 10),
+                                  focusedBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(15.0),
+                                      borderSide: const BorderSide(
+                                          color: Color(0XFF57308D))),
+                                  enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(15.0),
+                                      borderSide: const BorderSide(
+                                          color: Color(0XFFA3D8FF))),
+                                  errorBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(15.0),
+                                      borderSide: const BorderSide(
+                                          color: Color(0XFFff0a54),
+                                          width: 2.0)),
+                                  focusedErrorBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(15.0),
+                                      borderSide: const BorderSide(
+                                          color: Colors.red, width: 2.0)),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: s.height * 0.0458,
+                            ),
+                            SizedBox(
+                              width: s.width * 0.2263,
+                              child: TextFormField(
+                                autofocus: false,
+                                controller: phnController,
+                                keyboardType: TextInputType.phone,
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return ("This Field is empty");
+                                  }
+                                  return null;
+                                },
+                                onSaved: (value) {
+                                  phnController.text = value!;
+                                },
+                                style: const TextStyle(
+                                  fontFamily: "Montserrat",
+                                  fontSize: 15,
+                                ),
+                                decoration: InputDecoration(
+                                  labelText: "Phone Number",
+                                  prefixText: '+91 ',
+                                  fillColor: Colors.white,
+                                  filled: true,
+                                  labelStyle: const TextStyle(
+                                    fontFamily: "Montserrat",
+                                    color: black,
+                                  ),
+                                  prefixStyle: const TextStyle(
+                                    fontFamily: "Montserrat",
+                                    color: black,
+                                  ),
+                                  errorStyle:
+                                      const TextStyle(fontFamily: "Montserrat"),
+                                  contentPadding:
+                                      const EdgeInsets.fromLTRB(20, 10, 20, 10),
+                                  focusedBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(15.0),
+                                      borderSide: const BorderSide(
+                                          color: Color(0XFF57308D))),
+                                  enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(15.0),
+                                      borderSide: const BorderSide(
+                                          color: Color(0XFFA3D8FF))),
+                                  errorBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(15.0),
+                                      borderSide: const BorderSide(
+                                          color: Color(0XFFff0a54),
+                                          width: 2.0)),
+                                  focusedErrorBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(15.0),
+                                      borderSide: const BorderSide(
+                                          color: Colors.red, width: 2.0)),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: s.height * 0.0458,
+                            ),
+                            SizedBox(
+                              width: s.width * 0.2263,
+                              child: TextFormField(
+                                autofocus: false,
+                                controller: designationController,
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return ("This Field is empty");
+                                  }
+                                  return null;
+                                },
+                                onSaved: (value) {
+                                  designationController.text = value!;
+                                },
+                                style: const TextStyle(
+                                  fontFamily: "Montserrat",
+                                  fontSize: 15,
+                                ),
+                                decoration: InputDecoration(
+                                  labelText: "Job Title",
+                                  fillColor: Colors.white,
+                                  filled: true,
+                                  labelStyle: const TextStyle(
+                                    fontFamily: "Montserrat",
+                                    color: black,
+                                  ),
+                                  errorStyle:
+                                      const TextStyle(fontFamily: "Montserrat"),
+                                  contentPadding:
+                                      const EdgeInsets.fromLTRB(20, 10, 20, 10),
+                                  focusedBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(15.0),
+                                      borderSide: const BorderSide(
+                                          color: Color(0XFF57308D))),
+                                  enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(15.0),
+                                      borderSide: const BorderSide(
+                                          color: Color(0XFFA3D8FF))),
+                                  errorBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(15.0),
+                                      borderSide: const BorderSide(
+                                          color: Color(0XFFff0a54),
+                                          width: 2.0)),
+                                  focusedErrorBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(15.0),
+                                      borderSide: const BorderSide(
+                                          color: Colors.red, width: 2.0)),
+                                ),
+                              ),
+                            )
+                          ],
+                        )),
+                    SizedBox(
+                      height: s.height * 0.0488,
+                    ),
+                    SizedBox(
+                      width: s.width * 0.2263,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.deepPurple.shade300,
+                          gradient: const LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                            stops: [0.0, 1.0],
+                            colors: [
+                              Color(0XFF7A43AB),
+                              Color(0XFF7F54BA),
+                            ],
+                          ),
+                          borderRadius: BorderRadius.circular(30),
+                          boxShadow: const [
+                            BoxShadow(
+                                color: Colors.black26,
+                                offset: Offset(0, 4),
+                                blurRadius: 5.0)
+                          ],
+                        ),
+                        child: ElevatedButton(
+                          style: ButtonStyle(
+                            shape: MaterialStateProperty.all<
+                                RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30.0),
+                              ),
+                            ),
+                            minimumSize:
+                                MaterialStateProperty.all(const Size(50, 50)),
+                            backgroundColor:
+                                MaterialStateProperty.all(Colors.transparent),
+                            shadowColor:
+                                MaterialStateProperty.all(Colors.transparent),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.fromLTRB(40, 10, 40, 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'Save'.toUpperCase(),
+                                  style: const TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                      fontFamily: "Montserrat"),
+                                ),
+                                const SizedBox(
+                                  width: 15,
+                                ),
+                                Container(
+                                    child: load
+                                        ? const SizedBox(
+                                            height: 15,
+                                            width: 15,
+                                            child: CircularProgressIndicator(
+                                              color: white,
+                                            ),
+                                          )
+                                        : null),
+                              ],
+                            ),
+                          ),
+                          onPressed: () {
+                            uploadData();
+                          },
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-              const SizedBox(
-                height: 35,
-              )
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget buildTextField(String labelText) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 35.0),
-      child: TextFormField(
-        validator: (value) {
-          if (value!.isEmpty) {
-            return ("Feild Cannot be empty");
-          }
-          return null;
-        },
-        decoration: InputDecoration(
-          contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
-          labelText: labelText,
-          labelStyle: const TextStyle(fontFamily: "Nunito", fontSize: 14),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
-        ),
+            )
+          ],
+        )),
       ),
     );
   }
 
   void uploadData() async {
-    // TODO : Add Loading
-
     final user = FirebaseAuth.instance.currentUser;
 
     if (_formKey.currentState!.validate()) {
-
+      setState(() {
+        load = true;
+      });
       if (user != null) {
         // Updated address
         await user.updatePhotoURL(imageUrl);
@@ -271,8 +370,15 @@ class _CreateProfileSrcState extends State<CreateProfileSrc> {
         "imgUrl": imageUrl,
       }).then((value) {
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => OfficeHome(orgId: widget.orgId,)));
+            context,
+            MaterialPageRoute(
+                builder: (context) => OfficeHome(
+                      orgId: widget.orgId,
+                    )));
       }, onError: (error) {
+        setState(() {
+          load = false;
+        });
         showDialog(
             context: context,
             builder: (BuildContext context) {

@@ -7,23 +7,8 @@ import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 
 class PdfInvoiceService {
-  Future<Uint8List> createHelloWorld() {
-    final pdf = pw.Document();
-    pdf.addPage(
-      pw.Page(
-        pageFormat: PdfPageFormat.a4,
-        build: (pw.Context context) {
-          return pw.Center(
-            child: pw.Text("Hello World"),
-          );
-        },
-      ),
-    );
 
-    return pdf.save();
-  }
-
-  Future<Uint8List> createInvoice(List programs, String name, String date) async {
+  Future<Uint8List> createInvoice(List programs, String name, String date, String orgName, String orgType, String orgAddress) async {
     final pdf = pw.Document();
     var image = pw.MemoryImage(
       (await rootBundle.load('assets/icons/appicon.png')).buffer.asUint8List(),
@@ -49,19 +34,15 @@ class PdfInvoiceService {
                     crossAxisAlignment: pw.CrossAxisAlignment.start,
                     children: [
                       pw.Text(
-                        "IDEAL MARKETING ASSOCIATES",
+                        orgName,
                         style: pw.TextStyle(
                             fontSize: 16,
                             fontWeight: pw.FontWeight.bold,
                             color: PdfColors.red),
                       ),
-                      pw.Text("H.O pulliman jn karunagappally",
+                      pw.Text(orgType,
                           style: const pw.TextStyle(fontSize: 11)),
-                      pw.Text("Br.Market road,Karunagappally",
-                          style: const pw.TextStyle(fontSize: 11)),
-                      pw.Text("Ph: 9526194200, 9847781005",
-                          style: const pw.TextStyle(fontSize: 11)),
-                      pw.Text("E-mail: idealkply@gmail.com",
+                      pw.Text(orgAddress,
                           style: const pw.TextStyle(fontSize: 11)),
                     ],
                   ),
@@ -91,262 +72,6 @@ class PdfInvoiceService {
               pw.SizedBox(height: 20),
               itemColumn(programs, 0, len),
               pw.SizedBox(height: 15),
-              pw.Table(
-                  border: pw.TableBorder.all(color: PdfColors.black, width: 1),
-                  children: [
-                    pw.TableRow(children: [
-                      pw.Flexible(
-                        flex: 1,
-                        fit: pw.FlexFit.tight,
-                        child: pw.Center(
-                          child: pw.Text('SL',
-                              style: pw.TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: pw.FontWeight.bold)),
-                        ),
-                      ),
-                      pw.Flexible(
-                        flex: 6,
-                        fit: pw.FlexFit.tight,
-                        child: pw.Center(
-                          child: pw.Text('ITEMS',
-                              style: pw.TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: pw.FontWeight.bold)),
-                        ),
-                      ),
-                      pw.Flexible(
-                        flex: 3,
-                        fit: pw.FlexFit.tight,
-                        child: pw.Center(
-                          child: pw.Text('QTY',
-                              style: pw.TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: pw.FontWeight.bold)),
-                        ),
-                      ),
-                      pw.Flexible(
-                        flex: 1,
-                        fit: pw.FlexFit.tight,
-                        child: pw.Center(
-                          child: pw.Text('SL',
-                              style: pw.TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: pw.FontWeight.bold)),
-                        ),
-                      ),
-                      pw.Flexible(
-                        flex: 6,
-                        fit: pw.FlexFit.tight,
-                        child: pw.Center(
-                          child: pw.Text('ITEMS',
-                              style: pw.TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: pw.FontWeight.bold)),
-                        ),
-                      ),
-                      pw.Flexible(
-                        flex: 3,
-                        fit: pw.FlexFit.tight,
-                        child: pw.Center(
-                          child: pw.Text('QTY',
-                              style: pw.TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: pw.FontWeight.bold)),
-                        ),
-                      ),
-                    ]),
-                    pw.TableRow(children: [
-                      pw.Flexible(
-                        flex: 1,
-                        fit: pw.FlexFit.tight,
-                        child: pw.Container(
-                          alignment: pw.Alignment.center,
-                          padding: const pw.EdgeInsets.symmetric(vertical: 4),
-                          child: pw.Text('1.',
-                              style: pw.TextStyle(
-                                  fontSize: 10,
-                                  fontWeight: pw.FontWeight.bold)),
-                        ),
-                      ),
-                      pw.Flexible(
-                        flex: 6,
-                        fit: pw.FlexFit.tight,
-                        child: pw.Container(
-                          alignment: pw.Alignment.center,
-                          padding: const pw.EdgeInsets.symmetric(vertical: 4),
-                          child: pw.Text('BY STAND SYSTEM: -',
-                              style: pw.TextStyle(
-                                  fontSize: 10,
-                                  fontWeight: pw.FontWeight.bold)),
-                        ),
-                      ),
-                      pw.Flexible(
-                        flex: 2,
-                        fit: pw.FlexFit.tight,
-                        child: pw.Container(
-                          alignment: pw.Alignment.center,
-                          padding: const pw.EdgeInsets.symmetric(vertical: 4),
-                        ),
-                      ),
-                      pw.Flexible(
-                        flex: 1,
-                        fit: pw.FlexFit.tight,
-                        child: pw.Container(
-                          alignment: pw.Alignment.center,
-                          padding: const pw.EdgeInsets.symmetric(vertical: 4),
-                          child: pw.Text('2.',
-                              style: pw.TextStyle(
-                                  fontSize: 10,
-                                  fontWeight: pw.FontWeight.bold)),
-                        ),
-                      ),
-                      pw.Flexible(
-                        flex: 6,
-                        fit: pw.FlexFit.tight,
-                        child: pw.Container(
-                          alignment: pw.Alignment.center,
-                          padding: const pw.EdgeInsets.symmetric(vertical: 4),
-                          child: pw.Text('BY STAND BATTERY:-',
-                              style: pw.TextStyle(
-                                  fontSize: 10,
-                                  fontWeight: pw.FontWeight.bold)),
-                        ),
-                      ),
-                      pw.Flexible(
-                        flex: 3,
-                        fit: pw.FlexFit.tight,
-                        child: pw.Center(),
-                      ),
-                    ]),
-                    pw.TableRow(children: [
-                      pw.Flexible(
-                        flex: 1,
-                        fit: pw.FlexFit.tight,
-                        child: pw.Container(
-                          alignment: pw.Alignment.center,
-                          padding: const pw.EdgeInsets.symmetric(vertical: 4),
-                          child: pw.Text('3.',
-                              style: pw.TextStyle(
-                                  fontSize: 10,
-                                  fontWeight: pw.FontWeight.bold)),
-                        ),
-                      ),
-                      pw.Flexible(
-                        flex: 6,
-                        fit: pw.FlexFit.tight,
-                        child: pw.Container(
-                          alignment: pw.Alignment.center,
-                          padding: const pw.EdgeInsets.symmetric(vertical: 4),
-                          child: pw.Text('CHARGER:-',
-                              style: pw.TextStyle(
-                                  fontSize: 10,
-                                  fontWeight: pw.FontWeight.bold)),
-                        ),
-                      ),
-                      pw.Flexible(
-                        flex: 2,
-                        fit: pw.FlexFit.tight,
-                        child: pw.Container(
-                          alignment: pw.Alignment.center,
-                          padding: const pw.EdgeInsets.symmetric(vertical: 4),
-                        ),
-                      ),
-                      pw.Flexible(
-                        flex: 1,
-                        fit: pw.FlexFit.tight,
-                        child: pw.Container(
-                          alignment: pw.Alignment.center,
-                          padding: const pw.EdgeInsets.symmetric(vertical: 4),
-                          child: pw.Text('4.',
-                              style: pw.TextStyle(
-                                  fontSize: 10,
-                                  fontWeight: pw.FontWeight.bold)),
-                        ),
-                      ),
-                      pw.Flexible(
-                        flex: 6,
-                        fit: pw.FlexFit.tight,
-                        child: pw.Container(
-                          alignment: pw.Alignment.center,
-                          padding: const pw.EdgeInsets.symmetric(vertical: 4),
-                          child: pw.Text('WATER (1&2&5 LITER):-',
-                              style: pw.TextStyle(
-                                  fontSize: 10,
-                                  fontWeight: pw.FontWeight.bold)),
-                        ),
-                      ),
-                      pw.Flexible(
-                        flex: 3,
-                        fit: pw.FlexFit.tight,
-                        child: pw.Center(),
-                      ),
-                    ]),
-                    pw.TableRow(children: [
-                      pw.Flexible(
-                        flex: 1,
-                        fit: pw.FlexFit.tight,
-                        child: pw.Container(
-                          alignment: pw.Alignment.center,
-                          padding: const pw.EdgeInsets.symmetric(vertical: 4),
-                          child: pw.Text('5.',
-                              style: pw.TextStyle(
-                                  fontSize: 10,
-                                  fontWeight: pw.FontWeight.bold)),
-                        ),
-                      ),
-                      pw.Flexible(
-                        flex: 6,
-                        fit: pw.FlexFit.tight,
-                        child: pw.Container(
-                          alignment: pw.Alignment.center,
-                          padding: const pw.EdgeInsets.symmetric(vertical: 4),
-                          child: pw.Text('SYSTEMS:-',
-                              style: pw.TextStyle(
-                                  fontSize: 10,
-                                  fontWeight: pw.FontWeight.bold)),
-                        ),
-                      ),
-                      pw.Flexible(
-                        flex: 2,
-                        fit: pw.FlexFit.tight,
-                        child: pw.Container(
-                          alignment: pw.Alignment.center,
-                          padding: const pw.EdgeInsets.symmetric(vertical: 4),
-                        ),
-                      ),
-                      pw.Flexible(
-                        flex: 1,
-                        fit: pw.FlexFit.tight,
-                        child: pw.Container(
-                          alignment: pw.Alignment.center,
-                          padding: const pw.EdgeInsets.symmetric(vertical: 4),
-                          child: pw.Text('6.',
-                              style: pw.TextStyle(
-                                  fontSize: 10,
-                                  fontWeight: pw.FontWeight.bold)),
-                        ),
-                      ),
-                      pw.Flexible(
-                        flex: 6,
-                        fit: pw.FlexFit.tight,
-                        child: pw.Container(
-                          alignment: pw.Alignment.center,
-                          padding: const pw.EdgeInsets.symmetric(vertical: 4),
-                          child: pw.Text('BATTERY:-',
-                              style: pw.TextStyle(
-                                  fontSize: 10,
-                                  fontWeight: pw.FontWeight.bold)),
-                        ),
-                      ),
-                      pw.Flexible(
-                        flex: 3,
-                        fit: pw.FlexFit.tight,
-                        child: pw.Center(),
-                      ),
-                    ]),
-                  ]),
-              pw.SizedBox(height: 10),
               pw.Row(
                   mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
                   children: [
@@ -357,18 +82,6 @@ class PdfInvoiceService {
                         style: pw.TextStyle(
                             fontSize: 10, fontWeight: pw.FontWeight.bold)),
                   ]),
-              pw.Container(
-                alignment: pw.Alignment.centerLeft,
-                child: pw.Text('E2:',
-                    style: pw.TextStyle(
-                        fontSize: 10, fontWeight: pw.FontWeight.bold)),
-              ),
-              pw.Container(
-                alignment: pw.Alignment.centerLeft,
-                child: pw.Text('E3:',
-                    style: pw.TextStyle(
-                        fontSize: 10, fontWeight: pw.FontWeight.bold)),
-              ),
               pw.Row(mainAxisAlignment: pw.MainAxisAlignment.end, children: [
                 pw.Text('Authorised Signatory',
                     style: pw.TextStyle(
@@ -394,19 +107,15 @@ class PdfInvoiceService {
                         crossAxisAlignment: pw.CrossAxisAlignment.start,
                         children: [
                           pw.Text(
-                            "IDEAL MARKETING ASSOCIATES",
+                            orgName,
                             style: pw.TextStyle(
                                 fontSize: 16,
                                 fontWeight: pw.FontWeight.bold,
                                 color: PdfColors.red),
                           ),
-                          pw.Text("H.O pulliman jn karunagappally",
+                          pw.Text(orgType,
                               style: const pw.TextStyle(fontSize: 11)),
-                          pw.Text("Br.Market road,Karunagappally",
-                              style: const pw.TextStyle(fontSize: 11)),
-                          pw.Text("Ph: 9526194200, 9847781005",
-                              style: const pw.TextStyle(fontSize: 11)),
-                          pw.Text("E-mail: idealkply@gmail.com",
+                          pw.Text(orgAddress,
                               style: const pw.TextStyle(fontSize: 11)),
                         ],
                       ),
