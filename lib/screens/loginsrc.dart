@@ -171,22 +171,52 @@ class _LoginSrcState extends State<LoginSrc> {
     try {
       await _auth
           .signInWithEmailAndPassword(
-              email: "bhavya@gmail.com", password: "12345678")
+              email: "naseeb@gmail.com", password: "12345678")
           // .signInWithEmailAndPassword(email: email, password: password)
           .then((uid) => {
                 Navigator.of(context).pushReplacement(MaterialPageRoute(
                     builder: (context) => const HomeWrapper())),
               });
-    } catch (error) {
+    } on FirebaseAuthException catch (error) {
       setState(() {
         load = false;
       });
+      switch (error.code) {
+        case "invalid-email":
+          errorMessage = "Your email address appears to be malformed.";
+          break;
+        case "invalid-password":
+          errorMessage = "Your password is wrong.";
+          break;
+        case "user-not-found":
+          errorMessage = "User Not Found.";
+          break;
+        case "too-many-requests":
+          errorMessage = "Too many requests. Please try again later.";
+          break;
+        case "operation-not-allowed":
+          errorMessage = "Signing in with Email and Password is not enabled.";
+          break;
+        default:
+          errorMessage = "Connection unstable. Please try again";
+      }
+
       showDialog(
           context: context,
           builder: (BuildContext context) {
-            return const SimpleCustomAlert("Email or Password is incorrect!");
+            return SimpleCustomAlert("$errorMessage");
           });
     }
+    // catch (error) {
+    //   setState(() {
+    //     load = false;
+    //   });
+    //   showDialog(
+    //       context: context,
+    //       builder: (BuildContext context) {
+    //         return const SimpleCustomAlert("Email or Password is incorrect!");
+    //       });
+    // }
     // }
   }
 }
@@ -230,9 +260,9 @@ class SimpleCustomAlert extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            const Text(
-              "Incorrect techuid or password",
-              style: TextStyle(
+            Text(
+              title,
+              style: const TextStyle(
                 fontFamily: "Nunito",
                 fontSize: 15,
                 fontWeight: FontWeight.bold,
