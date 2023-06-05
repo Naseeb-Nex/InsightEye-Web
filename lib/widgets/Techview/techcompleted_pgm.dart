@@ -257,8 +257,13 @@ class Ctechwrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     if (currentsw == 'month') {
       return Techcmonth(
-          uid: uid, techuid: techuid, techname: techname, cmonth: cmonth, orgId: orgId);
+          uid: uid,
+          techuid: techuid,
+          techname: techname,
+          cmonth: cmonth,
+          orgId: orgId);
     }
-    return Techcday(uid: uid, techuid: techuid, techname: techname, orgId: orgId);
+    return Techcday(
+        uid: uid, techuid: techuid, techname: techname, orgId: orgId);
   }
 }
