@@ -1,3 +1,4 @@
+import 'package:glassmorphism/glassmorphism.dart';
 import 'package:insighteye_web/constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -108,56 +109,422 @@ class _LoginSrcState extends State<LoginSrc> {
           )),
     );
 
+    // Responsive Size
+    Size s = MediaQuery.of(context).size;
+
     return Scaffold(
-      backgroundColor: newbg,
-      body: Stack(children: [
-        Center(
-          child: SingleChildScrollView(
-            child: Container(
-              color: newbg,
+      body: Container(
+        decoration: const BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage(
+                  "assets/images/web-bg.png",
+                ),
+                fit: BoxFit.fill)),
+        child: Stack(children: [
+          Center(
+            child: SingleChildScrollView(
               child: Center(
-                child: Container(
-                  padding: const EdgeInsets.all(30),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(30),
-                      color: Colors.white),
-                  width: MediaQuery.of(context).size.width / 3,
-                  child: Form(
-                    key: _formKey,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        SizedBox(
-                            height: 100,
-                            width: 150,
-                            child: Image.asset(
-                              "assets/icons/appicon.png",
-                              fit: BoxFit.contain,
-                              filterQuality: FilterQuality.high,
-                            )),
-                        const SizedBox(height: 45),
-                        emailField,
-                        const SizedBox(height: 25),
-                        passwordField,
-                        const SizedBox(height: 35),
-                        loginButton,
+                // child: Container(
+                //   padding: const EdgeInsets.all(30),
+                //   decoration: BoxDecoration(
+                //       borderRadius: BorderRadius.circular(30),
+                //       color: Colors.white),
+                //   width: MediaQuery.of(context).size.width / 3,
+                //   child: Form(
+                //     key: _formKey,
+                //     child: Column(
+                //       mainAxisAlignment: MainAxisAlignment.center,
+                //       crossAxisAlignment: CrossAxisAlignment.center,
+                //       children: <Widget>[
+                //         SizedBox(
+                //             height: 100,
+                //             width: 150,
+                //             child: Image.asset(
+                //               "assets/icons/appicon.png",
+                //               fit: BoxFit.contain,
+                //               filterQuality: FilterQuality.high,
+                //             )),
+                //         const SizedBox(height: 45),
+                //         emailField,
+                //         const SizedBox(height: 25),
+                //         passwordField,
+                //         const SizedBox(height: 35),
+                //         loginButton,
+                //       ],
+                //     ),
+                //   ),
+                // ),
+                // child: Container(
+                //   width: s.width * 0.70,
+                //   height: s.height * 0.7578,
+                //   decoration: BoxDecoration(
+                //     color: white.withOpacity(0.01)
+                //   ),
+                // )
+                child: GlassmorphicContainer(
+                  width: s.width * 0.70,
+                  height: s.height * 0.7578,
+                  borderRadius: 20,
+                  blur: 1,
+                  alignment: Alignment.bottomCenter,
+                  border: 1,
+                  linearGradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [
+                        const Color(0xFFFFFEFE).withOpacity(0.1),
+                        const Color(0xFFFFFEFE).withOpacity(0.05),
                       ],
-                    ),
+                      stops: const [
+                        0.1,
+                        1,
+                      ]),
+                  borderGradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      const Color(0xFFffffff).withOpacity(0.5),
+                      const Color((0xFFFFFFFF)).withOpacity(0.5),
+                    ],
+                  ),
+                  child: Row(
+                    children: [
+                      Flexible(
+                          flex: 1,
+                          fit: FlexFit.tight,
+                          child: Container(
+                            padding: EdgeInsets.only(
+                              left: s.width * 0.0425,
+                              bottom: s.width * 0.0425,
+                            ),
+                            child: const Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                 Text(
+                                  "Welcome,",
+                                  style: TextStyle(
+                                    fontFamily: "Montserrat",
+                                    fontSize: 35,
+                                    color: white,
+                                    letterSpacing: 0.5,
+                                  ),
+                                ),
+                                 Text(
+                                  "InsightEye",
+                                  style: TextStyle(
+                                    fontFamily: "Montserrat",
+                                    fontSize: 35,
+                                    color: white,
+                                    letterSpacing: 0.8,
+                                  ),
+                                ),
+                                 Text(
+                                  "Innovators!",
+                                  style: TextStyle(
+                                    fontFamily: "Montserrat",
+                                    fontSize: 35,
+                                    color: white,
+                                    letterSpacing: 1.2,
+                                  ),
+                                ),
+                                SizedBox(height: 10 ,),
+                                 Text(
+                                  "Login to  acess your Account",
+                                  style: TextStyle(
+                                    fontFamily: "Montserrat",
+                                    fontSize: 20,
+                                    color: white,
+                                    letterSpacing: 1.4,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          )),
+                      Flexible(
+                          flex: 1,
+                          child: Container(
+                              color: white,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  const Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text("Login",
+                                          style: TextStyle(
+                                              fontFamily: "Montserrat",
+                                              fontSize: 40,
+                                              fontWeight: FontWeight.w700)),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: s.height * 0.05859,
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: s.width * 0.05555),
+                                    child: Form(
+                                      key: _formKey,
+                                      child: Column(
+                                        children: [
+                                          TextFormField(
+                                            autofocus: false,
+                                            controller: emailController,
+                                            keyboardType:
+                                                TextInputType.emailAddress,
+                                            validator: (value) {
+                                              if (value!.isEmpty) {
+                                                return ("Please Enter Your Email");
+                                              }
+                                              // reg expression for email validation
+                                              if (!RegExp(
+                                                      "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
+                                                  .hasMatch(value)) {
+                                                return ("Please Enter a valid email");
+                                              }
+                                              return null;
+                                            },
+                                            onSaved: (value) {
+                                              emailController.text = value!;
+                                            },
+                                            textInputAction:
+                                                TextInputAction.next,
+                                            decoration: InputDecoration(
+                                              labelText: "Email Id",
+                                              labelStyle: const TextStyle(
+                                                fontFamily: "Montserrat",
+                                                fontSize: 15,
+                                                color: Colors.blueGrey,
+                                              ),
+                                              fillColor: Colors.white,
+                                              filled: true,
+                                              errorStyle: const TextStyle(
+                                                  fontFamily: "Montserrat"),
+                                              contentPadding:
+                                                  const EdgeInsets.fromLTRB(
+                                                      20, 10, 20, 10),
+                                              focusedBorder: OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          15.0),
+                                                  borderSide: const BorderSide(
+                                                      color: Colors.blueGrey)),
+                                              enabledBorder: OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          15.0),
+                                                  borderSide: BorderSide(
+                                                      color: Colors
+                                                          .grey.shade400)),
+                                              errorBorder: OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          15.0),
+                                                  borderSide: const BorderSide(
+                                                      color: Color(0XFFff0a54),
+                                                      width: 2.0)),
+                                              focusedErrorBorder:
+                                                  OutlineInputBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              15.0),
+                                                      borderSide:
+                                                          const BorderSide(
+                                                              color: Color(
+                                                                  0XFFff4d6d),
+                                                              width: 2.0)),
+                                            ),
+                                            style: const TextStyle(
+                                              fontFamily: "Montserrat",
+                                              fontSize: 15,
+                                              color: black,
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            height: 30,
+                                          ),
+                                          TextFormField(
+                                            autofocus: false,
+                                            controller: passwordController,
+                                            obscureText: true,
+                                            validator: (value) {
+                                              RegExp regex = RegExp(r'^.{6,}$');
+                                              if (value!.isEmpty) {
+                                                return ("Password is required for login");
+                                              }
+                                              if (!regex.hasMatch(value)) {
+                                                return ("Enter Valid Password(Min. 6 Character)");
+                                              }
+                                              return null;
+                                            },
+                                            onSaved: (value) {
+                                              passwordController.text = value!;
+                                            },
+                                            textInputAction:
+                                                TextInputAction.done,
+                                            onFieldSubmitted: (value) => signIn(
+                                                emailController.text,
+                                                passwordController.text),
+                                            decoration: InputDecoration(
+                                              labelText: "Password",
+                                              labelStyle: const TextStyle(
+                                                fontFamily: "Montserrat",
+                                                fontSize: 15,
+                                                color: Colors.blueGrey,
+                                              ),
+                                              fillColor: Colors.white,
+                                              filled: true,
+                                              errorStyle: const TextStyle(
+                                                  fontFamily: "Montserrat"),
+                                              contentPadding:
+                                                  const EdgeInsets.fromLTRB(
+                                                      20, 10, 20, 10),
+                                              focusedBorder: OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          15.0),
+                                                  borderSide: const BorderSide(
+                                                      color: Colors.blueGrey)),
+                                              enabledBorder: OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          15.0),
+                                                  borderSide: BorderSide(
+                                                      color: Colors
+                                                          .grey.shade400)),
+                                              errorBorder: OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          15.0),
+                                                  borderSide: const BorderSide(
+                                                      color: Color(0XFFff0a54),
+                                                      width: 2.0)),
+                                              focusedErrorBorder:
+                                                  OutlineInputBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              15.0),
+                                                      borderSide:
+                                                          const BorderSide(
+                                                              color: Color(
+                                                                  0XFFff4d6d),
+                                                              width: 2.0)),
+                                            ),
+                                            style: const TextStyle(
+                                              fontFamily: "Montserrat",
+                                              fontSize: 15,
+                                              color: black,
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: s.height * 0.05859,
+                                          ),
+                                          Container(
+                                            decoration: BoxDecoration(
+                                              color: Colors.deepPurple.shade300,
+                                              gradient: const LinearGradient(
+                                                begin: Alignment.topLeft,
+                                                end: Alignment.bottomRight,
+                                                stops: [0.0, 1.0],
+                                                colors: [
+                                                  Color(0XFF7A43AB),
+                                                  Color(0XFF57308D),
+                                                ],
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(30),
+                                              boxShadow: const [
+                                                BoxShadow(
+                                                    color: Colors.black26,
+                                                    offset: Offset(0, 4),
+                                                    blurRadius: 5.0)
+                                              ],
+                                            ),
+                                            child: ElevatedButton(
+                                              style: ButtonStyle(
+                                                shape:
+                                                    MaterialStateProperty.all<
+                                                        RoundedRectangleBorder>(
+                                                  RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            30.0),
+                                                  ),
+                                                ),
+                                                minimumSize:
+                                                    MaterialStateProperty.all(
+                                                        const Size(50, 50)),
+                                                backgroundColor:
+                                                    MaterialStateProperty.all(
+                                                        Colors.transparent),
+                                                shadowColor:
+                                                    MaterialStateProperty.all(
+                                                        Colors.transparent),
+                                              ),
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.fromLTRB(
+                                                        40, 10, 40, 10),
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.center,
+                                                  children: [
+                                                    Text(
+                                                      'Login'.toUpperCase(),
+                                                      style: const TextStyle(
+                                                          fontSize: 20,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          color: Colors.white,
+                                                          fontFamily:
+                                                              "Montserrat"),
+                                                    ),
+                                                    const SizedBox(
+                                                      width: 15,
+                                                    ),
+                                                    Container(
+                                                        child: load
+                                                            ? const SizedBox(
+                                                                height: 15,
+                                                                width: 15,
+                                                                child: CircularProgressIndicator(
+                                                                    color:
+                                                                        white))
+                                                            : null),
+                                                  ],
+                                                ),
+                                              ),
+                                              onPressed: () {
+                                                signIn(emailController.text,
+                                                    passwordController.text);
+                                              },
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              )))
+                    ],
                   ),
                 ),
               ),
             ),
           ),
-        ),
-        Center(
-          child: load
-              ? const CircularProgressIndicator(
-                  color: Colors.redAccent,
-                )
-              : null,
-        )
-      ]),
+          Center(
+            child: load
+                ? const CircularProgressIndicator(
+                    color: Color(0XFF7A43AB),
+                  )
+                : null,
+          )
+        ]),
+      ),
     );
   }
 
@@ -198,7 +565,7 @@ class _LoginSrcState extends State<LoginSrc> {
           errorMessage = "Signing in with Email and Password is not enabled.";
           break;
         default:
-          errorMessage = "Connection unstable. Please try again";
+          errorMessage = "Your password or Email is wrong.";
       }
 
       showDialog(
