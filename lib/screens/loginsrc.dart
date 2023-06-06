@@ -28,87 +28,6 @@ class _LoginSrcState extends State<LoginSrc> {
 
   @override
   Widget build(BuildContext context) {
-    //email field
-    final emailField = TextFormField(
-        autofocus: false,
-        controller: emailController,
-        keyboardType: TextInputType.emailAddress,
-        validator: (value) {
-          if (value!.isEmpty) {
-            return ("Please Enter Your Email");
-          }
-          // reg expression for email validation
-          if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
-              .hasMatch(value)) {
-            return ("Please Enter a valid email");
-          }
-          return null;
-        },
-        onSaved: (value) {
-          emailController.text = value!;
-        },
-        textInputAction: TextInputAction.next,
-        decoration: InputDecoration(
-          prefixIcon: const Icon(Icons.mail),
-          contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
-          hintText: "Email",
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
-        ));
-
-    //password field
-    final passwordField = TextFormField(
-      autofocus: false,
-      controller: passwordController,
-      obscureText: true,
-      validator: (value) {
-        RegExp regex = RegExp(r'^.{6,}$');
-        if (value!.isEmpty) {
-          return ("Password is required for login");
-        }
-        if (!regex.hasMatch(value)) {
-          return ("Enter Valid Password(Min. 6 Character)");
-        }
-        return null;
-      },
-      onSaved: (value) {
-        passwordController.text = value!;
-      },
-      textInputAction: TextInputAction.done,
-      decoration: InputDecoration(
-        prefixIcon: const Icon(Icons.vpn_key),
-        contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
-        hintText: "Password",
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-        ),
-      ),
-      onFieldSubmitted: (value) =>
-          signIn(emailController.text, passwordController.text),
-    );
-
-    final loginButton = Material(
-      elevation: 5,
-      borderRadius: BorderRadius.circular(30),
-      color: Colors.redAccent,
-      child: TextButton(
-          onPressed: () {
-            signIn(emailController.text, passwordController.text);
-          },
-          child: const Padding(
-            padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
-            child: Text(
-              "Login",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold),
-            ),
-          )),
-    );
-
     // Responsive Size
     Size s = MediaQuery.of(context).size;
 
@@ -124,43 +43,6 @@ class _LoginSrcState extends State<LoginSrc> {
           Center(
             child: SingleChildScrollView(
               child: Center(
-                // child: Container(
-                //   padding: const EdgeInsets.all(30),
-                //   decoration: BoxDecoration(
-                //       borderRadius: BorderRadius.circular(30),
-                //       color: Colors.white),
-                //   width: MediaQuery.of(context).size.width / 3,
-                //   child: Form(
-                //     key: _formKey,
-                //     child: Column(
-                //       mainAxisAlignment: MainAxisAlignment.center,
-                //       crossAxisAlignment: CrossAxisAlignment.center,
-                //       children: <Widget>[
-                //         SizedBox(
-                //             height: 100,
-                //             width: 150,
-                //             child: Image.asset(
-                //               "assets/icons/appicon.png",
-                //               fit: BoxFit.contain,
-                //               filterQuality: FilterQuality.high,
-                //             )),
-                //         const SizedBox(height: 45),
-                //         emailField,
-                //         const SizedBox(height: 25),
-                //         passwordField,
-                //         const SizedBox(height: 35),
-                //         loginButton,
-                //       ],
-                //     ),
-                //   ),
-                // ),
-                // child: Container(
-                //   width: s.width * 0.70,
-                //   height: s.height * 0.7578,
-                //   decoration: BoxDecoration(
-                //     color: white.withOpacity(0.01)
-                //   ),
-                // )
                 child: GlassmorphicContainer(
                   width: s.width * 0.70,
                   height: s.height * 0.7578,
