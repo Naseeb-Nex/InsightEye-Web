@@ -25,6 +25,42 @@ class _HomewidgetState extends State<Homewidget> {
   FirebaseFirestore fb = FirebaseFirestore.instance;
   int p = 0, c = 0;
   final List techprofile = [];
+
+  @override
+  void initState() {
+    super.initState();
+    if (mounted) {
+      pgmsetup();
+    }
+  }
+
+  pgmsetup() async {
+    DateTime now = DateTime.now();
+    String cday = DateFormat('MM d y').format(now);
+    try {
+      await fb
+      .collection("organizations")
+          .doc("${widget.orgId}")
+          .collection('Completedpgm')
+          .doc("Day")
+          .collection(cday)
+          .get()
+          .then((snap) => {
+                setState(() {
+                  c = snap.size;
+                })
+              });
+      await fb.collection("organizations")
+          .doc("${widget.orgId}").collection('Programs').get().then((snap) => {
+            setState(() {
+              p = snap.size;
+            })
+          });
+    } catch (e) {
+      print(e);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -37,158 +73,235 @@ class _HomewidgetState extends State<Homewidget> {
           const SizedBox(
             height: 30,
           ),
-          const Center(
-            child: Text(
-              "Home",
-              style: TextStyle(
-                fontFamily: "Nunito",
-                fontSize: 25,
-                fontWeight: FontWeight.bold,
-                color: Color(0xff8F9194),
-              ),
+          Container(
+            padding: const EdgeInsets.symmetric(
+              vertical: 20,
+              horizontal: 10,
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: SizedBox(
-              height: 100,
-              width: double.infinity,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: <Widget>[
-                  Flexible(
-                      flex: 3,
-                      child: SizedBox(
-                        height: double.infinity,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: white,
+                boxShadow: [
+                  BoxShadow(
+                    spreadRadius: 1,
+                    blurRadius: 3,
+                    color: black.withOpacity(.1),
+                    offset: const Offset(-1, 2),
+                  ),
+                ]),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  "Program Status",
+                  style: TextStyle(
+                    fontFamily: "Montserrat",
+                    fontWeight: FontWeight.w600,
+                    fontSize: 22,
+                    color: Color(0XFF793BA8),
+                  ),
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                Row(
+                  children: [
+                    Flexible(
+                      flex: 1,
+                      fit: FlexFit.tight,
+                      child: Container(
+                        padding: const EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: white,
+                            boxShadow: [
+                              BoxShadow(
+                                spreadRadius: 1,
+                                blurRadius: 3,
+                                color: black.withOpacity(.1),
+                                offset: const Offset(-1, 2),
+                              ),
+                            ]),
                         child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  height: 10,
-                                  width: 10,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      color: cheryred),
-                                ),
-                                const Text(
-                                  " Pending Programs",
-                                  style: TextStyle(
-                                    fontFamily: "Nunito",
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                    color: Color(0xff273746),
-                                  ),
-                                ),
-                              ],
+                            Container(
+                              decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Colors.blue.shade50),
+                              padding: const EdgeInsets.all(10),
+                              child: Image.asset(
+                                "assets/icons/pendingfile.png",
+                                width: 20,
+                                height: 20,
+                              ),
                             ),
+                            const SizedBox(
+                              height: 15,
+                            ),
+                            const Text(
+                              "Pending",
+                              style: TextStyle(
+                                fontFamily: "Montserrat",
+                                fontSize: 18,
+                                fontWeight: FontWeight.w600,
+                                color: Color(0XFFff5c8a),
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                            const Text(
+                              "Programs",
+                              style: TextStyle(
+                                fontFamily: "Montserrat",
+                                fontSize: 18,
+                                fontWeight: FontWeight.w600,
+                                color: Color(0XFFff5c8a),
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                            const SizedBox(height: 15),
                             Text(
                               "$p",
                               style: const TextStyle(
-                                fontFamily: "Nunito",
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: Color(0xff273746),
+                                fontFamily: "Montserrat",
+                                fontWeight: FontWeight.w600,
+                                color: Color(0XFFff5c8a),
+                                fontSize: 27,
                               ),
                             ),
                           ],
                         ),
-                      )),
-                  Flexible(
-                      flex: 3,
-                      child: SizedBox(
-                        height: double.infinity,
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Flexible(
+                      flex: 1,
+                      fit: FlexFit.tight,
+                      child: Container(
+                        padding: const EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: white,
+                            boxShadow: [
+                              BoxShadow(
+                                spreadRadius: 1,
+                                blurRadius: 3,
+                                color: black.withOpacity(.1),
+                                offset: const Offset(-1, 2),
+                              ),
+                            ]),
                         child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  height: 10,
-                                  width: 10,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      color: Colors.greenAccent),
-                                ),
-                                const Text(
-                                  " Completed Programs",
-                                  style: TextStyle(
-                                    fontFamily: "Nunito",
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                    color: Color(0xff273746),
-                                  ),
-                                ),
-                              ],
+                            Container(
+                              decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Colors.blue.shade50),
+                              padding: const EdgeInsets.all(10),
+                              child: Image.asset(
+                                "assets/icons/completedfile.png",
+                                width: 22,
+                                height: 22,
+                              ),
                             ),
+                            const SizedBox(
+                              height: 15,
+                            ),
+                            const Text(
+                              "Completed",
+                              style: TextStyle(
+                                fontFamily: "Montserrat",
+                                fontSize: 18,
+                                fontWeight: FontWeight.w600,
+                                color: Color(0XFF52b788),
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                            const Text(
+                              "Programs",
+                              style: TextStyle(
+                                fontFamily: "Montserrat",
+                                fontSize: 18,
+                                fontWeight: FontWeight.w600,
+                                color: Color(0XFF52b788),
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                            const SizedBox(height: 15),
                             Text(
                               "$c",
                               style: const TextStyle(
-                                fontFamily: "Nunito",
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: Color(0xff273746),
+                                fontFamily: "Montserrat",
+                                fontWeight: FontWeight.w600,
+                                color: Color(0XFF52b788),
+                                fontSize: 27,
                               ),
                             ),
                           ],
                         ),
-                      )),
-                ],
-              ),
+                      ),
+                    ),
+                  ],
+                )
+              ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 25),
+          const SizedBox(
+            height: 10,
+          ),
+          Container(
+            padding: const EdgeInsets.symmetric(
+              vertical: 20,
+              horizontal: 10,
+            ),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: white,
+                boxShadow: [
+                  BoxShadow(
+                    spreadRadius: 1,
+                    blurRadius: 3,
+                    color: black.withOpacity(.1),
+                    offset: const Offset(-1, 2),
+                  ),
+                ]),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Icon(
                       Icons.person,
-                      color: Colors.black26,
+                      color: Color(0XFF793BA8),
+                    ),
+                    SizedBox(
+                      width: 5,
                     ),
                     Text(
-                      " Technicians",
+                      "Technicians",
                       style: TextStyle(
-                        fontFamily: "Nunito",
+                        fontFamily: "Montserrat",
                         fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black26,
+                        fontWeight: FontWeight.w600,
+                        color: Color(0XFF793BA8),
                       ),
                     ),
                   ],
                 ),
                 const SizedBox(
-                  height: 10,
+                  height: 20,
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20),
-                  child: Container(
-                    height: 2,
-                    width: 100,
-                    decoration: BoxDecoration(
-                        color: Colors.black26,
-                        borderRadius: BorderRadius.circular(10)),
+                SizedBox(
+                  height: size.height * 0.55,
+                  child: TechHorizontalList(
+                    orgId: widget.orgId,
                   ),
                 ),
               ],
-            ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          SizedBox(
-            height: size.height * 0.55,
-            child: TechHorizontalList(
-              orgId: widget.orgId,
             ),
           )
         ],

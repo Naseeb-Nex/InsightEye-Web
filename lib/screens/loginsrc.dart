@@ -349,35 +349,15 @@ class _LoginSrcState extends State<LoginSrc> {
                                                 padding:
                                                     const EdgeInsets.fromLTRB(
                                                         40, 10, 40, 10),
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.center,
-                                                  children: [
-                                                    Text(
-                                                      'Login'.toUpperCase(),
-                                                      style: const TextStyle(
-                                                          fontSize: 20,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                          color: Colors.white,
-                                                          fontFamily:
-                                                              "Montserrat"),
-                                                    ),
-                                                    const SizedBox(
-                                                      width: 15,
-                                                    ),
-                                                    Container(
-                                                        child: load
-                                                            ? const SizedBox(
-                                                                height: 15,
-                                                                width: 15,
-                                                                child: CircularProgressIndicator(
-                                                                    color:
-                                                                        white))
-                                                            : null),
-                                                  ],
+                                                child: Text(
+                                                  'Login'.toUpperCase(),
+                                                  style: const TextStyle(
+                                                      fontSize: 20,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      color: Colors.white,
+                                                      fontFamily:
+                                                          "Montserrat"),
                                                 ),
                                               ),
                                               onPressed: () {
