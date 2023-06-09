@@ -157,7 +157,7 @@ class PendingTechcard extends StatelessWidget {
                     children: [
                       const Icon(
                         Icons.pin_drop_outlined,
-                        color: cheryred,
+                        color: vioetbg,
                       ),
                       Text(
                         "  $loc",

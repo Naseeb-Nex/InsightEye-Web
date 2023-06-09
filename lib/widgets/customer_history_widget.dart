@@ -116,7 +116,7 @@ class _CustomerHistoryState extends State<CustomerHistory> {
                           style: TextStyle(
                               fontFamily: "Montserrat",
                               fontSize: 17,
-                              color: cheryred),
+                              color: vioetbg),
                         ),
                       );
                     }

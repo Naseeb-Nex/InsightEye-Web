@@ -82,7 +82,7 @@ class _OfficeHomeState extends State<OfficeHome> {
                           ),
                         ),
                         const SizedBox(
-                          height: 20,
+                          height: 40,
                         ),
                         InkWell(
                           onTap: () => setState(() {
@@ -91,11 +91,11 @@ class _OfficeHomeState extends State<OfficeHome> {
                          child: SizedBox(
                             height: 30,
                             width: 30,
-                            child: currentscr == 'View' ? Image.asset("assets/icons/shome.png") : Image.asset("assets/icons/home.png"),
+                            child: currentscr == 'View' ? Image.asset("assets/icons/hfile.png") : Image.asset("assets/icons/file.png"),
                           ),
                         ),
                         const SizedBox(
-                          height: 20,
+                          height: 40,
                         ),
                         InkWell(
                           onTap: () => setState(() {
@@ -104,24 +104,24 @@ class _OfficeHomeState extends State<OfficeHome> {
                           child: SizedBox(
                             height: 30,
                             width: 30,
-                            child: currentscr == 'Home' ? Image.asset("assets/icons/shome.png") : Image.asset("assets/icons/home.png"),
+                            child: currentscr == 'customer' ? Image.asset("assets/icons/scust.png") : Image.asset("assets/icons/cust.png"),
                           ),
                         ),
                         const SizedBox(
-                          height: 20,
+                          height: 40,
                         ),
                         InkWell(
                           onTap: () => setState(() {
                             currentscr = 'customerreg';
                           }),
                           child: SizedBox(
-                            height: 30,
-                            width: 30,
-                            child: currentscr == 'Home' ? Image.asset("assets/icons/shome.png") : Image.asset("assets/icons/home.png"),
+                            height: 35,
+                            width: 35,
+                            child: currentscr == 'customerreg' ? Image.asset("assets/icons/saddcust.png") : Image.asset("assets/icons/addcust.png"),
                           ),
                         ),
                         const SizedBox(
-                          height: 20,
+                          height: 40,
                         ),
                         InkWell(
                           onTap: () => setState(() {
@@ -130,11 +130,11 @@ class _OfficeHomeState extends State<OfficeHome> {
                           child: SizedBox(
                             height: 30,
                             width: 30,
-                            child: currentscr == 'Home' ? Image.asset("assets/icons/shome.png") : Image.asset("assets/icons/home.png"),
+                            child: currentscr == 'vehicleportal' ? Image.asset("assets/icons/sscoot.png") : Image.asset("assets/icons/sscoot.png"),
                           ),
                         ),
                         const SizedBox(
-                          height: 20,
+                          height: 40,
                         ),
                         InkWell(
                           onTap: () => setState(() {
@@ -143,7 +143,7 @@ class _OfficeHomeState extends State<OfficeHome> {
                           child: SizedBox(
                             height: 30,
                             width: 30,
-                            child: currentscr == 'Home' ? Image.asset("assets/icons/shome.png") : Image.asset("assets/icons/home.png"),
+                            child: currentscr == 'report' ? Image.asset("assets/icons/sgraph.png") : Image.asset("assets/icons/graph.png"),
                           ),
                         ),
                       ],

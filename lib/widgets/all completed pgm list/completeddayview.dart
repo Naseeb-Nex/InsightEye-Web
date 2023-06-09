@@ -44,7 +44,7 @@ class _CompleteddayviewState extends State<Completeddayview> {
                     style: TextStyle(
                         fontFamily: "Montserrat",
                         fontSize: 17,
-                        color: cheryred),
+                        color: vioetbg),
                   ),
                 );
               }
@@ -54,7 +54,7 @@ class _CompleteddayviewState extends State<Completeddayview> {
                   color: white,
                   child: const Center(
                     child: CircularProgressIndicator(
-                      color: cheryred,
+                      color: vioetbg,
                     ),
                   ),
                 );

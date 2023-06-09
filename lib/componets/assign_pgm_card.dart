@@ -124,7 +124,7 @@ class _AssignpgmcardState extends State<Assignpgmcard> {
                     const SizedBox(height: 5,),
                         Row(
                           children: [
-                            const Icon(Icons.pin_drop_outlined, color: cheryred, size: 20,),
+                            const Icon(Icons.pin_drop_outlined, color: vioetbg, size: 20,),
                             const SizedBox(height: 5,),
                             SizedBox(
                               width: s.width * 0.11,

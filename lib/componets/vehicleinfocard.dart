@@ -231,7 +231,7 @@ class _VechicleInfoCardState extends State<VechicleInfoCard> {
                                     style: TextStyle(
                                       fontFamily: "Montserrat",
                                       fontSize: 14,
-                                      color: cheryred,
+                                      color: vioetbg,
                                       fontWeight: FontWeight.w600,
                                     ),
                                   ),
@@ -280,7 +280,7 @@ class _VechicleInfoCardState extends State<VechicleInfoCard> {
                                     ),
                                     child: _isviz
                                         ? const Icon(Icons.close,
-                                            color: cheryred)
+                                            color: vioetbg)
                                         : const Icon(Iconsax.arrow_down_1,
                                             color: Colors.blueGrey),
                                   ),

@@ -50,7 +50,7 @@ class _TechasignState extends State<Techasign> {
                     style: TextStyle(
                         fontFamily: "Montserrat",
                         fontSize: 17,
-                        color: cheryred),
+                        color: vioetbg),
                   ),
                 );
               }
@@ -60,7 +60,7 @@ class _TechasignState extends State<Techasign> {
                   color: white,
                   child: const Center(
                     child: CircularProgressIndicator(
-                      color: cheryred,
+                      color: vioetbg,
                     ),
                   ),
                 );
@@ -367,7 +367,7 @@ class Datepicker extends StatelessWidget {
                               color: black.withOpacity(0.2),
                               offset: const Offset(5, 10))
                         ],
-                        color: cheryred,
+                        color: vioetbg,
                         borderRadius: BorderRadius.circular(20)),
                     child: const Center(
                       child: Text(

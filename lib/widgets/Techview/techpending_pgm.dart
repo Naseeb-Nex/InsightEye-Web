@@ -45,7 +45,7 @@ class _TechpendingState extends State<Techpending> {
                     style: TextStyle(
                         fontFamily: "Montserrat",
                         fontSize: 17,
-                        color: cheryred),
+                        color: vioetbg),
                   ),
                 );
               }
@@ -55,7 +55,7 @@ class _TechpendingState extends State<Techpending> {
                   color: white,
                   child: const Center(
                     child: CircularProgressIndicator(
-                      color: cheryred,
+                      color: vioetbg,
                     ),
                   ),
                 );

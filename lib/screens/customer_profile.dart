@@ -208,7 +208,7 @@ class StatussrcState extends State<CustomerProfilesrc> {
                                                   borderRadius:
                                                       BorderRadius.circular(30),
                                                   color: editmode
-                                                      ? cheryred
+                                                      ? vioetbg
                                                       : const Color(0XFFffcc00),
                                                   boxShadow: [
                                                     BoxShadow(

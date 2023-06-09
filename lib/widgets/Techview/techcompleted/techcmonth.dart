@@ -49,7 +49,7 @@ class _TechcmonthState extends State<Techcmonth> {
                           style: TextStyle(
                               fontFamily: "Montserrat",
                               fontSize: 17,
-                              color: cheryred),
+                              color: vioetbg),
                         ),
                       );
               }
@@ -59,7 +59,7 @@ class _TechcmonthState extends State<Techcmonth> {
                   color: white,
                   child: const Center(
                     child: CircularProgressIndicator(
-                      color: cheryred,
+                      color: vioetbg,
                     ),
                   ),
                 );

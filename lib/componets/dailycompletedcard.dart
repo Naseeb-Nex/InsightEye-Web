@@ -191,7 +191,7 @@ class _DailycompltedcardState extends State<Dailycompltedcard> {
                                   children: [
                                     const Icon(
                                       Iconsax.location,
-                                      color: cheryred,
+                                      color: vioetbg,
                                       size: 25,
                                     ),
                                     SizedBox(width: s.height * 0.01),

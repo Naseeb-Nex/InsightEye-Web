@@ -561,7 +561,7 @@ class _AssignpgmwidgetState extends State<Assignpgmwidget> {
                           style: TextStyle(
                               fontFamily: "Montserrat",
                               fontSize: 17,
-                              color: cheryred),
+                              color: vioetbg),
                         ),
                       );
                       }
@@ -571,7 +571,7 @@ class _AssignpgmwidgetState extends State<Assignpgmwidget> {
                           color: white,
                           child: const Center(
                             child: CircularProgressIndicator(
-                              color: cheryred,
+                              color: vioetbg,
                             ),
                           ),
                         );
@@ -1178,7 +1178,7 @@ class _RemoveVehicleDialogState extends State<RemoveVehicleDialog> {
                               color: const Color(0XFFE7E7E7),
                             ),
                             borderRadius: BorderRadius.circular(7),
-                            color: cheryred.withOpacity(0.1),
+                            color: vioetbg.withOpacity(0.1),
                           ),
                           child: const Center(
                             child: Text(

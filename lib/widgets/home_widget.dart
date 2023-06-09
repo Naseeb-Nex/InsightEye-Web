@@ -39,7 +39,7 @@ class _HomewidgetState extends State<Homewidget> {
     String cday = DateFormat('MM d y').format(now);
     try {
       await fb
-      .collection("organizations")
+          .collection("organizations")
           .doc("${widget.orgId}")
           .collection('Completedpgm')
           .doc("Day")
@@ -50,12 +50,16 @@ class _HomewidgetState extends State<Homewidget> {
                   c = snap.size;
                 })
               });
-      await fb.collection("organizations")
-          .doc("${widget.orgId}").collection('Programs').get().then((snap) => {
-            setState(() {
-              p = snap.size;
-            })
-          });
+      await fb
+          .collection("organizations")
+          .doc("${widget.orgId}")
+          .collection('Programs')
+          .get()
+          .then((snap) => {
+                setState(() {
+                  p = snap.size;
+                })
+              });
     } catch (e) {
       print(e);
     }
@@ -331,14 +335,14 @@ class TechHorizontalList extends StatelessWidget {
               child: Text(
                 "Something Went Wrong :(",
                 style: TextStyle(
-                    fontFamily: "Montserrat", fontSize: 17, color: cheryred),
+                    fontFamily: "Montserrat", fontSize: 17, color: vioetbg),
               ),
             );
           }
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(
               child: CircularProgressIndicator(
-                color: cheryred,
+                color: vioetbg,
               ),
             );
           }
@@ -573,7 +577,7 @@ class _TechcardState extends State<Techcard> {
                     width: 10,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
-                        color: cheryred),
+                        color: cherryred),
                   ),
                   const Text(
                     " Pending Programs        ",
@@ -605,8 +609,9 @@ class _TechcardState extends State<Techcard> {
                     height: 10,
                     width: 10,
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.blue),
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.blue,
+                    ),
                   ),
                   const Text(
                     " Processing Programs   ",
@@ -614,7 +619,6 @@ class _TechcardState extends State<Techcard> {
                       fontFamily: "Nunito",
                       fontSize: 13,
                       fontWeight: FontWeight.bold,
-                      color: Color(0xff273746),
                     ),
                   ),
                   Text(
@@ -623,7 +627,6 @@ class _TechcardState extends State<Techcard> {
                       fontFamily: "Nunito",
                       fontSize: 13,
                       fontWeight: FontWeight.bold,
-                      color: Color(0xff273746),
                     ),
                   ),
                 ],
@@ -638,12 +641,17 @@ class _TechcardState extends State<Techcard> {
                           name: widget.name,
                           techuid: widget.uid,
                           orgId: widget.orgId,
+                          imgURl: widget.imgUrl,
+                          a: a,
+                          c: c,
+                          p: p,
+                          pro: pro,
                         ))),
                 child: Container(
                   width: 150,
                   height: 40,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(40), color: cheryred),
+                      borderRadius: BorderRadius.circular(40), color: vioetbg),
                   alignment: Alignment.center,
                   child: const Text(
                     "Assign Program",
@@ -666,13 +674,28 @@ class _TechcardState extends State<Techcard> {
 
 // ignore: must_be_immutable
 class Assigntechpgm extends StatefulWidget {
-  Assigntechpgm({Key? key, this.name, this.uid, this.techuid, this.orgId})
-      : super(key: key);
-
   String? name;
   String? uid;
   String? techuid;
   String? orgId;
+  String? imgURl;
+  int a;
+  int c;
+  int p;
+  int pro;
+
+  Assigntechpgm(
+      {Key? key,
+      this.name,
+      this.uid,
+      this.techuid,
+      this.orgId,
+      this.imgURl,
+      required this.a,
+      required this.c,
+      required this.p,
+      required this.pro})
+      : super(key: key);
 
   @override
   // ignore: library_private_types_in_public_api
@@ -680,81 +703,9 @@ class Assigntechpgm extends StatefulWidget {
 }
 
 class _AssigntechpgmState extends State<Assigntechpgm> {
-  int a = 0;
-  int c = 0;
   FirebaseFirestore fb = FirebaseFirestore.instance;
-  int p = 0;
-  int pro = 0;
 
   String _currentsrc = "Assign";
-
-  @override
-  void initState() {
-    super.initState();
-    if (mounted) {
-      startup();
-    }
-  }
-
-  startup() async {
-    DateTime now = DateTime.now();
-    String cday = DateFormat('MM d y').format(now);
-    try {
-      await fb
-          .collection("organizations")
-          .doc("${widget.orgId}")
-          .collection('Technician')
-          .doc(widget.techuid)
-          .collection("Assignedpgm")
-          .get()
-          .then((snap) => {
-                setState(() {
-                  a = snap.size;
-                })
-              });
-
-      await fb
-          .collection("organizations")
-          .doc("${widget.orgId}")
-          .collection('Technician')
-          .doc(widget.techuid)
-          .collection("Completedpgm")
-          .doc("Day")
-          .collection(cday)
-          .get()
-          .then((snap) => {
-                setState(() {
-                  c = snap.size;
-                })
-              });
-      await fb
-          .collection("organizations")
-          .doc("${widget.orgId}")
-          .collection('Technician')
-          .doc(widget.techuid)
-          .collection("Pendingpgm")
-          .get()
-          .then((snap) => {
-                setState(() {
-                  p = snap.size;
-                })
-              });
-      await fb
-          .collection("organizations")
-          .doc("${widget.orgId}")
-          .collection('Technician')
-          .doc(widget.techuid)
-          .collection("Processingpgm")
-          .get()
-          .then((snap) => {
-                setState(() {
-                  pro = snap.size;
-                })
-              });
-    } catch (e) {
-      print(e);
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -791,7 +742,7 @@ class _AssigntechpgmState extends State<Assigntechpgm> {
                       width: 40,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(30),
-                          color: Colors.blue),
+                          color: const Color(0XFF793BA8)),
                       child: const Icon(Icons.arrow_back, color: Colors.white),
                     ),
                   ),
@@ -849,11 +800,12 @@ class _AssigntechpgmState extends State<Assigntechpgm> {
                           height: 160,
                           width: 160,
                           child: CircleAvatar(
-                            radius: 80,
-                            backgroundColor: Colors.transparent,
-                            child: ClipOval(
-                              child: Image.asset("assets/icons/avataricon.png"),
-                            ),
+                            backgroundColor: white,
+                            backgroundImage: widget.imgURl != null
+                                ? NetworkImage("${widget.imgURl}")
+                                : const AssetImage(
+                                        "assets/icons/tech_avatar1.png")
+                                    as ImageProvider<Object>?,    
                           ),
                         ),
                         const SizedBox(
@@ -863,9 +815,9 @@ class _AssigntechpgmState extends State<Assigntechpgm> {
                           child: Text(
                             "${widget.name}",
                             style: const TextStyle(
-                              fontFamily: "Nunito",
+                              fontFamily: "Montserrat",
                               fontSize: 22,
-                              fontWeight: FontWeight.bold,
+                              fontWeight: FontWeight.w600,
                               color: Color(0xff273746),
                             ),
                           ),
@@ -893,7 +845,7 @@ class _AssigntechpgmState extends State<Assigntechpgm> {
                               ),
                             ),
                             Text(
-                              "$a",
+                              "${widget.a}",
                               style: const TextStyle(
                                 fontFamily: "Nunito",
                                 fontSize: 15,
@@ -926,7 +878,7 @@ class _AssigntechpgmState extends State<Assigntechpgm> {
                               ),
                             ),
                             Text(
-                              "$c",
+                              "${widget.c}",
                               style: const TextStyle(
                                 fontFamily: "Nunito",
                                 fontSize: 15,
@@ -947,7 +899,7 @@ class _AssigntechpgmState extends State<Assigntechpgm> {
                               width: 10,
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
-                                  color: cheryred),
+                                  color: cherryred),
                             ),
                             const Text(
                               " Pending Programs        ",
@@ -959,7 +911,7 @@ class _AssigntechpgmState extends State<Assigntechpgm> {
                               ),
                             ),
                             Text(
-                              "$p",
+                              "${widget.a}",
                               style: const TextStyle(
                                 fontFamily: "Nunito",
                                 fontSize: 15,
@@ -979,8 +931,9 @@ class _AssigntechpgmState extends State<Assigntechpgm> {
                               height: 10,
                               width: 10,
                               decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  color: Colors.blue),
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.blue,
+                              ),
                             ),
                             const Text(
                               " Processing Programs   ",
@@ -992,7 +945,7 @@ class _AssigntechpgmState extends State<Assigntechpgm> {
                               ),
                             ),
                             Text(
-                              "$pro",
+                              "${widget.pro}",
                               style: const TextStyle(
                                 fontFamily: "Nunito",
                                 fontSize: 15,
@@ -1017,8 +970,9 @@ class _AssigntechpgmState extends State<Assigntechpgm> {
                                 borderRadius: BorderRadius.circular(30),
                                 color: _currentsrc == "Assign"
                                     ? white
-                                    : Colors.blue,
-                                border: Border.all(color: Colors.blue)),
+                                    : const Color(0XFF793BA8),
+                                border:
+                                    Border.all(color: const Color(0XFF793BA8))),
                             child: Text(
                               "Assign Programs",
                               style: TextStyle(
@@ -1026,7 +980,7 @@ class _AssigntechpgmState extends State<Assigntechpgm> {
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
                                 color: _currentsrc == "Assign"
-                                    ? Colors.blue
+                                    ? const Color(0XFF793BA8)
                                     : white,
                               ),
                             ),
@@ -1045,9 +999,11 @@ class _AssigntechpgmState extends State<Assigntechpgm> {
                             alignment: Alignment.center,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(30),
-                              color:
-                                  _currentsrc == "Status" ? white : Colors.blue,
-                              border: Border.all(color: Colors.blue),
+                              color: _currentsrc == "Status"
+                                  ? white
+                                  : const Color(0XFF793BA8),
+                              border:
+                                  Border.all(color: const Color(0XFF793BA8)),
                             ),
                             child: Text(
                               "Status",
@@ -1056,7 +1012,7 @@ class _AssigntechpgmState extends State<Assigntechpgm> {
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
                                 color: _currentsrc == "Status"
-                                    ? Colors.blue
+                                    ? const Color(0XFF793BA8)
                                     : white,
                               ),
                             ),
@@ -1065,37 +1021,6 @@ class _AssigntechpgmState extends State<Assigntechpgm> {
                         const SizedBox(
                           height: 20,
                         ),
-                        // InkWell(
-                        //   onTap: () => setState(() {
-                        //     _currentsrc = 'Schedule';
-                        //   }),
-                        //   child: Container(
-                        //     height: 55,
-                        //     width: double.infinity,
-                        //     alignment: Alignment.center,
-                        //     decoration: BoxDecoration(
-                        //       borderRadius: BorderRadius.circular(30),
-                        //       color: _currentsrc == "Schedule"
-                        //           ? white
-                        //           : Colors.blue,
-                        //       border: Border.all(color: Colors.blue),
-                        //     ),
-                        //     child: Text(
-                        //       "Schedule",
-                        //       style: TextStyle(
-                        //         fontFamily: "Nunito",
-                        //         fontSize: 16,
-                        //         fontWeight: FontWeight.bold,
-                        //         color: _currentsrc == "Schedule"
-                        //             ? Colors.blue
-                        //             : white,
-                        //       ),
-                        //     ),
-                        //   ),
-                        // ),
-                        // const SizedBox(
-                        //   height: 20,
-                        // ),
                       ],
                     ),
                   ),

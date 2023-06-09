@@ -83,7 +83,7 @@ class _LoginSrcState extends State<LoginSrc> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
-                                 Text(
+                                Text(
                                   "Welcome,",
                                   style: TextStyle(
                                     fontFamily: "Montserrat",
@@ -92,7 +92,7 @@ class _LoginSrcState extends State<LoginSrc> {
                                     letterSpacing: 0.5,
                                   ),
                                 ),
-                                 Text(
+                                Text(
                                   "InsightEye",
                                   style: TextStyle(
                                     fontFamily: "Montserrat",
@@ -101,7 +101,7 @@ class _LoginSrcState extends State<LoginSrc> {
                                     letterSpacing: 0.8,
                                   ),
                                 ),
-                                 Text(
+                                Text(
                                   "Innovators!",
                                   style: TextStyle(
                                     fontFamily: "Montserrat",
@@ -110,8 +110,10 @@ class _LoginSrcState extends State<LoginSrc> {
                                     letterSpacing: 1.2,
                                   ),
                                 ),
-                                SizedBox(height: 10 ,),
-                                 Text(
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Text(
                                   "Login to  acess your Account",
                                   style: TextStyle(
                                     fontFamily: "Montserrat",
@@ -356,8 +358,7 @@ class _LoginSrcState extends State<LoginSrc> {
                                                       fontWeight:
                                                           FontWeight.bold,
                                                       color: Colors.white,
-                                                      fontFamily:
-                                                          "Montserrat"),
+                                                      fontFamily: "Montserrat"),
                                                 ),
                                               ),
                                               onPressed: () {
@@ -393,60 +394,59 @@ class _LoginSrcState extends State<LoginSrc> {
   // login function
   void signIn(String email, String password) async {
     // firebase
-    // if (_formKey.currentState!.validate()) {
-    setState(() {
-      load = true;
-    });
-    try {
-      await _auth
-          .signInWithEmailAndPassword(
-              email: "naseeb@gmail.com", password: "12345678")
-          // .signInWithEmailAndPassword(email: email, password: password)
-          .then((uid) => {
-                Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    builder: (context) => const HomeWrapper())),
-              });
-    } on FirebaseAuthException catch (error) {
+    if (_formKey.currentState!.validate()) {
       setState(() {
-        load = false;
+        load = true;
       });
-      switch (error.code) {
-        case "invalid-email":
-          errorMessage = "Your email address appears to be malformed.";
-          break;
-        case "invalid-password":
-          errorMessage = "Your password is wrong.";
-          break;
-        case "user-not-found":
-          errorMessage = "User Not Found.";
-          break;
-        case "too-many-requests":
-          errorMessage = "Too many requests. Please try again later.";
-          break;
-        case "operation-not-allowed":
-          errorMessage = "Signing in with Email and Password is not enabled.";
-          break;
-        default:
-          errorMessage = "Your password or Email is wrong.";
-      }
+      try {
+        await _auth
+            // .signInWithEmailAndPassword(
+            //     email: "naseeb@gmail.com", password: "12345678")
+            .signInWithEmailAndPassword(email: email, password: password)
+            .then((uid) => {
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                      builder: (context) => const HomeWrapper())),
+                });
+      } on FirebaseAuthException catch (error) {
+        setState(() {
+          load = false;
+        });
+        switch (error.code) {
+          case "invalid-email":
+            errorMessage = "Your email address appears to be malformed.";
+            break;
+          case "invalid-password":
+            errorMessage = "Your password is wrong.";
+            break;
+          case "user-not-found":
+            errorMessage = "User Not Found.";
+            break;
+          case "too-many-requests":
+            errorMessage = "Too many requests. Please try again later.";
+            break;
+          case "operation-not-allowed":
+            errorMessage = "Signing in with Email and Password is not enabled.";
+            break;
+          default:
+            errorMessage = "Your password or Email is wrong.";
+        }
 
-      showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return SimpleCustomAlert("$errorMessage");
-          });
+        showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return SimpleCustomAlert("$errorMessage");
+            });
+      } catch (error) {
+        setState(() {
+          load = false;
+        });
+        showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return const SimpleCustomAlert("Email or Password is incorrect!");
+            });
+      }
     }
-    // catch (error) {
-    //   setState(() {
-    //     load = false;
-    //   });
-    //   showDialog(
-    //       context: context,
-    //       builder: (BuildContext context) {
-    //         return const SimpleCustomAlert("Email or Password is incorrect!");
-    //       });
-    // }
-    // }
   }
 }
 

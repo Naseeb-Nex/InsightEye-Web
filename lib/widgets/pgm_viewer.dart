@@ -65,8 +65,8 @@ class _PgmviewerState extends State<Pgmviewer> {
                         alignment: Alignment.center,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(30),
-                          color: _currentsw == "Pending" ? white : cheryred,
-                          border: Border.all(color: cheryred),
+                          color: _currentsw == "Pending" ? white : vioetbg,
+                          border: Border.all(color: vioetbg),
                         ),
                         child: Text(
                           "Pending Programs",
@@ -74,7 +74,7 @@ class _PgmviewerState extends State<Pgmviewer> {
                             fontFamily: "Nunito",
                             fontSize: 15,
                             fontWeight: FontWeight.bold,
-                            color: _currentsw == "Pending" ? cheryred : white,
+                            color: _currentsw == "Pending" ? vioetbg : white,
                           ),
                         ),
                       ),
@@ -92,8 +92,8 @@ class _PgmviewerState extends State<Pgmviewer> {
                         alignment: Alignment.center,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(30),
-                          color: _currentsw == "Assign" ? white : cheryred,
-                          border: Border.all(color: cheryred),
+                          color: _currentsw == "Assign" ? white : vioetbg,
+                          border: Border.all(color: vioetbg),
                         ),
                         child: Text(
                           "Assigned Programs",
@@ -101,7 +101,7 @@ class _PgmviewerState extends State<Pgmviewer> {
                             fontFamily: "Nunito",
                             fontSize: 15,
                             fontWeight: FontWeight.bold,
-                            color: _currentsw == "Assign" ? cheryred : white,
+                            color: _currentsw == "Assign" ? vioetbg : white,
                           ),
                         ),
                       ),
@@ -119,8 +119,8 @@ class _PgmviewerState extends State<Pgmviewer> {
                         alignment: Alignment.center,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(30),
-                          color: _currentsw == "Completed" ? white : cheryred,
-                          border: Border.all(color: cheryred),
+                          color: _currentsw == "Completed" ? white : vioetbg,
+                          border: Border.all(color: vioetbg),
                         ),
                         child: Text(
                           "Completed Programs",
@@ -128,7 +128,7 @@ class _PgmviewerState extends State<Pgmviewer> {
                             fontFamily: "Nunito",
                             fontSize: 15,
                             fontWeight: FontWeight.bold,
-                            color: _currentsw == "Completed" ? cheryred : white,
+                            color: _currentsw == "Completed" ? vioetbg : white,
                           ),
                         ),
                       ),
