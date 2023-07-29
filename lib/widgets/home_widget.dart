@@ -1,3 +1,8 @@
+import 'dart:ui';
+import 'package:insighteye_web/componets/3circularprogress.dart';
+import 'package:insighteye_web/componets/animatedcircularprogress.dart';
+import 'package:insighteye_web/componets/hometechcard.dart';
+import 'package:insighteye_web/componets/lineChart.dart';
 import 'package:insighteye_web/constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -6,8 +11,7 @@ import 'package:insighteye_web/screens/officehomesrc.dart';
 
 // ignore: depend_on_referenced_packages
 import 'package:intl/intl.dart';
-import 'package:flutter/gestures.dart';
-import 'package:insighteye_web/componets/vscroll.dart';
+import 'package:loading_indicator/loading_indicator.dart';
 
 // ignore: must_be_immutable
 class Homewidget extends StatefulWidget {
@@ -67,608 +71,1087 @@ class _HomewidgetState extends State<Homewidget> {
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
+    // Responsive Size
+    Size s = MediaQuery.of(context).size;
+
+    DateTime now = DateTime.now();
+    // Report
+    String day = DateFormat('d').format(now);
+    String month = DateFormat('MM').format(now);
+    String year = DateFormat('y').format(now);
 
     return SizedBox(
-      height: double.infinity,
-      width: double.infinity,
-      child: ListView(
-        children: <Widget>[
-          const SizedBox(
-            height: 30,
-          ),
-          Container(
-            padding: const EdgeInsets.symmetric(
-              vertical: 20,
-              horizontal: 10,
-            ),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: white,
-                boxShadow: [
-                  BoxShadow(
-                    spreadRadius: 1,
-                    blurRadius: 3,
-                    color: black.withOpacity(.1),
-                    offset: const Offset(-1, 2),
-                  ),
-                ]),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text(
-                  "Program Status",
-                  style: TextStyle(
-                    fontFamily: "Montserrat",
-                    fontWeight: FontWeight.w600,
-                    fontSize: 22,
-                    color: Color(0XFF793BA8),
-                  ),
-                ),
-                const SizedBox(
-                  height: 15,
-                ),
-                Row(
-                  children: [
-                    Flexible(
-                      flex: 1,
-                      fit: FlexFit.tight,
-                      child: Container(
-                        padding: const EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            color: white,
-                            boxShadow: [
-                              BoxShadow(
-                                spreadRadius: 1,
-                                blurRadius: 3,
-                                color: black.withOpacity(.1),
-                                offset: const Offset(-1, 2),
-                              ),
-                            ]),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: Colors.blue.shade50),
-                              padding: const EdgeInsets.all(10),
-                              child: Image.asset(
-                                "assets/icons/pendingfile.png",
-                                width: 20,
-                                height: 20,
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 15,
-                            ),
-                            const Text(
-                              "Pending",
-                              style: TextStyle(
-                                fontFamily: "Montserrat",
-                                fontSize: 18,
-                                fontWeight: FontWeight.w600,
-                                color: Color(0XFFff5c8a),
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                            const Text(
-                              "Programs",
-                              style: TextStyle(
-                                fontFamily: "Montserrat",
-                                fontSize: 18,
-                                fontWeight: FontWeight.w600,
-                                color: Color(0XFFff5c8a),
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                            const SizedBox(height: 15),
-                            Text(
-                              "$p",
-                              style: const TextStyle(
-                                fontFamily: "Montserrat",
-                                fontWeight: FontWeight.w600,
-                                color: Color(0XFFff5c8a),
-                                fontSize: 27,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Flexible(
-                      flex: 1,
-                      fit: FlexFit.tight,
-                      child: Container(
-                        padding: const EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            color: white,
-                            boxShadow: [
-                              BoxShadow(
-                                spreadRadius: 1,
-                                blurRadius: 3,
-                                color: black.withOpacity(.1),
-                                offset: const Offset(-1, 2),
-                              ),
-                            ]),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: Colors.blue.shade50),
-                              padding: const EdgeInsets.all(10),
-                              child: Image.asset(
-                                "assets/icons/completedfile.png",
-                                width: 22,
-                                height: 22,
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 15,
-                            ),
-                            const Text(
-                              "Completed",
-                              style: TextStyle(
-                                fontFamily: "Montserrat",
-                                fontSize: 18,
-                                fontWeight: FontWeight.w600,
-                                color: Color(0XFF52b788),
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                            const Text(
-                              "Programs",
-                              style: TextStyle(
-                                fontFamily: "Montserrat",
-                                fontSize: 18,
-                                fontWeight: FontWeight.w600,
-                                color: Color(0XFF52b788),
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                            const SizedBox(height: 15),
-                            Text(
-                              "$c",
-                              style: const TextStyle(
-                                fontFamily: "Montserrat",
-                                fontWeight: FontWeight.w600,
-                                color: Color(0XFF52b788),
-                                fontSize: 27,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                )
-              ],
-            ),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Container(
-            padding: const EdgeInsets.symmetric(
-              vertical: 20,
-              horizontal: 10,
-            ),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: white,
-                boxShadow: [
-                  BoxShadow(
-                    spreadRadius: 1,
-                    blurRadius: 3,
-                    color: black.withOpacity(.1),
-                    offset: const Offset(-1, 2),
-                  ),
-                ]),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Icon(
-                      Icons.person,
-                      color: Color(0XFF793BA8),
-                    ),
-                    SizedBox(
-                      width: 5,
-                    ),
-                    Text(
-                      "Technicians",
-                      style: TextStyle(
-                        fontFamily: "Montserrat",
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600,
-                        color: Color(0XFF793BA8),
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                SizedBox(
-                  height: size.height * 0.55,
-                  child: TechHorizontalList(
-                    orgId: widget.orgId,
-                  ),
-                ),
-              ],
-            ),
-          )
-        ],
-      ),
-    );
-  }
-}
-
-// ignore: must_be_immutable
-class TechHorizontalList extends StatelessWidget {
-  String? orgId;
-  TechHorizontalList({Key? key, this.orgId}) : super(key: key);
-
-  FirebaseFirestore fb = FirebaseFirestore.instance;
-
-  @override
-  Widget build(BuildContext context) {
-    return StreamBuilder<QuerySnapshot>(
-        stream: fb
-            .collection("organizations")
-            .doc("$orgId")
-            .collection('technician')
-            .snapshots(),
-        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-          if (snapshot.hasError) {
-            return const Center(
-              child: Text(
-                "Something Went Wrong :(",
-                style: TextStyle(
-                    fontFamily: "Montserrat", fontSize: 17, color: vioetbg),
-              ),
-            );
-          }
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(
-              child: CircularProgressIndicator(
-                color: vioetbg,
-              ),
-            );
-          }
-
-          final List techprofile = [];
-          snapshot.data!.docs.map((DocumentSnapshot document) {
-            Map a = document.data() as Map<String, dynamic>;
-            techprofile.add(a);
-            a['uid'] = document.id;
-          }).toList();
-          return ScrollConfiguration(
-            behavior: Vscroll(),
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: techprofile.length,
-              itemBuilder: (context, i) {
-                return Techcard(
-                  uid: techprofile[i]['uid'],
-                  name: techprofile[i]['name'],
-                  imgUrl: techprofile[i]['imgUrl'],
-                  orgId: orgId,
-                );
-              },
-            ),
-          );
-        });
-  }
-}
-
-// ignore: must_be_immutable
-class Techcard extends StatefulWidget {
-  String? uid;
-  String? orgId;
-  String? name;
-  String? imgUrl;
-
-  Techcard({Key? key, this.name, this.imgUrl, this.uid, this.orgId})
-      : super(key: key);
-
-  @override
-  _TechcardState createState() => _TechcardState();
-}
-
-class _TechcardState extends State<Techcard> {
-  int a = 0;
-  int c = 0;
-  FirebaseFirestore fb = FirebaseFirestore.instance;
-  int p = 0;
-  int pro = 0;
-
-  @override
-  void initState() {
-    super.initState();
-    if (mounted) startup();
-  }
-
-  startup() async {
-    DateTime now = DateTime.now();
-    String cday = DateFormat('MM d y').format(now);
-    try {
-      await fb
-          .collection("organizations")
-          .doc("${widget.orgId}")
-          .collection('technician')
-          .doc(widget.uid)
-          .collection("Assignedpgm")
-          .get()
-          .then((snap) => {
-                setState(() {
-                  a = snap.size;
-                })
-              });
-
-      await fb
-          .collection("organizations")
-          .doc("${widget.orgId}")
-          .collection('technician')
-          .doc(widget.uid)
-          .collection("Completedpgm")
-          .doc("Day")
-          .collection(cday)
-          .get()
-          .then((snap) => {
-                setState(() {
-                  c = snap.size;
-                })
-              });
-      await fb
-          .collection("organizations")
-          .doc("${widget.orgId}")
-          .collection('technician')
-          .doc(widget.uid)
-          .collection("Pendingpgm")
-          .get()
-          .then((snap) => {
-                setState(() {
-                  p = snap.size;
-                })
-              });
-
-      await fb
-          .collection("organizations")
-          .doc("${widget.orgId}")
-          .collection('technician')
-          .doc(widget.uid)
-          .collection("Processingpgm")
-          .get()
-          .then((snap) => {
-                setState(() {
-                  pro = snap.size;
-                })
-              });
-    } catch (e) {
-      print(e);
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      color: const Color(0xFFFBFCFC),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-      elevation: 15,
-      shadowColor: primarybg,
-      child: SizedBox(
-        width: 250,
-        child: Center(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
+        height: double.infinity,
+        width: double.infinity,
+        child: Padding(
+          padding: EdgeInsets.only(left: s.width * 0.0093),
+          child: Row(
             children: [
-              const SizedBox(
-                height: 10,
+              // Left Side
+              Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        width: 241,
+                        height: 190,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(32),
+                          color: const Color(0XFF9643D6),
+                        ),
+                        clipBehavior: Clip.hardEdge,
+                        child: Stack(children: [
+                          Positioned(
+                            top: -80.0,
+                            left: -80.0,
+                            child: Container(
+                              width: 160.0,
+                              height: 160.0,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: const Color(0XFFB758FF).withOpacity(0.3),
+                              ),
+                              child: BackdropFilter(
+                                filter:
+                                    ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
+                                child: const SizedBox(
+                                  width: 160,
+                                  height: 160,
+                                ),
+                              ),
+                            ),
+                          ),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(left: 35.17),
+                                child: Container(
+                                    width: 52.25,
+                                    height: 51.6,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20),
+                                      color: white.withOpacity(0.05),
+                                    ),
+                                    child: Center(
+                                      child: Image.asset(
+                                        "assets/icons/homegraph.png",
+                                        color: white,
+                                        width: 24.12,
+                                        height: 23.81,
+                                      ),
+                                    )),
+                              ),
+                              const SizedBox(
+                                height: 21.53,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 16),
+                                child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "$p",
+                                        style: const TextStyle(
+                                            fontFamily: "Montserrat",
+                                            fontSize: 32,
+                                            fontWeight: FontWeight.w600,
+                                            color: white),
+                                      ),
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
+                                      Text(
+                                        "Pending",
+                                        style: TextStyle(
+                                            fontFamily: "Montserrat",
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w600,
+                                            color: const Color(0XFFF6F6FB)
+                                                .withOpacity(0.7)),
+                                      ),
+                                    ]),
+                              )
+                            ],
+                          )
+                        ]),
+                      ),
+                      SizedBox(
+                        width: s.width * 0.0186,
+                      ),
+                      Container(
+                        width: 241,
+                        height: 190,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(32),
+                            color: white,
+                            boxShadow: [
+                              BoxShadow(
+                                spreadRadius: 0,
+                                blurRadius: 60,
+                                color: const Color.fromARGB(255, 201, 224, 255)
+                                    .withOpacity(0.5),
+                                offset: const Offset(0, 10),
+                              )
+                            ]),
+                        clipBehavior: Clip.hardEdge,
+                        child: Stack(children: [
+                          Positioned(
+                            top: -80.0,
+                            left: -80.0,
+                            child: Container(
+                              width: 160.0,
+                              height: 160.0,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: const Color(0XFFEAEAEA).withOpacity(0.1),
+                              ),
+                              child: BackdropFilter(
+                                filter:
+                                    ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
+                                child: const SizedBox(
+                                  width: 160,
+                                  height: 160,
+                                ),
+                              ),
+                            ),
+                          ),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(left: 35.17),
+                                child: Container(
+                                    width: 52.25,
+                                    height: 51.6,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20),
+                                      color: const Color(0XFFC5BDBD)
+                                          .withOpacity(0.1),
+                                    ),
+                                    child: Center(
+                                      child: Image.asset(
+                                        "assets/icons/homedate.png",
+                                        width: 24.12,
+                                        height: 23.81,
+                                      ),
+                                    )),
+                              ),
+                              const SizedBox(
+                                height: 21.53,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 16),
+                                child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "$c",
+                                        style: const TextStyle(
+                                            fontFamily: "Montserrat",
+                                            fontSize: 32,
+                                            fontWeight: FontWeight.w600,
+                                            color: Color(0XFF2B2F42)),
+                                      ),
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
+                                      Text(
+                                        "Completed",
+                                        style: TextStyle(
+                                            fontFamily: "Montserrat",
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w600,
+                                            color: const Color(0XFF2B2F42)
+                                                .withOpacity(0.7)),
+                                      ),
+                                    ]),
+                              )
+                            ],
+                          )
+                        ]),
+                      ),
+                    ],
+                  ),
+                  // Circular Progress Bar
+                  SizedBox(
+                    height: s.width * 0.0093,
+                  ),
+                  StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+                    stream: fb
+                        .collection("organizations")
+                        .doc("${widget.orgId}")
+                        .collection("Reports")
+                        .doc(year)
+                        .collection("Month")
+                        .doc(month)
+                        .collection(day)
+                        .doc("Counter")
+                        .snapshots(),
+                    builder: (_, snapshot) {
+                      if (snapshot.hasError) {
+                        return Container(
+                          width: 482 + s.width * 0.0186,
+                          height: s.height * 0.3145,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(32),
+                            color: white,
+                            boxShadow: [
+                              BoxShadow(
+                                spreadRadius: 0,
+                                blurRadius: 60,
+                                color: const Color.fromARGB(255, 201, 224, 255)
+                                    .withOpacity(0.5),
+                                offset: const Offset(0, 10),
+                              ),
+                            ],
+                          ),
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                SizedBox(
+                                    width: (482 + s.width * 0.0186) / 2,
+                                    height: s.height * 0.22,
+                                    child: AnimatedProgressBar()),
+                                SizedBox(width: s.width * 0.0186),
+                                SizedBox(
+                                  height: 200,
+                                  width: ((482 + s.width * 0.0186) / 2) -
+                                      s.width * 0.0186,
+                                  child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      const Text(
+                                        """Today's
+Performance 
+Metrics""",
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 22,
+                                          fontFamily: 'Montserrat',
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: s.height * 0.01,
+                                      ),
+                                      Container(
+                                        width: 160,
+                                        height: 28,
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 12),
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(7),
+                                          color: const Color(0xFF39DF2B),
+                                        ),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          children: [
+                                            Container(
+                                              width: 40,
+                                              alignment: Alignment.centerLeft,
+                                              child: const Text(
+                                                '0',
+                                                style: TextStyle(
+                                                  color: Color(0xFFEDEDFC),
+                                                  fontSize: 16,
+                                                  fontFamily: 'Montserrat',
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                              ),
+                                            ),
+                                            const Text(
+                                              'Completed',
+                                              style: TextStyle(
+                                                color: Color(0xFFEDEDFC),
+                                                fontSize: 16,
+                                                fontFamily: 'Montserrat',
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                      Container(
+                                        width: 160,
+                                        height: 28,
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 12),
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(7),
+                                          color: const Color(0xFF01BAEF),
+                                        ),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          children: [
+                                            Container(
+                                              width: 40,
+                                              alignment: Alignment.centerLeft,
+                                              child: const Text(
+                                                '0',
+                                                style: TextStyle(
+                                                  color: Color(0xFFEDEDFC),
+                                                  fontSize: 16,
+                                                  fontFamily: 'Montserrat',
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                              ),
+                                            ),
+                                            const Text(
+                                              'Processing',
+                                              style: TextStyle(
+                                                color: Color(0xFFEDEDFC),
+                                                fontSize: 16,
+                                                fontFamily: 'Montserrat',
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                      Container(
+                                        width: 160,
+                                        height: 28,
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 12),
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(7),
+                                          color: const Color(0xFFE5383B),
+                                        ),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          children: [
+                                            Container(
+                                              width: 40,
+                                              alignment: Alignment.centerLeft,
+                                              child: const Text(
+                                                '0',
+                                                style: TextStyle(
+                                                  color: Color(0xFFEDEDFC),
+                                                  fontSize: 16,
+                                                  fontFamily: 'Montserrat',
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                              ),
+                                            ),
+                                            const Text(
+                                              'Pending',
+                                              style: TextStyle(
+                                                color: Color(0xFFEDEDFC),
+                                                fontSize: 16,
+                                                fontFamily: 'Montserrat',
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                              textAlign: TextAlign.start,
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ]),
+                        );
+                      }
+
+                      if (snapshot.hasData) {
+                        var output = snapshot.data!.data();
+                        double a = 0,
+                            c = 0,
+                            pro = 0,
+                            p = 0,
+                            completed = 0,
+                            pending = 0,
+                            processing = 0,
+                            progress = 0,
+                            total = 0;
+
+                        if (output != null) {
+                          var assigned = output['assigned'];
+                          var competed = output['completed'];
+                          var pending = output['pending'];
+                          var processing = output['processing'];
+
+                          if (assigned != null) {
+                            a = assigned.toDouble();
+                          } else {
+                            a = 0;
+                          }
+
+                          if (pending != null) {
+                            p = pending.toDouble();
+                          } else {
+                            p = 0;
+                          }
+
+                          if (processing != null) {
+                            pro = processing.toDouble();
+                          } else {
+                            pro = 0;
+                          }
+
+                          if (competed != null) {
+                            c = competed.toDouble();
+                          } else {
+                            c = 0;
+                          }
+                        }
+
+                        if (a < (c + p + pro) && a != 0) {
+                          total = c + p + pro;
+                          completed = (c / total) * 100;
+                          pending = (p / total) * 100;
+                          processing = (pro / total) * 100;
+                          progress = completed + pending + processing;
+                        } else if (a != 0) {
+                          completed = (c / a) * 100;
+                          pending = (p / a) * 100;
+                          processing = (pro / a) * 100;
+                          progress = completed + pending + processing;
+                          total = a;
+                        } else {
+                          completed = 0;
+                          pending = 0;
+                          processing = 0;
+                          progress = 0;
+                          total = 1;
+                        }
+
+                        // return Text("total: $total, progress: $progress, completed: $completed, pending: $pending, processing: $processing");
+
+                        return Container(
+                          width: 482 + s.width * 0.0186,
+                          height: s.height * 0.3145,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(32),
+                            color: white,
+                            boxShadow: [
+                              BoxShadow(
+                                spreadRadius: 0,
+                                blurRadius: 60,
+                                color: const Color.fromARGB(255, 201, 224, 255)
+                                    .withOpacity(0.5),
+                                offset: const Offset(0, 10),
+                              ),
+                            ],
+                          ),
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                SizedBox(
+                                    width: (482 + s.width * 0.0186) / 2,
+                                    height: s.height * 0.22,
+                                    child: ThreeCircularProgressBar(
+                                      strokeWidth: 21,
+                                      total: total.round(),
+                                      progress: progress.round(),
+                                      completed: completed.round(),
+                                      processing: processing.round(),
+                                      pending: pending.round(),
+                                    )),
+                                SizedBox(width: s.width * 0.0186),
+                                SizedBox(
+                                  height: 200,
+                                  width: ((482 + s.width * 0.0186) / 2) -
+                                      s.width * 0.0186,
+                                  child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      const Text(
+                                        """Today's
+Performance 
+Metrics""",
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 22,
+                                          fontFamily: 'Montserrat',
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: s.height * 0.01,
+                                      ),
+                                      Container(
+                                        width: 160,
+                                        height: 28,
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 12),
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(7),
+                                          color: const Color(0xFF39DF2B),
+                                        ),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          children: [
+                                            Container(
+                                              width: 40,
+                                              alignment: Alignment.centerLeft,
+                                              child: Text(
+                                                '$c',
+                                                style: const TextStyle(
+                                                  color: Color(0xFFEDEDFC),
+                                                  fontSize: 16,
+                                                  fontFamily: 'Montserrat',
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                              ),
+                                            ),
+                                            const Text(
+                                              'Completed',
+                                              style: TextStyle(
+                                                color: Color(0xFFEDEDFC),
+                                                fontSize: 16,
+                                                fontFamily: 'Montserrat',
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                      Container(
+                                        width: 160,
+                                        height: 28,
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 12),
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(7),
+                                          color: const Color(0xFF01BAEF),
+                                        ),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          children: [
+                                            Container(
+                                              width: 40,
+                                              alignment: Alignment.centerLeft,
+                                              child: Text(
+                                                '$pro',
+                                                style: const TextStyle(
+                                                  color: Color(0xFFEDEDFC),
+                                                  fontSize: 16,
+                                                  fontFamily: 'Montserrat',
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                              ),
+                                            ),
+                                            const Text(
+                                              'Processing',
+                                              style: TextStyle(
+                                                color: Color(0xFFEDEDFC),
+                                                fontSize: 16,
+                                                fontFamily: 'Montserrat',
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                      Container(
+                                        width: 160,
+                                        height: 28,
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 12),
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(7),
+                                          color: const Color(0xFFE5383B),
+                                        ),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          children: [
+                                            Container(
+                                              width: 40,
+                                              alignment: Alignment.centerLeft,
+                                              child: Text(
+                                                '$p',
+                                                style: const TextStyle(
+                                                  color: Color(0xFFEDEDFC),
+                                                  fontSize: 16,
+                                                  fontFamily: 'Montserrat',
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                              ),
+                                            ),
+                                            const Text(
+                                              'Pending',
+                                              style: TextStyle(
+                                                color: Color(0xFFEDEDFC),
+                                                fontSize: 16,
+                                                fontFamily: 'Montserrat',
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                              textAlign: TextAlign.start,
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ]),
+                        );
+                      }
+
+                      return Container(
+                        width: 482 + s.width * 0.0186,
+                        height: s.height * 0.3145,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(32),
+                          color: white,
+                          boxShadow: [
+                            BoxShadow(
+                              spreadRadius: 0,
+                              blurRadius: 60,
+                              color: const Color.fromARGB(255, 201, 224, 255)
+                                  .withOpacity(0.5),
+                              offset: const Offset(0, 10),
+                            ),
+                          ],
+                        ),
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SizedBox(
+                                  width: (482 + s.width * 0.0186) / 2,
+                                  height: s.height * 0.22,
+                                  child: AnimatedProgressBar()),
+                              SizedBox(width: s.width * 0.0186),
+                              SizedBox(
+                                height: 200,
+                                width: ((482 + s.width * 0.0186) / 2) -
+                                    s.width * 0.0186,
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Text(
+                                      """Today's
+Performance 
+Metrics""",
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 22,
+                                        fontFamily: 'Montserrat',
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: s.height * 0.01,
+                                    ),
+                                    Container(
+                                      width: 160,
+                                      height: 28,
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 12),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(7),
+                                        color: const Color(0xFF39DF2B),
+                                      ),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          Container(
+                                            width: 40,
+                                            alignment: Alignment.centerLeft,
+                                            child: const Text(
+                                              '0',
+                                              style: TextStyle(
+                                                color: Color(0xFFEDEDFC),
+                                                fontSize: 16,
+                                                fontFamily: 'Montserrat',
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                            ),
+                                          ),
+                                          const Text(
+                                            'Completed',
+                                            style: TextStyle(
+                                              color: Color(0xFFEDEDFC),
+                                              fontSize: 16,
+                                              fontFamily: 'Montserrat',
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                    Container(
+                                      width: 160,
+                                      height: 28,
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 12),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(7),
+                                        color: const Color(0xFF01BAEF),
+                                      ),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          Container(
+                                            width: 40,
+                                            alignment: Alignment.centerLeft,
+                                            child: const Text(
+                                              '0',
+                                              style: TextStyle(
+                                                color: Color(0xFFEDEDFC),
+                                                fontSize: 16,
+                                                fontFamily: 'Montserrat',
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                            ),
+                                          ),
+                                          const Text(
+                                            'Processing',
+                                            style: TextStyle(
+                                              color: Color(0xFFEDEDFC),
+                                              fontSize: 16,
+                                              fontFamily: 'Montserrat',
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                    Container(
+                                      width: 160,
+                                      height: 28,
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 12),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(7),
+                                        color: const Color(0xFFE5383B),
+                                      ),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          Container(
+                                            width: 40,
+                                            alignment: Alignment.centerLeft,
+                                            child: const Text(
+                                              '0',
+                                              style: TextStyle(
+                                                color: Color(0xFFEDEDFC),
+                                                fontSize: 16,
+                                                fontFamily: 'Montserrat',
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                            ),
+                                          ),
+                                          const Text(
+                                            'Pending',
+                                            style: TextStyle(
+                                              color: Color(0xFFEDEDFC),
+                                              fontSize: 16,
+                                              fontFamily: 'Montserrat',
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                            textAlign: TextAlign.start,
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ]),
+                      );
+                    },
+                  ),
+                  // Weekly Data
+                  SizedBox(
+                    height: s.width * 0.0093,
+                  ),
+                  Container(
+                    width: 482 + s.width * 0.0186,
+                    height: s.height * 0.3445,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(32),
+                      color: white,
+                      boxShadow: [
+                        BoxShadow(
+                          spreadRadius: 0,
+                          blurRadius: 60,
+                          color: const Color.fromARGB(255, 201, 224, 255)
+                              .withOpacity(0.5),
+                          offset: const Offset(0, 10),
+                        ),
+                      ],
+                    ),
+                    clipBehavior: Clip.hardEdge,
+                    padding: const EdgeInsets.only(top: 10, bottom: 10),
+                    child: const Stack(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(top: 8, left: 20),
+                          child: Text(
+                            'Statistics',
+                            style: TextStyle(
+                              color: Color(0xFF2F2F31),
+                              fontSize: 22,
+                              fontFamily: 'Montserrat',
+                              fontWeight: FontWeight.w600,
+                            ),
+                            textAlign: TextAlign.start,
+                          ),
+                        ),
+                        Center(child: LineChartwidget()),
+                      ],
+                    ),
+                  ),
+                ],
               ),
               SizedBox(
-                height: 100,
-                width: 100,
-                child: CircleAvatar(
-                  backgroundColor: white,
-                  backgroundImage: widget.imgUrl != null
-                      ? NetworkImage("${widget.imgUrl}")
-                      : const AssetImage("assets/icons/avataricon.png")
-                          as ImageProvider<Object>?,
+                width: s.width * 0.0186,
+              ),
+              // Techlist
+              Container(
+                // width: s.width * 0.5116,
+                width: s.width * 0.42,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(32),
+                  color: white,
+                  boxShadow: [
+                    BoxShadow(
+                      spreadRadius: 0,
+                      blurRadius: 60,
+                      color: const Color.fromARGB(255, 201, 224, 255)
+                          .withOpacity(0.5),
+                      offset: const Offset(0, 10),
+                    ),
+                  ],
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Padding(
+                      padding: EdgeInsets.only(left: 25, top: 20, bottom: 25),
+                      child: Text(
+                        'Technicians',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 22,
+                          fontFamily: 'Montserrat',
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                    Center(
+                      child: StreamBuilder<QuerySnapshot>(
+                          stream: fb
+                              .collection("organizations")
+                              .doc("${widget.orgId}")
+                              .collection('technician')
+                              .snapshots(),
+                          builder: (BuildContext context,
+                              AsyncSnapshot<QuerySnapshot> snapshot) {
+                            if (snapshot.hasError) {
+                              return const Center(
+                                child: Text(
+                                  "Something Went Wrong :(",
+                                  style: TextStyle(
+                                      fontFamily: "Montserrat",
+                                      fontSize: 17,
+                                      color: vioetbg),
+                                ),
+                              );
+                            }
+                            if (snapshot.connectionState ==
+                                ConnectionState.waiting) {
+                              return SizedBox(
+                                width: s.width * 0.395,
+                                height: s.height * 0.85,
+                                child: const Center(
+                                  child: SizedBox(
+                                    width: 50,
+                                    child: LoadingIndicator(
+                                      indicatorType: Indicator.ballBeat,
+                                      colors: [hpColor],
+                                      strokeWidth: 10,
+                                    ),
+                                  ),
+                                ),
+                              );
+                            }
+
+                            final List techprofile = [];
+                            snapshot.data!.docs
+                                .map((DocumentSnapshot document) {
+                              Map a = document.data() as Map<String, dynamic>;
+                              techprofile.add(a);
+                              a['uid'] = document.id;
+                            }).toList();
+
+                            return SizedBox(
+                              width: s.width * 0.395,
+                              height: s.height * 0.85,
+                              child: ListView.builder(
+                                itemCount: techprofile.length,
+                                itemBuilder: (context, i) {
+                                  return HomeTechCard(
+                                    uid: techprofile[i]['uid'],
+                                    name: techprofile[i]['name'],
+                                    imgUrl: techprofile[i]['imgUrl'],
+                                    orgId: widget.orgId,
+                                  );
+                                },
+                              ),
+                            );
+                          }),
+                    ),
+                  ],
                 ),
               ),
-              const SizedBox(
-                height: 10,
+              SizedBox(
+                width: s.width * 0.01,
               ),
-              Text(
-                widget.name == null ? "No Profile" : "${widget.name}",
-                style: const TextStyle(
-                  fontFamily: "Nunito",
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xff273746),
-                ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    height: 10,
-                    width: 10,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.yellow),
-                  ),
-                  const Text(
-                    " Assingned Programs    ",
-                    style: TextStyle(
-                      fontFamily: "Nunito",
-                      fontSize: 13,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xff273746),
-                    ),
-                  ),
-                  Text(
-                    "$a",
-                    style: const TextStyle(
-                      fontFamily: "Nunito",
-                      fontSize: 13,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xff273746),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    height: 10,
-                    width: 10,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.greenAccent),
-                  ),
-                  const Text(
-                    " Completed Programs   ",
-                    style: TextStyle(
-                      fontFamily: "Nunito",
-                      fontSize: 13,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xff273746),
-                    ),
-                  ),
-                  Text(
-                    "$c",
-                    style: const TextStyle(
-                      fontFamily: "Nunito",
-                      fontSize: 13,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xff273746),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    height: 10,
-                    width: 10,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: cherryred),
-                  ),
-                  const Text(
-                    " Pending Programs        ",
-                    style: TextStyle(
-                      fontFamily: "Nunito",
-                      fontSize: 13,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xff273746),
-                    ),
-                  ),
-                  Text(
-                    "$p",
-                    style: const TextStyle(
-                      fontFamily: "Nunito",
-                      fontSize: 13,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xff273746),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    height: 10,
-                    width: 10,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.blue,
-                    ),
-                  ),
-                  const Text(
-                    " Processing Programs   ",
-                    style: TextStyle(
-                      fontFamily: "Nunito",
-                      fontSize: 13,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Text(
-                    "$pro",
-                    style: const TextStyle(
-                      fontFamily: "Nunito",
-                      fontSize: 13,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              InkWell(
-                onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => Assigntechpgm(
-                          uid: widget.uid,
-                          name: widget.name,
-                          techuid: widget.uid,
-                          orgId: widget.orgId,
-                          imgURl: widget.imgUrl,
-                          a: a,
-                          c: c,
-                          p: p,
-                          pro: pro,
-                        ))),
-                child: Container(
-                  width: 150,
-                  height: 40,
+              Container(
+                  width: s.width * 0.09,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(40), color: vioetbg),
-                  alignment: Alignment.center,
-                  child: const Text(
-                    "Assign Program",
-                    style: TextStyle(
-                      fontFamily: "Nunito",
-                      fontSize: 13,
-                      fontWeight: FontWeight.bold,
-                      color: white,
-                    ),
+                    borderRadius: BorderRadius.circular(20),
+                    color: white,
+                    boxShadow: [
+                      BoxShadow(
+                        spreadRadius: 0,
+                        blurRadius: 60,
+                        color: const Color.fromARGB(255, 201, 224, 255)
+                            .withOpacity(0.5),
+                        offset: const Offset(0, 10),
+                      ),
+                    ],
                   ),
-                ),
-              )
+                  child: Column(
+                    children: [
+                      const Padding(
+                        padding: EdgeInsets.only(top: 20, bottom: 25),
+                        child: Text(
+                          'SuperVisor',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 18,
+                            fontFamily: 'Montserrat',
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                      StreamBuilder<QuerySnapshot>(
+                          stream: fb
+                              .collection("organizations")
+                              .doc("${widget.orgId}")
+                              .collection('supervisor')
+                              .snapshots(),
+                          builder: (BuildContext context,
+                              AsyncSnapshot<QuerySnapshot> snapshot) {
+                            if (snapshot.hasError) {
+                              return const Center(
+                                child: Text(
+                                  "Something Went Wrong :(",
+                                  style: TextStyle(
+                                      fontFamily: "Montserrat",
+                                      fontSize: 17,
+                                      color: vioetbg),
+                                ),
+                              );
+                            }
+                            if (snapshot.connectionState ==
+                                ConnectionState.waiting) {
+                              return SizedBox(
+                                width: s.width * 0.395,
+                                height: s.height * 0.85,
+                                child: const Center(
+                                  child: SizedBox(
+                                    width: 50,
+                                    child: LoadingIndicator(
+                                      indicatorType: Indicator.ballBeat,
+                                      colors: [hpColor],
+                                      strokeWidth: 10,
+                                    ),
+                                  ),
+                                ),
+                              );
+                            }
+
+                            final List supervisorProfile = [];
+                            snapshot.data!.docs
+                                .map((DocumentSnapshot document) {
+                              Map a = document.data() as Map<String, dynamic>;
+                              supervisorProfile.add(a);
+                              a['uid'] = document.id;
+                            }).toList();
+
+                            return SizedBox(
+                              width: s.width * 0.395,
+                              height: s.height * 0.85,
+                              child: ListView.builder(
+                                itemCount: supervisorProfile.length,
+                                itemBuilder: (context, i) {
+                                  return Padding(
+                                    padding: const EdgeInsets.only(top: 10),
+                                    child: Column(
+                                      children: [
+                                        Container(
+                                          width: s.width * 0.07,
+                                          height: s.width * 0.07,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                            color: const Color.fromARGB(
+                                                255, 233, 196, 255),
+                                            image: const DecorationImage(
+                                              image: AssetImage(
+                                                  "assets/images/supervisor-img.png"),
+                                              fit: BoxFit.fill,
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(height: 5),
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 9.0),
+                                          child: Text(
+                                            '${supervisorProfile[i]['name']}',
+                                            style: const TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 14,
+                                              fontFamily: 'Montserrat',
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                },
+                              ),
+                            );
+                          }),
+                    ],
+                  ))
             ],
           ),
-        ),
-      ),
-    );
+        ));
   }
 }
 
@@ -805,7 +1288,7 @@ class _AssigntechpgmState extends State<Assigntechpgm> {
                                 ? NetworkImage("${widget.imgURl}")
                                 : const AssetImage(
                                         "assets/icons/tech_avatar1.png")
-                                    as ImageProvider<Object>?,    
+                                    as ImageProvider<Object>?,
                           ),
                         ),
                         const SizedBox(
