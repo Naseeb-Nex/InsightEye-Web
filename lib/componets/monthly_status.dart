@@ -126,7 +126,7 @@ class _MontlystatusState extends State<Montlystatus> {
               builder: (BuildContext context,
                   AsyncSnapshot<DocumentSnapshot> snapshot) {
                 if (snapshot.hasError) {
-                  return Text("Something went wrong");
+                  return const Text("Something went wrong");
                 }
 
                 if (snapshot.hasData && !snapshot.data!.exists) {
@@ -203,9 +203,9 @@ class _MontlystatusState extends State<Montlystatus> {
                       child: SizedBox(
                         width: s.width * 0.15,
                         height: s.width * 0.15,
-                        child: LoadingIndicator(
+                        child: const LoadingIndicator(
                           indicatorType: Indicator.ballClipRotateMultiple,
-                          colors: const [bluebg],
+                          colors: [bluebg],
                         ),
                       ),
                     ),
