@@ -13,6 +13,7 @@ class SearchWidget extends StatefulWidget {
   }) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _SearchWidgetState createState() => _SearchWidgetState();
 }
 
@@ -32,7 +33,7 @@ class _SearchWidgetState extends State<SearchWidget> {
         controller: controller,
         decoration: InputDecoration(
           icon: Icon(Icons.search, color: style.color),
-          contentPadding: EdgeInsets.only(bottom: 5),
+          contentPadding: const EdgeInsets.only(bottom: 5),
           suffixIcon: widget.text.isNotEmpty
               ? GestureDetector(
                   child: Icon(Icons.close, color: style.color),
