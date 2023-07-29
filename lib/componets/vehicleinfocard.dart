@@ -4,7 +4,6 @@ import 'package:intl/intl.dart';
 import 'package:iconsax/iconsax.dart';
 // package
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:motion_toast/motion_toast.dart';
 // components
 import 'package:insighteye_web/componets/loadingDialog.dart';
 
