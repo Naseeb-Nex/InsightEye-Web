@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 const primarybg = Color(0xFFFFFFFF);
 const secondbg = Color(0xFF3D3DE9);
+const hpColor =  Color(0XFF9643D6);
 const vioetbg = Color(0XFF793BA8);
 const secondtechbg = Color(0xFF6200ED);
 const cardbg = Color(0xFFf4f7f6);

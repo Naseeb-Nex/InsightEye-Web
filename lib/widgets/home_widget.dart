@@ -1,8 +1,8 @@
 import 'dart:ui';
-import 'package:insighteye_web/componets/3circularprogress.dart';
+import 'package:insighteye_web/componets/threecircularprogress.dart';
 import 'package:insighteye_web/componets/animatedcircularprogress.dart';
 import 'package:insighteye_web/componets/hometechcard.dart';
-import 'package:insighteye_web/componets/lineChart.dart';
+import 'package:insighteye_web/componets/linechartgraph.dart';
 import 'package:insighteye_web/constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -315,7 +315,7 @@ class _HomewidgetState extends State<Homewidget> {
                                 SizedBox(
                                     width: (482 + s.width * 0.0186) / 2,
                                     height: s.height * 0.22,
-                                    child: AnimatedProgressBar()),
+                                    child: const AnimatedProgressBar()),
                                 SizedBox(width: s.width * 0.0186),
                                 SizedBox(
                                   height: 200,
@@ -733,7 +733,7 @@ Metrics""",
                               SizedBox(
                                   width: (482 + s.width * 0.0186) / 2,
                                   height: s.height * 0.22,
-                                  child: AnimatedProgressBar()),
+                                  child: const AnimatedProgressBar()),
                               SizedBox(width: s.width * 0.0186),
                               SizedBox(
                                 height: 200,

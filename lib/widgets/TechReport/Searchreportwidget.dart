@@ -1,11 +1,10 @@
-// ignore: file_names
 import 'package:flutter/material.dart';
 import 'package:flutter_rounded_date_picker/flutter_rounded_date_picker.dart';
 import 'package:insighteye_web/componets/vreportoverviewcard.dart';
 import 'package:insighteye_web/constants/constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:loading_indicator/loading_indicator.dart';
-import 'package:insighteye_web/widgets/TechReport/Dailyreportwidget.dart';
+import 'package:insighteye_web/widgets/TechReport/dailyreportwidget.dart';
 
 // ignore: must_be_immutable
 class Searchreportwidget extends StatefulWidget {
@@ -83,9 +82,9 @@ class _SearchreportwidgetState extends State<Searchreportwidget> {
                       ),
                       child: Column(
                         children: [
-                          Row(
+                          const Row(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            children: const [
+                            children: [
                               Text(
                                 "Search",
                                 style: TextStyle(
@@ -97,14 +96,14 @@ class _SearchreportwidgetState extends State<Searchreportwidget> {
                               ),
                             ],
                           ),
-                          Divider(),
-                          SizedBox(height: 10),
+                          const Divider(),
+                          const SizedBox(height: 10),
                           InkWell(
                             onTap: () async {
                               DateTime? newDateTime =
                                   await showRoundedDatePicker(
                                 context: context,
-                                locale: Locale('en', 'US'),
+                                locale: const Locale('en', 'US'),
                                 initialDate: DateTime.now(),
                                 firstDate: DateTime(DateTime.now().year - 2),
                                 lastDate: DateTime(DateTime.now().year + 1),
@@ -113,7 +112,7 @@ class _SearchreportwidgetState extends State<Searchreportwidget> {
                                 theme: ThemeData(
                                     primaryColor: bluebg,
                                     // accentColor: bluebg,
-                                    textTheme: TextTheme(
+                                    textTheme: const TextTheme(
                                       caption: TextStyle(color: bluebg),
                                     ),
                                     // accentTextTheme: TextTheme(
@@ -159,7 +158,7 @@ class _SearchreportwidgetState extends State<Searchreportwidget> {
                                           is_datesub = true;
                                         });
                                       }
-                                    } on StateError catch (e) {
+                                    } on StateError {
                                       print('Feild is not exist error!');
                                     }
                                   }

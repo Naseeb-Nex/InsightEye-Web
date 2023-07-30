@@ -4,6 +4,7 @@ import 'package:insighteye_web/wrapper/pending_pgm_wrapper.dart';
 
 import 'package:flutter/gestures.dart';
 
+// ignore: must_be_immutable
 class PendingPgmViewer extends StatefulWidget {
   String? orgId;
    PendingPgmViewer({Key? key, this.orgId}) : super(key: key);
@@ -28,7 +29,7 @@ class _PendingPgmViewerState extends State<PendingPgmViewer> {
             borderRadius: BorderRadius.circular(25),
             boxShadow: [
               BoxShadow(
-                offset: Offset(0, 5),
+                offset: const Offset(0, 5),
                 blurRadius: 15,
                 color: secondbg.withOpacity(0.20),
               ),

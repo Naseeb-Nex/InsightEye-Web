@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:insighteye_web/constants/constants.dart';
 
+// ignore: must_be_immutable
 class Viewpgmcard extends StatefulWidget {
   String? name;
   String? address;

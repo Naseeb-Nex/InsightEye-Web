@@ -341,8 +341,8 @@ class _DailyReportwidgetState extends State<DailyReportwidget> {
                         ),
                       ]),
                   child: Column(children: [
-                    Row(
-                      children: const [
+                    const Row(
+                      children: [
                         Text(
                           "Summary Report",
                           style: TextStyle(
@@ -747,9 +747,9 @@ class _DailyReportwidgetState extends State<DailyReportwidget> {
                   ),
                   child: Column(
                     children: [
-                      Row(
+                      const Row(
                         mainAxisAlignment: MainAxisAlignment.start,
-                        children: const [
+                        children: [
                           Text(
                             "Daily Activity",
                             style: TextStyle(

@@ -7,7 +7,7 @@ import 'package:insighteye_web/Models/reportdata.dart';
 
 // loading_indicator
 import 'package:loading_indicator/loading_indicator.dart';
-import 'package:insighteye_web/widgets/TechReport/Dailyreportwidget.dart';
+import 'package:insighteye_web/widgets/TechReport/dailyreportwidget.dart';
 
 // ignore: must_be_immutable
 class Montlystatus extends StatefulWidget {

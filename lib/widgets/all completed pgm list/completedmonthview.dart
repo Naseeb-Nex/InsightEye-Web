@@ -2,16 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:insighteye_web/constants/constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/gestures.dart';
-import 'package:intl/intl.dart';
 
 import 'package:insighteye_web/componets/completed_pgm_card.dart';
 
+// ignore: must_be_immutable
 class Completedmonthview extends StatefulWidget {
   String? cmonth;
   String? orgId;
   Completedmonthview({Key? key, this.cmonth, this.orgId}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _CompletedmonthviewState createState() => _CompletedmonthviewState();
 }
 
@@ -60,7 +61,6 @@ class _CompletedmonthviewState extends State<Completedmonthview> {
               snapshot.data!.docs.map((DocumentSnapshot document) {
                 Map a = document.data() as Map<String, dynamic>;
                 _allpgm.add(a);
-                print(a);
                 a['uid'] = document.id;
               }).toList();
 
@@ -96,6 +96,7 @@ class _CompletedmonthviewState extends State<Completedmonthview> {
   }
 }
 
+// ignore: camel_case_types
 class htechassignswipe extends MaterialScrollBehavior {
   // Override behavior methods and getters like dragDevices
   @override

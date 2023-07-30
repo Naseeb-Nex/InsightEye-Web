@@ -47,13 +47,13 @@ class SchedulePgmSrcState extends State<SchedulePgmSrc> {
                 SizedBox(
                   height: s.width * 0.015,
                 ),
-                Row(
+                const Row(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(left : 10),
+                      padding: EdgeInsets.only(left : 10),
                       child: Column(
                         children: [
-                          const Text(
+                          Text(
                             "Schedule Program",
                             style: TextStyle(
                               fontFamily: "Montserrat",

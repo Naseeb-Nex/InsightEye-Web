@@ -1,4 +1,3 @@
-// ignore: file_names
 import 'package:flutter/material.dart';
 import 'package:insighteye_web/componets/monthly_status.dart';
 import 'package:insighteye_web/constants/constants.dart';
@@ -134,9 +133,9 @@ class _MonthlyReportWidgetState extends State<MonthlyReportWidget> {
               ),
               child: Column(
                 children: [
-                  Row(
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
+                    children: [
                       Text(
                         "Monthly Report",
                         style: TextStyle(

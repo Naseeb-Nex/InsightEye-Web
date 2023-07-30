@@ -207,7 +207,7 @@ class _VreportoverviewcardState extends State<Vreportoverviewcard> {
                                   spreadRadius: 2,
                                   blurRadius: 4,
                                   color: black.withOpacity(.1),
-                                  offset: Offset(1, 2),
+                                  offset: const Offset(1, 2),
                                 ),
                               ],
                             ),
@@ -418,9 +418,9 @@ class _VehicleinfoDialogState extends State<VehicleinfoDialog> {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
+                const Row(
                   mainAxisAlignment: MainAxisAlignment.start,
-                  children: const [
+                  children: [
                     Text(
                       "Vehicle Usage Info",
                       style: TextStyle(
@@ -558,7 +558,7 @@ class _VehicleinfoDialogState extends State<VehicleinfoDialog> {
                   height: s.height * 0.02,
                 ),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10),
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -626,7 +626,7 @@ class _VehicleinfoDialogState extends State<VehicleinfoDialog> {
     String month = DateFormat('MM').format(now);
     String year = DateFormat('y').format(now);
     if (form_key.currentState!.validate()) {
-      showDialog(context: context, builder: (context) => LoadingDialog());
+      showDialog(context: context, builder: (context) => const LoadingDialog());
 
       // report added
       await fb
@@ -733,9 +733,9 @@ class _EditVehicleusageState extends State<EditVehicleusage> {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
+                const Row(
                   mainAxisAlignment: MainAxisAlignment.start,
-                  children: const [
+                  children: [
                     Text(
                       "Edit Vehicle Usage Info",
                       style: TextStyle(

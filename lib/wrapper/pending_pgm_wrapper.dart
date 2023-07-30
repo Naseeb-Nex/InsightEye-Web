@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:insighteye_web/componets/view_pgm_card.dart';
 import 'package:insighteye_web/constants/constants.dart';
 
+// ignore: must_be_immutable
 class PendingPgmWrapper extends StatelessWidget {
   String? orgId;
   PendingPgmWrapper({Key? key, this.orgId}) : super(key: key);
@@ -19,7 +20,7 @@ class PendingPgmWrapper extends StatelessWidget {
             .snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
-            print('Something went Wrong');
+            return const Text('Something went Wrong');
           }
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Container(
@@ -33,15 +34,15 @@ class PendingPgmWrapper extends StatelessWidget {
             );
           }
 
-          List _allpgm = [];
-          _allpgm.clear();
+          List allpgm = [];
+          allpgm.clear();
           snapshot.data!.docs.map((DocumentSnapshot document) {
             Map a = document.data() as Map<String, dynamic>;
-            _allpgm.add(a);
+            allpgm.add(a);
             a['uid'] = document.id;
           }).toList();
           List pendingpgm =
-              _allpgm.where((i) => i['status'] == 'pending').toList();
+              allpgm.where((i) => i['status'] == 'pending').toList();
           return Column(
             children: [
               const SizedBox(

@@ -3,6 +3,7 @@ import 'package:insighteye_web/constants/constants.dart';
 import 'package:insighteye_web/wrapper/assigned_pgm_wrapper.dart';
 import 'package:insighteye_web/componets/vscroll.dart';
 
+// ignore: must_be_immutable
 class Assignedpgmviewer extends StatelessWidget {
   String? orgId;
   Assignedpgmviewer({Key? key, this.orgId}) : super(key: key);
