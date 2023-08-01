@@ -24,7 +24,7 @@ class Assignedpgmwrapper extends StatelessWidget {
               child: Text(
                 "Something Went Wrong :(",
                 style: TextStyle(
-                    fontFamily: "Montserrat", fontSize: 17, color: vioetbg),
+                    fontFamily: "Montserrat", fontSize: 17, color: hpColor),
               ),
             );
           }
@@ -34,7 +34,7 @@ class Assignedpgmwrapper extends StatelessWidget {
               color: white,
               child: const Center(
                 child: CircularProgressIndicator(
-                  color: vioetbg,
+                  color: hpColor,
                 ),
               ),
             );
