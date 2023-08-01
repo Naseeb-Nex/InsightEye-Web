@@ -4,10 +4,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:insighteye_web/constants/constants.dart';
 import 'package:insighteye_web/Models/reportdata.dart';
+import 'package:insighteye_web/widgets/TechReport/Dailyreportwidget.dart';
 
 // loading_indicator
 import 'package:loading_indicator/loading_indicator.dart';
-import 'package:insighteye_web/widgets/TechReport/dailyreportwidget.dart';
+
 
 // ignore: must_be_immutable
 class Montlystatus extends StatefulWidget {

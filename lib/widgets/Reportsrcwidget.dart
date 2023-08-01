@@ -1,4 +1,7 @@
 import 'package:iconsax/iconsax.dart';
+import 'package:insighteye_web/widgets/TechReport/Dailyreportwidget.dart';
+import 'package:insighteye_web/widgets/TechReport/Monthlyreportwidget.dart';
+import 'package:insighteye_web/widgets/TechReport/Searchreportwidget.dart';
 import 'package:loading_indicator/loading_indicator.dart';
 import 'package:insighteye_web/componets/techreportcard.dart';
 import 'package:insighteye_web/constants/constants.dart';
@@ -6,9 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fl_chart/fl_chart.dart';
-import 'package:insighteye_web/widgets/TechReport/dailyreportwidget.dart';
-import 'package:insighteye_web/widgets/TechReport/monthlyreportwidget.dart';
-import 'package:insighteye_web/widgets/TechReport/searchreportwidget.dart';
+
 
 // ignore: must_be_immutable
 class Reportsrcwidget extends StatefulWidget {

@@ -3,8 +3,9 @@ import 'package:flutter_rounded_date_picker/flutter_rounded_date_picker.dart';
 import 'package:insighteye_web/componets/vreportoverviewcard.dart';
 import 'package:insighteye_web/constants/constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:insighteye_web/widgets/TechReport/Dailyreportwidget.dart';
 import 'package:loading_indicator/loading_indicator.dart';
-import 'package:insighteye_web/widgets/TechReport/dailyreportwidget.dart';
+
 
 // ignore: must_be_immutable
 class Searchreportwidget extends StatefulWidget {
