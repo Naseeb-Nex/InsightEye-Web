@@ -28,7 +28,7 @@ class PendingPgmWrapper extends StatelessWidget {
               color: white,
               child: const Center(
                 child: CircularProgressIndicator(
-                  color: vioetbg,
+                  color: hpColor,
                 ),
               ),
             );
