@@ -9,7 +9,7 @@ import 'package:insighteye_web/Models/customer.dart';
 
 class Customerreg extends StatefulWidget {
   final String? orgId;
-  const  Customerreg({Key? key, this.orgId}) : super(key: key);
+  const Customerreg({Key? key, this.orgId}) : super(key: key);
 
   @override
   _CustomerregState createState() => _CustomerregState();
@@ -383,7 +383,7 @@ class _CustomerregState extends State<Customerreg> {
                   ),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
-                      color: bluebg,
+                      color: hpColor,
                       boxShadow: [
                         BoxShadow(
                             spreadRadius: 3,
@@ -440,13 +440,18 @@ class _CustomerregState extends State<Customerreg> {
         instadate: instadatecontroller.text,
       );
 
-      firebaseFirestore.collection("organizations")
-          .doc("${widget.orgId}").collection("Customer").doc(docname).get().then(
+      firebaseFirestore
+          .collection("organizations")
+          .doc("${widget.orgId}")
+          .collection("Customer")
+          .doc(docname)
+          .get()
+          .then(
         (DocumentSnapshot doc) {
           if (!doc.exists) {
             firebaseFirestore
-            .collection("organizations")
-          .doc("${widget.orgId}")
+                .collection("organizations")
+                .doc("${widget.orgId}")
                 .collection("Customer")
                 .doc(docname)
                 .set(custm.toMap())
