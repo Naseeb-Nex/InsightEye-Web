@@ -148,7 +148,7 @@ class Protechcard extends StatelessWidget {
                     children: [
                       const Icon(
                         Icons.pin_drop_outlined,
-                        color: vioetbg,
+                        color: hpColor,
                       ),
                       Text(
                         "  $loc",
