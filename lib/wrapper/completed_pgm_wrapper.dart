@@ -98,7 +98,7 @@ class _CompletedpgmwrapperState extends State<Completedpgmwrapper> {
             color: white,
           ),
           iconDisabledColor: Colors.white60,
-          iconEnabledColor: vioetbg,
+          iconEnabledColor: hpColor,
           isExpanded: true,
         ),
       ),
@@ -133,8 +133,8 @@ class _CompletedpgmwrapperState extends State<Completedpgmwrapper> {
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(30),
-                        color: _currentsw == "day" ? white : vioetbg,
-                        border: Border.all(color: vioetbg),
+                        color: _currentsw == "day" ? white : hpColor,
+                        border: Border.all(color: hpColor),
                       ),
                       child: Text(
                         "Day",
@@ -142,7 +142,7 @@ class _CompletedpgmwrapperState extends State<Completedpgmwrapper> {
                           fontFamily: "Nunito",
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
-                          color: _currentsw == "day" ? vioetbg : white,
+                          color: _currentsw == "day" ? hpColor : white,
                         ),
                       ),
                     ),
@@ -160,8 +160,8 @@ class _CompletedpgmwrapperState extends State<Completedpgmwrapper> {
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(30),
-                        color: _currentsw == "month" ? white : vioetbg,
-                        border: Border.all(color: vioetbg),
+                        color: _currentsw == "month" ? white : hpColor,
+                        border: Border.all(color: hpColor),
                       ),
                       child: Text(
                         "Month",
@@ -169,7 +169,7 @@ class _CompletedpgmwrapperState extends State<Completedpgmwrapper> {
                           fontFamily: "Nunito",
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
-                          color: _currentsw == "month" ? vioetbg : white,
+                          color: _currentsw == "month" ? hpColor : white,
                         ),
                       ),
                     ),
@@ -184,7 +184,7 @@ class _CompletedpgmwrapperState extends State<Completedpgmwrapper> {
                             height: 50,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
-                              color: vioetbg,
+                              color: hpColor,
                             ),
                             child: monthsel,
                           )

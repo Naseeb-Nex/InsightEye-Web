@@ -1,4 +1,7 @@
 import 'package:iconsax/iconsax.dart';
+import 'package:insighteye_web/widgets/TechReport/Dailyreportwidget.dart';
+import 'package:insighteye_web/widgets/TechReport/Monthlyreportwidget.dart';
+import 'package:insighteye_web/widgets/TechReport/Searchreportwidget.dart';
 import 'package:loading_indicator/loading_indicator.dart';
 import 'package:insighteye_web/componets/techreportcard.dart';
 import 'package:insighteye_web/constants/constants.dart';
@@ -6,9 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fl_chart/fl_chart.dart';
-import 'package:insighteye_web/widgets/TechReport/dailyreportwidget.dart';
-import 'package:insighteye_web/widgets/TechReport/monthlyreportwidget.dart';
-import 'package:insighteye_web/widgets/TechReport/searchreportwidget.dart';
 
 // ignore: must_be_immutable
 class Reportsrcwidget extends StatefulWidget {
@@ -79,7 +79,7 @@ class ReportsrcwidgetState extends State<Reportsrcwidget> {
                     fontFamily: "Montserrat",
                     fontSize: 25,
                     fontWeight: FontWeight.w800,
-                    color: bluebg,
+                    color: hpColor,
                   ),
                 ),
               ),
@@ -130,7 +130,7 @@ class ReportsrcwidgetState extends State<Reportsrcwidget> {
                                             const Text(
                                               "OVERVIEW",
                                               style: TextStyle(
-                                                  color: bluebg,
+                                                  color: hpColor,
                                                   fontFamily: "Montserrat",
                                                   fontSize: 18,
                                                   fontWeight: FontWeight.bold),
@@ -422,7 +422,7 @@ class ReportsrcwidgetState extends State<Reportsrcwidget> {
                             const Text(
                               "REPORT",
                               style: TextStyle(
-                                  color: bluebg,
+                                  color: hpColor,
                                   fontFamily: "Montserrat",
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold),
@@ -765,7 +765,7 @@ class _TechReportstatusState extends State<TechReportstatus> {
                     Text(
                       "Daily Report",
                       style: TextStyle(
-                        color: selectedRprt == "Daily" ? bluebg : black,
+                        color: selectedRprt == "Daily" ? hpColor : black,
                         fontFamily: "Montserrat",
                         fontSize: 16,
                         fontWeight: FontWeight.w700,
@@ -778,7 +778,7 @@ class _TechReportstatusState extends State<TechReportstatus> {
                       height: 3,
                       thickness: 3,
                       color: selectedRprt == "Daily"
-                          ? bluebg
+                          ? hpColor
                           : const Color(0XFFECEDEC),
                     )
                   ],
@@ -797,7 +797,7 @@ class _TechReportstatusState extends State<TechReportstatus> {
                     Text(
                       "Search",
                       style: TextStyle(
-                          color: selectedRprt == "Search" ? bluebg : black,
+                          color: selectedRprt == "Search" ? hpColor : black,
                           fontFamily: "Montserrat",
                           fontSize: 16,
                           fontWeight: FontWeight.w700),
@@ -809,7 +809,7 @@ class _TechReportstatusState extends State<TechReportstatus> {
                       height: 3,
                       thickness: 3,
                       color: selectedRprt == "Search"
-                          ? bluebg
+                          ? hpColor
                           : const Color(0XFFECEDEC),
                     )
                   ],
@@ -828,7 +828,7 @@ class _TechReportstatusState extends State<TechReportstatus> {
                     Text(
                       "Monthly Report",
                       style: TextStyle(
-                          color: selectedRprt == "Monthly" ? bluebg : black,
+                          color: selectedRprt == "Monthly" ? hpColor : black,
                           fontFamily: "Montserrat",
                           fontSize: 16,
                           fontWeight: FontWeight.w700),
@@ -840,7 +840,7 @@ class _TechReportstatusState extends State<TechReportstatus> {
                       height: 3,
                       thickness: 3,
                       color: selectedRprt == "Monthly"
-                          ? bluebg
+                          ? hpColor
                           : const Color(0XFFECEDEC),
                     )
                   ],
@@ -884,7 +884,7 @@ class Techreportstatuswarpper extends StatelessWidget {
         techuid: techuid,
         techname: techname,
       );
-    } 
+    }
     return DailyReportwidget(
       techuid: techuid,
       techname: techname,

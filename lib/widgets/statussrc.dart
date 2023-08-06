@@ -39,14 +39,14 @@ class StatussrcState extends State<Statussrc> {
               fontFamily: "Nunito",
               fontSize: 25,
               fontWeight: FontWeight.bold,
-              color: Colors.blueAccent,
+              color: hpColor,
             ),
           ),
           Container(
             height: 5,
             width: 36,
             decoration: BoxDecoration(
-                color: Colors.blueAccent,
+                color: hpColor,
                 borderRadius: BorderRadius.circular(10)),
           ),
           const SizedBox(
@@ -76,8 +76,8 @@ class StatussrcState extends State<Statussrc> {
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(30),
-                            color: _currentsw == "Assign" ? white : Colors.blue,
-                            border: Border.all(color: Colors.blue),
+                            color: _currentsw == "Assign" ? white : hpColor,
+                            border: Border.all(color: hpColor),
                           ),
                           child: Text(
                             "Assigned Programs",
@@ -86,7 +86,7 @@ class StatussrcState extends State<Statussrc> {
                               fontSize: 15,
                               fontWeight: FontWeight.bold,
                               color:
-                                  _currentsw == "Assign" ? Colors.blue : white,
+                                  _currentsw == "Assign" ? hpColor : white,
                             ),
                           ),
                         ),
@@ -105,8 +105,8 @@ class StatussrcState extends State<Statussrc> {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(30),
                             color:
-                                _currentsw == "Pending" ? white : Colors.blue,
-                            border: Border.all(color: Colors.blue),
+                                _currentsw == "Pending" ? white : hpColor,
+                            border: Border.all(color: hpColor),
                           ),
                           child: Text(
                             "Pending Programs",
@@ -115,7 +115,7 @@ class StatussrcState extends State<Statussrc> {
                               fontSize: 15,
                               fontWeight: FontWeight.bold,
                               color:
-                                  _currentsw == "Pending" ? Colors.blue : white,
+                                  _currentsw == "Pending" ? hpColor : white,
                             ),
                           ),
                         ),
@@ -134,8 +134,8 @@ class StatussrcState extends State<Statussrc> {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(30),
                             color:
-                                _currentsw == "Completed" ? white : Colors.blue,
-                            border: Border.all(color: Colors.blue),
+                                _currentsw == "Completed" ? white : hpColor,
+                            border: Border.all(color: hpColor),
                           ),
                           child: Text(
                             "Completed Programs",
@@ -144,7 +144,7 @@ class StatussrcState extends State<Statussrc> {
                               fontSize: 15,
                               fontWeight: FontWeight.bold,
                               color: _currentsw == "Completed"
-                                  ? Colors.blue
+                                  ? hpColor
                                   : white,
                             ),
                           ),
@@ -163,8 +163,8 @@ class StatussrcState extends State<Statussrc> {
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(30),
-                            color: _currentsw == "pros" ? white : Colors.blue,
-                            border: Border.all(color: Colors.blue),
+                            color: _currentsw == "pros" ? white : hpColor,
+                            border: Border.all(color: hpColor),
                           ),
                           child: Text(
                             "Processing Programs",
@@ -172,7 +172,7 @@ class StatussrcState extends State<Statussrc> {
                               fontFamily: "Nunito",
                               fontSize: 15,
                               fontWeight: FontWeight.bold,
-                              color: _currentsw == "pros" ? Colors.blue : white,
+                              color: _currentsw == "pros" ? hpColor : white,
                             ),
                           ),
                         ),

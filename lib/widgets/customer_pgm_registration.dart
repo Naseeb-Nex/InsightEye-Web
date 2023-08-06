@@ -95,8 +95,8 @@ class _CustomerpgmRegState extends State<CustomerpgmReg> {
           elevation: 12,
           style: const TextStyle(color: Colors.grey, fontSize: 16),
           icon: const Icon(Icons.arrow_drop_down_circle),
-          iconDisabledColor: Colors.grey,
-          iconEnabledColor: const Color(0xFF3469F2),
+          iconDisabledColor: hpColor,
+          iconEnabledColor: hpColor,
           isExpanded: true,
         ),
       ),
@@ -599,7 +599,6 @@ class _CustomerpgmRegState extends State<CustomerpgmReg> {
           .doc(formattedDate)
           .set(pgmr.toMap())
           .then((value) {
-
         // customer program history updated
         firebaseFirestore
             .collection("organizations")

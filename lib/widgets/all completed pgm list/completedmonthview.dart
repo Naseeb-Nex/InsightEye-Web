@@ -42,7 +42,7 @@ class _CompletedmonthviewState extends State<Completedmonthview> {
                           style: TextStyle(
                               fontFamily: "Montserrat",
                               fontSize: 17,
-                              color: vioetbg),
+                              color: hpColor),
                         ),
                       );
               }
@@ -52,7 +52,7 @@ class _CompletedmonthviewState extends State<Completedmonthview> {
                   color: white,
                   child: const Center(
                     child: CircularProgressIndicator(
-                      color: vioetbg,
+                      color: hpColor,
                     ),
                   ),
                 );

@@ -208,7 +208,7 @@ class StatussrcState extends State<CustomerProfilesrc> {
                                                   borderRadius:
                                                       BorderRadius.circular(30),
                                                   color: editmode
-                                                      ? vioetbg
+                                                      ? hpColor
                                                       : const Color(0XFFffcc00),
                                                   boxShadow: [
                                                     BoxShadow(
@@ -1103,7 +1103,7 @@ class StatussrcState extends State<CustomerProfilesrc> {
                             height: 50,
                             width: s.width * 0.4,
                             decoration: BoxDecoration(
-                                color: bluebg,
+                                color: hpColor,
                                 borderRadius: BorderRadius.circular(20)),
                             child: Row(
                               children: [

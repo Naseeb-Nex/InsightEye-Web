@@ -127,10 +127,10 @@ class _CustomersrcState extends State<Customersrc> {
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(20),
                     topRight: Radius.circular(20)),
-                color: bluebg),
+                color: hpColor),
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
-            child:const Row(
-              children:  [
+            child: const Row(
+              children: [
                 SizedBox(
                   width: 18,
                 ),

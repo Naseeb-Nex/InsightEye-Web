@@ -196,7 +196,7 @@ class DailyprocessingcardState extends State<Dailyprocessingcard> {
                                   children: [
                                     const Icon(
                                       Iconsax.location,
-                                      color: vioetbg,
+                                      color: hpColor,
                                       size: 25,
                                     ),
                                     SizedBox(width: s.height * 0.01),
