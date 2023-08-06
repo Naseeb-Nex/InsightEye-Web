@@ -142,7 +142,7 @@ class _MonthlyReportWidgetState extends State<MonthlyReportWidget> {
                           fontFamily: "Montserrat",
                           fontWeight: FontWeight.w600,
                           fontSize: 17,
-                          color: bluebg,
+                          color: hpColor,
                         ),
                       ),
                     ],
@@ -153,8 +153,8 @@ class _MonthlyReportWidgetState extends State<MonthlyReportWidget> {
                   const SizedBox(height: 10),
                   StreamBuilder<QuerySnapshot>(
                     stream: fb
-                    .collection("organizations")
-          .doc("${widget.orgId}")
+                        .collection("organizations")
+                        .doc("${widget.orgId}")
                         .collection("Reports")
                         .doc(year)
                         .collection("Month")

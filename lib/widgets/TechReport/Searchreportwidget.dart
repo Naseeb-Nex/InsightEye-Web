@@ -6,15 +6,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:insighteye_web/widgets/TechReport/Dailyreportwidget.dart';
 import 'package:loading_indicator/loading_indicator.dart';
 
-
 // ignore: must_be_immutable
 class Searchreportwidget extends StatefulWidget {
   String? orgId;
   String? techname;
   String? techuid;
-  Searchreportwidget({Key? key, this.techuid, this.techname, required this.orgId})
+  Searchreportwidget(
+      {Key? key, this.techuid, this.techname, required this.orgId})
       : super(key: key);
-
 
   @override
   State<Searchreportwidget> createState() => _SearchreportwidgetState();
@@ -92,7 +91,7 @@ class _SearchreportwidgetState extends State<Searchreportwidget> {
                                   fontFamily: "Montserrat",
                                   fontWeight: FontWeight.w600,
                                   fontSize: 17,
-                                  color: bluebg,
+                                  color: hpColor,
                                 ),
                               ),
                             ],
@@ -111,15 +110,15 @@ class _SearchreportwidgetState extends State<Searchreportwidget> {
                                 borderRadius: 20,
                                 fontFamily: "Montserrat",
                                 theme: ThemeData(
-                                    primaryColor: bluebg,
-                                    // accentColor: bluebg,
-                                    textTheme: const TextTheme(
-                                      caption: TextStyle(color: bluebg),
-                                    ),
-                                    // accentTextTheme: TextTheme(
-                                    //   bodyText2: TextStyle(color: bluebg),
-                                    // ),
-                                    ),
+                                  primaryColor: bluebg,
+                                  // accentColor: bluebg,
+                                  textTheme: const TextTheme(
+                                    caption: TextStyle(color: bluebg),
+                                  ),
+                                  // accentTextTheme: TextTheme(
+                                  //   bodyText2: TextStyle(color: bluebg),
+                                  // ),
+                                ),
                               );
                               if (newDateTime != null) {
                                 setState(() {
@@ -138,8 +137,8 @@ class _SearchreportwidgetState extends State<Searchreportwidget> {
                                   formated_month = "$_selectedmonth";
                                 }
                                 fb
-                                .collection("organizations")
-          .doc("${widget.orgId}")
+                                    .collection("organizations")
+                                    .doc("${widget.orgId}")
                                     .collection("Reports")
                                     .doc(_selectedyear)
                                     .collection("Month")
@@ -182,7 +181,7 @@ class _SearchreportwidgetState extends State<Searchreportwidget> {
                                   ),
                                 ],
                               ),
-                              child:  const Text(
+                              child: const Text(
                                 "Select the Date",
                                 style: TextStyle(
                                     fontFamily: "Montserrat",
@@ -235,10 +234,10 @@ class _SearchreportwidgetState extends State<Searchreportwidget> {
                                               color: bluebg,
                                             ),
                                           ),
-                                           const SizedBox(height: 10),
+                                          const SizedBox(height: 10),
                                           Text(
                                             "$_selectedday - $formated_month - $_selectedyear",
-                                            style: const  TextStyle(
+                                            style: const TextStyle(
                                               fontFamily: "Montserrat",
                                               fontWeight: FontWeight.w600,
                                               fontSize: 17,
@@ -249,8 +248,8 @@ class _SearchreportwidgetState extends State<Searchreportwidget> {
                                       ),
                                     ],
                                   ),
-                                  const  Divider(),
-                                  const  SizedBox(
+                                  const Divider(),
+                                  const SizedBox(
                                     height: 8,
                                   ),
 
@@ -274,7 +273,8 @@ class _SearchreportwidgetState extends State<Searchreportwidget> {
                                                         blurRadius: 4,
                                                         color: black
                                                             .withOpacity(.05),
-                                                        offset: const  Offset(1, 2),
+                                                        offset:
+                                                            const Offset(1, 2),
                                                       ),
                                                     ]),
                                                 child: Column(
@@ -294,7 +294,7 @@ class _SearchreportwidgetState extends State<Searchreportwidget> {
                                                           width: 40,
                                                           height: 40,
                                                         ),
-                                                        const  SizedBox(
+                                                        const SizedBox(
                                                           width: 8,
                                                         ),
                                                         const Text(
@@ -311,7 +311,7 @@ class _SearchreportwidgetState extends State<Searchreportwidget> {
                                                         ),
                                                       ],
                                                     ),
-                                                    const  SizedBox(height: 5),
+                                                    const SizedBox(height: 5),
                                                     StreamBuilder<
                                                             QuerySnapshot>(
                                                         stream: fb
@@ -350,7 +350,7 @@ class _SearchreportwidgetState extends State<Searchreportwidget> {
                                                                     s.height *
                                                                         0.25,
                                                                 child:
-                                                                   const   LoadingIndicator(
+                                                                    const LoadingIndicator(
                                                                   indicatorType:
                                                                       Indicator
                                                                           .ballClipRotateMultiple,
@@ -395,7 +395,7 @@ class _SearchreportwidgetState extends State<Searchreportwidget> {
                                                                                     "assets/icons/warning.png",
                                                                                     height: s.height * 0.12,
                                                                                   ),
-                                                                                  const  Text(
+                                                                                  const Text(
                                                                                     "No Vehicle Used !",
                                                                                     style: TextStyle(
                                                                                       fontFamily: "Montserrat",
@@ -415,10 +415,10 @@ class _SearchreportwidgetState extends State<Searchreportwidget> {
                                                                           .length;
                                                                   i++) ...[
                                                                 Padding(
-                                                                  padding:  const EdgeInsets
-                                                                      .symmetric(
-                                                                          vertical:
-                                                                              5.0),
+                                                                  padding: const EdgeInsets
+                                                                          .symmetric(
+                                                                      vertical:
+                                                                          5.0),
                                                                   child:
                                                                       Vreportoverviewcard(
                                                                     name: vehicle[
@@ -431,10 +431,9 @@ class _SearchreportwidgetState extends State<Searchreportwidget> {
                                                                     docname: vehicle[
                                                                             i][
                                                                         'docname'],
-                                                                    techuid:
-                                                                        vehicle[i]
-                                                                            [
-                                                                            'techuid'],
+                                                                    techuid: vehicle[
+                                                                            i][
+                                                                        'techuid'],
                                                                     update: vehicle[
                                                                             i][
                                                                         'upDate'],
@@ -459,7 +458,7 @@ class _SearchreportwidgetState extends State<Searchreportwidget> {
                                                   ],
                                                 ),
                                               ),
-                                             const   SizedBox(
+                                              const SizedBox(
                                                 height: 15,
                                               ),
                                               Container(
@@ -498,10 +497,10 @@ class _SearchreportwidgetState extends State<Searchreportwidget> {
                                                           width: 40,
                                                           height: 40,
                                                         ),
-                                                       const   SizedBox(
+                                                        const SizedBox(
                                                           width: 8,
                                                         ),
-                                                        const  Text(
+                                                        const Text(
                                                           "Expense Details",
                                                           style: TextStyle(
                                                             fontFamily:
@@ -509,13 +508,14 @@ class _SearchreportwidgetState extends State<Searchreportwidget> {
                                                             fontWeight:
                                                                 FontWeight.w600,
                                                             fontSize: 17,
-                                                            color: Colors.black87,
+                                                            color:
+                                                                Colors.black87,
                                                           ),
                                                         ),
                                                       ],
                                                     ),
-                                                   const   Divider(),
-                                                 const     SizedBox(height: 5),
+                                                    const Divider(),
+                                                    const SizedBox(height: 5),
                                                     FutureBuilder<
                                                         DocumentSnapshot>(
                                                       future: fb
@@ -536,14 +536,22 @@ class _SearchreportwidgetState extends State<Searchreportwidget> {
                                                                   DocumentSnapshot>
                                                               snapshot) {
                                                         if (snapshot.hasError) {
-                                                          return  const Text(
-                                                              "Something went wrong", style: TextStyle(fontFamily: "Montserrat", fontSize: 16, fontWeight: FontWeight.w600),);
+                                                          return const Text(
+                                                            "Something went wrong",
+                                                            style: TextStyle(
+                                                                fontFamily:
+                                                                    "Montserrat",
+                                                                fontSize: 16,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600),
+                                                          );
                                                         }
 
                                                         if (snapshot.hasData &&
                                                             !snapshot
                                                                 .data!.exists) {
-                                                          return  const Padding(
+                                                          return const Padding(
                                                             padding: EdgeInsets
                                                                 .symmetric(
                                                                     vertical:
@@ -580,7 +588,7 @@ class _SearchreportwidgetState extends State<Searchreportwidget> {
                                                                     child: Text(
                                                                       "${data['expense']}",
                                                                       style:
-                                                                          const  TextStyle(
+                                                                          const TextStyle(
                                                                         fontFamily:
                                                                             "Montserrat",
                                                                         fontSize:
@@ -635,11 +643,11 @@ class _SearchreportwidgetState extends State<Searchreportwidget> {
                                                                     s.height *
                                                                         0.15,
                                                                 child:
-                                                                     const LoadingIndicator(
+                                                                    const LoadingIndicator(
                                                                   indicatorType:
                                                                       Indicator
                                                                           .ballClipRotateMultiple,
-                                                                  colors:  [
+                                                                  colors: [
                                                                     black
                                                                   ],
                                                                 ),
@@ -652,10 +660,10 @@ class _SearchreportwidgetState extends State<Searchreportwidget> {
                                                   ],
                                                 ),
                                               ),
-                                               const SizedBox(height: 15),
+                                              const SizedBox(height: 15),
                                             ],
                                           )
-                                        :  SizedBox(
+                                        : SizedBox(
                                             width: double.infinity,
                                             height: s.height * 0.27,
                                             child: Image.asset(
@@ -664,7 +672,7 @@ class _SearchreportwidgetState extends State<Searchreportwidget> {
                                             ),
                                           ),
                                   ),
-                                  const  SizedBox(
+                                  const SizedBox(
                                     height: 15,
                                   ),
 
@@ -696,7 +704,7 @@ class _SearchreportwidgetState extends State<Searchreportwidget> {
                                             width: 40,
                                             height: 40,
                                           ),
-                                           const Text(
+                                          const Text(
                                             "Daily Activity",
                                             style: TextStyle(
                                               fontFamily: "Montserrat",
@@ -705,8 +713,8 @@ class _SearchreportwidgetState extends State<Searchreportwidget> {
                                               color: bluebg,
                                             ),
                                           ),
-                                          const  Divider(),
-                                          const  SizedBox(height: 15),
+                                          const Divider(),
+                                          const SizedBox(height: 15),
                                           StreamBuilder<QuerySnapshot>(
                                             stream: fb
                                                 .collection("Reports")
@@ -733,10 +741,10 @@ class _SearchreportwidgetState extends State<Searchreportwidget> {
                                                         fit: BoxFit.cover,
                                                       ),
                                                     ),
-                                                     const Padding(
-                                                      padding:  EdgeInsets
-                                                              .symmetric(
-                                                          vertical: 10),
+                                                    const Padding(
+                                                      padding:
+                                                          EdgeInsets.symmetric(
+                                                              vertical: 10),
                                                       child: Text(
                                                         "No Programs Found !",
                                                         style: TextStyle(
@@ -757,10 +765,11 @@ class _SearchreportwidgetState extends State<Searchreportwidget> {
                                                     child: SizedBox(
                                                       width: s.height * 0.25,
                                                       height: s.height * 0.25,
-                                                      child:  const LoadingIndicator(
+                                                      child:
+                                                          const LoadingIndicator(
                                                         indicatorType: Indicator
                                                             .ballClipRotateMultiple,
-                                                        colors:  [bluebg],
+                                                        colors: [bluebg],
                                                       ),
                                                     ),
                                                   ),
@@ -790,216 +799,266 @@ class _SearchreportwidgetState extends State<Searchreportwidget> {
                                               return Column(
                                                 children: [
                                                   Container(
-                                                    child:
-                                                        activityrp.isEmpty
-                                                            ? Column(
-                                                                children: [
-                                                                  SizedBox(
-                                                                    width: double
-                                                                        .infinity,
-                                                                    height:
-                                                                        s.height *
-                                                                            0.27,
-                                                                    child: Image
-                                                                        .asset(
-                                                                      "assets/icons/noprograms.jpg",
-                                                                      fit: BoxFit
-                                                                          .cover,
-                                                                    ),
-                                                                  ),
-                                                                  const  Padding(
-                                                                    padding:  EdgeInsets
-                                                                            .symmetric(
+                                                    child: activityrp.isEmpty
+                                                        ? Column(
+                                                            children: [
+                                                              SizedBox(
+                                                                width: double
+                                                                    .infinity,
+                                                                height:
+                                                                    s.height *
+                                                                        0.27,
+                                                                child:
+                                                                    Image.asset(
+                                                                  "assets/icons/noprograms.jpg",
+                                                                  fit: BoxFit
+                                                                      .cover,
+                                                                ),
+                                                              ),
+                                                              const Padding(
+                                                                padding: EdgeInsets
+                                                                    .symmetric(
                                                                         vertical:
                                                                             10),
-                                                                    child: Text(
-                                                                      "No Programs Found !",
-                                                                      style:
-                                                                          TextStyle(
-                                                                        fontFamily:
-                                                                            "Montserrat",
+                                                                child: Text(
+                                                                  "No Programs Found !",
+                                                                  style:
+                                                                      TextStyle(
+                                                                    fontFamily:
+                                                                        "Montserrat",
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          )
+                                                        : Column(
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .start,
+                                                            children: [
+                                                              SingleChildScrollView(
+                                                                scrollDirection:
+                                                                    Axis.horizontal,
+                                                                child: Row(
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .start,
+                                                                  children: [
+                                                                    InkWell(
+                                                                      onTap: () =>
+                                                                          setState(
+                                                                              () {
+                                                                        daily_activity_filter =
+                                                                            "all";
+                                                                      }),
+                                                                      child:
+                                                                          Container(
+                                                                        width: s.height *
+                                                                            0.15,
+                                                                        padding:
+                                                                            EdgeInsets.symmetric(
+                                                                          vertical:
+                                                                              s.height * 0.015,
+                                                                        ),
+                                                                        decoration: BoxDecoration(
+                                                                            borderRadius: BorderRadius.circular(
+                                                                                10),
+                                                                            color: daily_activity_filter == "all"
+                                                                                ? bluebg
+                                                                                : nonactivebg),
+                                                                        child:
+                                                                            Center(
+                                                                          child:
+                                                                              Text(
+                                                                            "All",
+                                                                            style: TextStyle(
+                                                                                fontFamily: "Montserrat",
+                                                                                fontWeight: FontWeight.w500,
+                                                                                color: daily_activity_filter == "all" ? white : nonactivetxt),
+                                                                          ),
+                                                                        ),
                                                                       ),
                                                                     ),
-                                                                  ),
-                                                                ],
-                                                              )
-                                                            : Column(
-                                                                crossAxisAlignment:
-                                                                    CrossAxisAlignment
-                                                                        .start,
-                                                                children: [
-                                                                  SingleChildScrollView(
-                                                                    scrollDirection:
-                                                                        Axis.horizontal,
-                                                                    child: Row(
-                                                                      mainAxisAlignment:
-                                                                          MainAxisAlignment
-                                                                              .start,
-                                                                      children: [
-                                                                        InkWell(
-                                                                          onTap: () =>
-                                                                              setState(() {
-                                                                            daily_activity_filter =
-                                                                                "all";
-                                                                          }),
+                                                                    SizedBox(
+                                                                        width: s.height *
+                                                                            0.03),
+                                                                    InkWell(
+                                                                      onTap: () =>
+                                                                          setState(
+                                                                              () {
+                                                                        daily_activity_filter =
+                                                                            "assigned";
+                                                                      }),
+                                                                      child:
+                                                                          Container(
+                                                                        width: s.height *
+                                                                            0.25,
+                                                                        padding:
+                                                                            EdgeInsets.symmetric(
+                                                                          vertical:
+                                                                              s.height * 0.015,
+                                                                        ),
+                                                                        decoration: BoxDecoration(
+                                                                            borderRadius: BorderRadius.circular(
+                                                                                10),
+                                                                            color: daily_activity_filter == "assigned"
+                                                                                ? bluebg
+                                                                                : nonactivebg),
+                                                                        child:
+                                                                            Center(
                                                                           child:
-                                                                              Container(
-                                                                            width:
-                                                                                s.height * 0.15,
-                                                                            padding:
-                                                                                EdgeInsets.symmetric(
-                                                                              vertical: s.height * 0.015,
-                                                                            ),
-                                                                            decoration:
-                                                                                BoxDecoration(borderRadius: BorderRadius.circular(10), color: daily_activity_filter == "all" ? bluebg : nonactivebg),
-                                                                            child:
-                                                                                Center(
-                                                                              child: Text(
-                                                                                "All",
-                                                                                style: TextStyle(fontFamily: "Montserrat", fontWeight: FontWeight.w500, color: daily_activity_filter == "all" ? white : nonactivetxt),
-                                                                              ),
-                                                                            ),
+                                                                              Text(
+                                                                            "Assigned",
+                                                                            style: TextStyle(
+                                                                                fontFamily: "Montserrat",
+                                                                                fontWeight: FontWeight.w500,
+                                                                                color: daily_activity_filter == "assigned" ? white : nonactivetxt),
                                                                           ),
                                                                         ),
-                                                                        SizedBox(
-                                                                            width:
-                                                                                s.height * 0.03),
-                                                                        InkWell(
-                                                                          onTap: () =>
-                                                                              setState(() {
-                                                                            daily_activity_filter =
-                                                                                "assigned";
-                                                                          }),
-                                                                          child:
-                                                                              Container(
-                                                                            width:
-                                                                                s.height * 0.25,
-                                                                            padding:
-                                                                                EdgeInsets.symmetric(
-                                                                              vertical: s.height * 0.015,
-                                                                            ),
-                                                                            decoration:
-                                                                                BoxDecoration(borderRadius: BorderRadius.circular(10), color: daily_activity_filter == "assigned" ? bluebg : nonactivebg),
-                                                                            child:
-                                                                                Center(
-                                                                              child: Text(
-                                                                                "Assigned",
-                                                                                style: TextStyle(fontFamily: "Montserrat", fontWeight: FontWeight.w500, color: daily_activity_filter == "assigned" ? white : nonactivetxt),
-                                                                              ),
-                                                                            ),
-                                                                          ),
-                                                                        ),
-                                                                        SizedBox(
-                                                                            width:
-                                                                                s.height * 0.03),
-                                                                        InkWell(
-                                                                          onTap: () =>
-                                                                              setState(() {
-                                                                            daily_activity_filter =
-                                                                                "pending";
-                                                                          }),
-                                                                          child:
-                                                                              Container(
-                                                                            width:
-                                                                                s.height * 0.25,
-                                                                            padding:
-                                                                                EdgeInsets.symmetric(
-                                                                              vertical: s.height * 0.015,
-                                                                            ),
-                                                                            decoration:
-                                                                                BoxDecoration(borderRadius: BorderRadius.circular(10), color: daily_activity_filter == "pending" ? bluebg : nonactivebg),
-                                                                            child:
-                                                                                Center(
-                                                                              child: Text(
-                                                                                "Pending",
-                                                                                style: TextStyle(fontFamily: "Montserrat", fontWeight: FontWeight.w500, color: daily_activity_filter == "pending" ? white : nonactivetxt),
-                                                                              ),
-                                                                            ),
-                                                                          ),
-                                                                        ),
-                                                                        SizedBox(
-                                                                            width:
-                                                                                s.height * 0.03),
-                                                                        InkWell(
-                                                                          onTap: () =>
-                                                                              setState(() {
-                                                                            daily_activity_filter =
-                                                                                "completed";
-                                                                          }),
-                                                                          child:
-                                                                              Container(
-                                                                            width:
-                                                                                s.height * 0.25,
-                                                                            padding:
-                                                                                EdgeInsets.symmetric(
-                                                                              vertical: s.height * 0.015,
-                                                                            ),
-                                                                            decoration:
-                                                                                BoxDecoration(borderRadius: BorderRadius.circular(10), color: daily_activity_filter == "completed" ? bluebg : nonactivebg),
-                                                                            child:
-                                                                                Center(
-                                                                              child: Text(
-                                                                                "Completed",
-                                                                                style: TextStyle(fontFamily: "Montserrat", fontWeight: FontWeight.w500, color: daily_activity_filter == "completed" ? white : nonactivetxt),
-                                                                              ),
-                                                                            ),
-                                                                          ),
-                                                                        ),
-                                                                        SizedBox(
-                                                                            width:
-                                                                                s.height * 0.03),
-                                                                        InkWell(
-                                                                          onTap: () =>
-                                                                              setState(() {
-                                                                            daily_activity_filter =
-                                                                                "processing";
-                                                                          }),
-                                                                          child:
-                                                                              Container(
-                                                                            width:
-                                                                                s.height * 0.25,
-                                                                            padding:
-                                                                                EdgeInsets.symmetric(
-                                                                              vertical: s.height * 0.015,
-                                                                            ),
-                                                                            decoration:
-                                                                                BoxDecoration(borderRadius: BorderRadius.circular(10), color: daily_activity_filter == "processing" ? bluebg : nonactivebg),
-                                                                            child:
-                                                                                Center(
-                                                                              child: Text(
-                                                                                "Processing",
-                                                                                style: TextStyle(fontFamily: "Montserrat", fontWeight: FontWeight.w500, color: daily_activity_filter == "processing" ? white : nonactivetxt),
-                                                                              ),
-                                                                            ),
-                                                                          ),
-                                                                        ),
-                                                                      ],
+                                                                      ),
                                                                     ),
-                                                                  ),
-                                                                   const SizedBox(
-                                                                    height: 15,
-                                                                  ),
-                                                                ],
+                                                                    SizedBox(
+                                                                        width: s.height *
+                                                                            0.03),
+                                                                    InkWell(
+                                                                      onTap: () =>
+                                                                          setState(
+                                                                              () {
+                                                                        daily_activity_filter =
+                                                                            "pending";
+                                                                      }),
+                                                                      child:
+                                                                          Container(
+                                                                        width: s.height *
+                                                                            0.25,
+                                                                        padding:
+                                                                            EdgeInsets.symmetric(
+                                                                          vertical:
+                                                                              s.height * 0.015,
+                                                                        ),
+                                                                        decoration: BoxDecoration(
+                                                                            borderRadius: BorderRadius.circular(
+                                                                                10),
+                                                                            color: daily_activity_filter == "pending"
+                                                                                ? bluebg
+                                                                                : nonactivebg),
+                                                                        child:
+                                                                            Center(
+                                                                          child:
+                                                                              Text(
+                                                                            "Pending",
+                                                                            style: TextStyle(
+                                                                                fontFamily: "Montserrat",
+                                                                                fontWeight: FontWeight.w500,
+                                                                                color: daily_activity_filter == "pending" ? white : nonactivetxt),
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    SizedBox(
+                                                                        width: s.height *
+                                                                            0.03),
+                                                                    InkWell(
+                                                                      onTap: () =>
+                                                                          setState(
+                                                                              () {
+                                                                        daily_activity_filter =
+                                                                            "completed";
+                                                                      }),
+                                                                      child:
+                                                                          Container(
+                                                                        width: s.height *
+                                                                            0.25,
+                                                                        padding:
+                                                                            EdgeInsets.symmetric(
+                                                                          vertical:
+                                                                              s.height * 0.015,
+                                                                        ),
+                                                                        decoration: BoxDecoration(
+                                                                            borderRadius: BorderRadius.circular(
+                                                                                10),
+                                                                            color: daily_activity_filter == "completed"
+                                                                                ? bluebg
+                                                                                : nonactivebg),
+                                                                        child:
+                                                                            Center(
+                                                                          child:
+                                                                              Text(
+                                                                            "Completed",
+                                                                            style: TextStyle(
+                                                                                fontFamily: "Montserrat",
+                                                                                fontWeight: FontWeight.w500,
+                                                                                color: daily_activity_filter == "completed" ? white : nonactivetxt),
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    SizedBox(
+                                                                        width: s.height *
+                                                                            0.03),
+                                                                    InkWell(
+                                                                      onTap: () =>
+                                                                          setState(
+                                                                              () {
+                                                                        daily_activity_filter =
+                                                                            "processing";
+                                                                      }),
+                                                                      child:
+                                                                          Container(
+                                                                        width: s.height *
+                                                                            0.25,
+                                                                        padding:
+                                                                            EdgeInsets.symmetric(
+                                                                          vertical:
+                                                                              s.height * 0.015,
+                                                                        ),
+                                                                        decoration: BoxDecoration(
+                                                                            borderRadius: BorderRadius.circular(
+                                                                                10),
+                                                                            color: daily_activity_filter == "processing"
+                                                                                ? bluebg
+                                                                                : nonactivebg),
+                                                                        child:
+                                                                            Center(
+                                                                          child:
+                                                                              Text(
+                                                                            "Processing",
+                                                                            style: TextStyle(
+                                                                                fontFamily: "Montserrat",
+                                                                                fontWeight: FontWeight.w500,
+                                                                                color: daily_activity_filter == "processing" ? white : nonactivetxt),
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                ),
                                                               ),
+                                                              const SizedBox(
+                                                                height: 15,
+                                                              ),
+                                                            ],
+                                                          ),
                                                   ),
                                                   Container(
                                                     child: activityrp.isEmpty
                                                         ? null
                                                         : Container(
-                                                            child: filteredActivity.isEmpty
-                                                                ? Padding(
-                                                                    padding: EdgeInsets.only(
-                                                                        top: s.height *
-                                                                            0.1),
-                                                                    child: SizedBox(
-                                                                        height: s.height *
-                                                                            0.4,
-                                                                        width: s.height *
-                                                                            0.4,
-                                                                        child: Image.asset(
-                                                                            "assets/icons/no_result.png")),
-                                                                  )
-                                                                : null),
+                                                            child:
+                                                                filteredActivity
+                                                                        .isEmpty
+                                                                    ? Padding(
+                                                                        padding:
+                                                                            EdgeInsets.only(top: s.height * 0.1),
+                                                                        child: SizedBox(
+                                                                            height: s.height *
+                                                                                0.4,
+                                                                            width: s.height *
+                                                                                0.4,
+                                                                            child:
+                                                                                Image.asset("assets/icons/no_result.png")),
+                                                                      )
+                                                                    : null),
                                                   ),
                                                   for (var i = 0;
                                                       i <
@@ -1055,12 +1114,10 @@ class _SearchreportwidgetState extends State<Searchreportwidget> {
                                                       remarks:
                                                           filteredActivity[i]
                                                               ['remarks'],
-                                                      cdate:
-                                                          filteredActivity[i]
-                                                              ['cdate'],
-                                                      ctime:
-                                                          filteredActivity[i]
-                                                              ['ctime'],
+                                                      cdate: filteredActivity[i]
+                                                          ['cdate'],
+                                                      ctime: filteredActivity[i]
+                                                          ['ctime'],
                                                       ccollname:
                                                           filteredActivity[i]
                                                               ['ccollname'],
@@ -1074,23 +1131,25 @@ class _SearchreportwidgetState extends State<Searchreportwidget> {
                                                           filteredActivity[i]
                                                               ['rpdocname'],
                                                     ),
-                                                     const SizedBox(
+                                                    const SizedBox(
                                                       height: 10,
                                                     ),
                                                   ],
                                                   Container(
-                                                      child:
-                                                          activityrp.isEmpty
-                                                              ? null
-                                                              : Container(
-                                                                  child: filteredActivity.isEmpty
-                                                                      ? SizedBox(
-                                                                          height: s.height *
+                                                      child: activityrp.isEmpty
+                                                          ? null
+                                                          : Container(
+                                                              child: filteredActivity
+                                                                      .isEmpty
+                                                                  ? SizedBox(
+                                                                      height:
+                                                                          s.height *
                                                                               0.12)
-                                                                      : SizedBox(
-                                                                          height:
-                                                                              s.height * 0.05),
-                                                                ))
+                                                                  : SizedBox(
+                                                                      height: s
+                                                                              .height *
+                                                                          0.05),
+                                                            ))
                                                 ],
                                               );
                                             },

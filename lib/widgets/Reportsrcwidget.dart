@@ -778,7 +778,7 @@ class _TechReportstatusState extends State<TechReportstatus> {
                       height: 3,
                       thickness: 3,
                       color: selectedRprt == "Daily"
-                          ? bluebg
+                          ? hpColor
                           : const Color(0XFFECEDEC),
                     )
                   ],
@@ -809,7 +809,7 @@ class _TechReportstatusState extends State<TechReportstatus> {
                       height: 3,
                       thickness: 3,
                       color: selectedRprt == "Search"
-                          ? bluebg
+                          ? hpColor
                           : const Color(0XFFECEDEC),
                     )
                   ],
@@ -840,7 +840,7 @@ class _TechReportstatusState extends State<TechReportstatus> {
                       height: 3,
                       thickness: 3,
                       color: selectedRprt == "Monthly"
-                          ? bluebg
+                          ? hpColor
                           : const Color(0XFFECEDEC),
                     )
                   ],
